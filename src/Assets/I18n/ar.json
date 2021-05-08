@@ -1,0 +1,76 @@
+{
+  "home": "الصفحة الرئيسية",
+  "save": "حفظ",
+  "cancel": "إلغاء",
+  "filter-by": "مصنف بواسطة",
+  "back": "السابق",
+  "next": "التالي",
+  "search-holder": "...بحث",
+  "administration": "الادارة",
+  "system-admin": "مسؤول النظام",
+  "system-parameters": "معلمات النظام",
+  "dashboard": "لوحة القيادة",
+  "edit": "تعديل",
+  "row-per-page": "صف لكل صفحة",
+  "download": "التنزيل",
+  "from": "من",
+  "to": "إلى",
+  "please-fill-all-required-field": "يرجى تعبئة جميع الحقول المطلوبة",
+  "please-fix-all-errors": "الرجاء إصلاح كافة الأخطاء",
+  "some-numbers-are-duplicated": "بعض الأرقام مكررة",
+  "some-emails-are-duplicated": "بعض رسائل البريد الإلكتروني مكررة",
+  "charaters": "أحرف",
+  "accounts": "الحسابات",
+  "search": "البحث",
+  "is-equal": "يساوي",
+  "is-contains": "يحتوي",
+  "is-start-with": "يبدء ب",
+  "is-end-with": "ينتهي ب",
+  "is-less-than": "أقل من",
+  "is-greater-than": "أكبر من",
+  "is-between": "بين",
+  "NotFoundViews": {
+    "Error-page-not-found": "الصفحة غير موجودة",
+    "not-found": "غير موجود",
+    "no-internet-connection": "لا يوجد اتصال بالانترنت",
+    "No-Content": "لا يوجد بيانات",
+    "This-page-is-empty": "هذه الصفحة فارغة",
+    "No-Result-Found": "لا يوجد نتائج",
+    "No-internet": "لا يوجد اتصال بالانترنت",
+    "Try-to-search-with-different-keywords": "حاول البحث باستخدام كلمات اخرى",
+    "This-page-is-in-a-vacation-now-please-try-again-later": "هذه الصفحة في اجازة الرجاء المحاولة لاحفا",
+    "oops": "حدث خطأ"
+  },
+  "tables": {
+    "rows-per-page": "الصفوف في كل صفحة",
+    "of": "من",
+    "previous-page": "الصفحة السابقة",
+    "next-page": "الصفحة التالية",
+    "open-file": "فتح الملف"
+  },
+  "uploaderComponent": {
+    "drop-here": "الإسقاط هنا",
+    "image-uploaded": "صورة محملة",
+    "images-uploaded": "صور محملة",
+    "file-uploaded": "ملف محمل",
+    "files-uploaded": "ملفات محملة",
+    "browse-image": "إستعرض الصورة",
+    "browse-images": "إستعرض الصور",
+    "browse-file": "إستعرض الملف",
+    "browse-files": "إستعرض الملفات"
+  },
+  "Main": {
+    "HeaderView": {
+      "MainLabel": "CRM",
+      "Profile": "ملفي",
+      "ORGChart": "مخطط هيكل تنظيمي",
+      "Activities": "أنشطة",
+      "Logout": "تسجيل الخروج"
+    }
+  },
+  "pagination": {
+    "card-per-page": "البطاقات لكل صفحة:",
+    "of": "من",
+    "pages": "الصفحات"
+  }
+}

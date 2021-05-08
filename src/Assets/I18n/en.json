@@ -1,0 +1,76 @@
+{
+  "home": "Home",
+  "save": "Save",
+  "cancel": "Cancel",
+  "back": "Back",
+  "filter-by": "Filter by",
+  "next": "Next",
+  "search-holder": "Search...",
+  "dashboard": "Dashboard",
+  "system-admin": "System Admin",
+  "administration": "Administration",
+  "system-parameters": "System Parameters",
+  "edit": "Edit",
+  "row-per-page": "Row Per Page",
+  "download": "Download",
+  "from": "From",
+  "to": "To",
+  "please-fill-all-required-field": "Please fill all required fields",
+  "please-fix-all-errors": "Please Fix All Errors",
+  "some-numbers-are-duplicated": "Some numbers are duplicated",
+  "some-emails-are-duplicated": "Some emails are duplicated",
+  "charaters": "Characters",
+  "accounts": "Accounts",
+  "search": "Search",
+  "is-equal": "Is Equal",
+  "is-contains": "Is Contains",
+  "is-start-with": "Is Start With",
+  "is-end-with": "Is End With",
+  "is-less-than": "Is Less Than",
+  "is-greater-than": "Is Greater Than",
+  "is-between": "Is Between",
+  "NotFoundViews": {
+    "Error-page-not-found": "Error page not found",
+    "not-found": "Not found",
+    "No-Content": "No Content",
+    "no-internet-connection": "No internet connection",
+    "This-page-is-empty": "This page is empty",
+    "No-Result-Found": "No Result Found",
+    "No-internet": "No internet connection",
+    "Try-to-search-with-different-keywords": "Try to search with different keywords",
+    "This-page-is-in-a-vacation-now-please-try-again-later": "This page is in a vacation now please try again later",
+    "oops": "Oops"
+  },
+  "tables": {
+    "rows-per-page": "Rows per page",
+    "of": "of",
+    "previous-page": "Previous Page",
+    "next-page": "Next Page",
+    "open-file": "Open File"
+  },
+  "uploaderComponent": {
+    "drop-here": "Drop Here",
+    "image-uploaded": "Image Uploaded",
+    "images-uploaded": "Images Uploaded",
+    "file-uploaded": "File Uploaded",
+    "files-uploaded": "files Uploaded",
+    "browse-image": "Browse Image",
+    "browse-images": "Browse Images",
+    "browse-file": "Browse File",
+    "browse-files": "Browse Files"
+  },
+  "Main": {
+    "HeaderView": {
+      "MainLabel": "CRM",
+      "Profile": "My Profile",
+      "ORGChart": "ORG Chart",
+      "Activities": "Activities",
+      "Logout": "Logout"
+    }
+  },
+  "pagination": {
+    "card-per-page": "Cards per page:",
+    "of": "of",
+    "pages": "Pages"
+  }
+}

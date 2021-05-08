@@ -1,0 +1,94 @@
+@import 'src/Assets/Styles/Helpers/Variables/Variables.Style.scss';
+
+.checkbox-groups-wrapper {
+  .PrivateSwitchBase-input-19 {
+    margin-top: 0;
+  }
+  .MuiFormControlLabel-root {
+    margin-bottom: 0;
+  }
+  .PrivateSwitchBase-input-4 {
+    margin-top: 0;
+  }
+  .PrivateSwitchBase-input-8 {
+    margin-top: 0;
+  }
+  .checkbox-wrapper {
+    .MuiSvgIcon-root {
+      path {
+        fill: $c-primary;
+      }
+    }
+    &.Mui-checked,
+    &.MuiCheckbox-indeterminate {
+      .mdi {
+        color: $c-white;
+        background-color: $c-primary;
+      }
+    }
+    .mdi {
+      height: 18px;
+      width: 18px;
+      border-radius: 0.3rem;
+      line-height: 13px;
+      &::before {
+        font-size: 17px;
+      }
+    }
+    .i-unchecked {
+      height: 18px;
+      width: 18px;
+      border: 2px solid $c-primary;
+      border-radius: 0.25rem;
+    }
+    .PrivateSwitchBase-root-5 {
+      padding: 0.5rem;
+    }
+
+    &.MuiIconButton-root {
+      border-radius: 0.3rem;
+    }
+  }
+  &.theme-default {
+    .checkbox-wrapper {
+      .MuiSvgIcon-root {
+        path {
+          fill: $c-primary;
+        }
+      }
+      .i-unchecked {
+        border-color: $c-gray-dark;
+      }
+      &.Mui-checked,
+      &.MuiCheckbox-indeterminate {
+        .mdi {
+          background-color: $c-primary;
+        }
+      }
+    }
+  }
+  &.theme-secondary {
+    .checkbox-wrapper {
+      .MuiSvgIcon-root {
+        path {
+          fill: $c-primary;
+        }
+      }
+      &.Mui-checked,
+      &.MuiCheckbox-indeterminate {
+        .mdi {
+          background-color: $c-primary;
+        }
+      }
+    }
+  }
+
+  &.theme-dark {
+    .MuiFormControlLabel-label {
+      color: $c-white;
+    }
+  }
+  .form-control-label.MuiFormControlLabel-root .MuiFormControlLabel-label {
+    font-size: 14px;
+  }
+}

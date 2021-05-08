@@ -1,0 +1,216 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.Request-View-wraperr {
+  .hedar-title {
+    font-size: 19px;
+    padding: 12px 12px 12px 44px;
+    font-weight: bold;
+  }
+
+  .card-wraper {
+    padding: 10px;
+  }
+
+  .card-container {
+    width: 31rem;
+    height: 12rem;
+    display: inline-block;
+    background-color: #f4f4f4 !important;
+    padding: 10px;
+    border-radius: 23px;
+    .dots-vertical {
+      .MuiButtonBase-root {
+        background-color: #000000;
+        color: $c-white;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+      }
+      .mdi {
+        color: rgb(255, 255, 255);
+      }
+    }
+
+    .card-footar {
+      display: inline-flex;
+      width: 100%;
+      padding-top: 8px;
+      .fisrt {
+        .button {
+          .MuiButtonBase-root {
+            background-color: #65acfe;
+            color: $c-white;
+            border-radius: 7px;
+            width: 7rem;
+            height: 2.3rem !important;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            -ms-border-radius: 7px;
+            -o-border-radius: 7px;
+          }
+        }
+      }
+      .ReViews {
+        font-size: 13px;
+        font-weight: 600;
+        width: 100%;
+        .ReViews-value {
+          margin-top: 8px;
+          margin-left: 11px;
+          @include rtl {
+            margin-left: 0px;
+            margin-right: 11px;
+          }
+        }
+      }
+      .second {
+        display: inline-flex;
+        .MuiButtonBase-root {
+          height: 2.3rem !important;
+          width: 6rem;
+          border-radius: 7px;
+          -webkit-border-radius: 7px;
+          -moz-border-radius: 7px;
+          -ms-border-radius: 7px;
+          -o-border-radius: 7px;
+        }
+        .button-Reject {
+          .MuiButtonBase-root {
+            background-color: #e2e2e2;
+            color: #000000;
+          }
+        }
+        .button-Accept {
+          margin-right: 10px;
+          @include rtl {
+            margin-left: 10px;
+            margin-right: 0px;
+          }
+          .MuiButtonBase-root {
+            background-color: #65acfe;
+            color: $c-white;
+          }
+        }
+      }
+    }
+  }
+
+  .card-header {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    .card-icon {
+      padding: 15px;
+      .icon-container {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 24px;
+        .mdi:before {
+          color: #65acfe;
+          font-size: 53px;
+        }
+      }
+    }
+  }
+
+  .card-data {
+    width: 100%;
+    padding-top: 2rem;
+    .name {
+      font-size: 19px;
+      font-weight: 900;
+    }
+    .time {
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+
+  .cards-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-top: 0.4rem;
+    padding-bottom: 0.7rem;
+    justify-content: center;
+    width: 100%;
+    @include laptops-max {
+      justify-content: center;
+    }
+
+    @include phones-max {
+      justify-content: center;
+    }
+  }
+}
+.RequestView-check-header {
+  width: 100%;
+  height: 59px;
+  background-color: $c-header-primary;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .attendance-check-filter {
+    display: flex;
+    align-items: center;
+    .MuiButtonBase-root {
+      margin-right: 1rem;
+      border-radius: 0.4rem;
+      font-weight: 900 !important;
+      @include rtl {
+        margin-right: 0;
+        margin-left: 1rem;
+      }
+    }
+    .dots-vertical {
+      .MuiButtonBase-root {
+        background-color: $c-primary;
+        color: $c-white;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    .filter-button {
+      .MuiButtonBase-root {
+        background-color: $c-header-button;
+        color: $c-primary;
+        width: 7rem;
+        height: 2rem;
+      }
+      .mdi {
+        margin-left: -0.5rem;
+        margin-right: 0.5rem;
+        @include rtl {
+          margin-left: 0.5rem;
+          margin-right: -0.5rem;
+        }
+      }
+    }
+    .location-button {
+      .MuiButtonBase-root {
+        background-color: $c-header-button;
+        color: $c-primary;
+        width: 7rem;
+        height: 2rem;
+      }
+    }
+  }
+  .attendance-check-search {
+    display: flex;
+    align-items: center;
+    .leave-button {
+      margin-top: -0.4rem;
+      .MuiButtonBase-root {
+        border-radius: 0.4rem;
+        background-color: #65acfe;
+        color: $c-white;
+        width: 11rem;
+        height: 2rem;
+      }
+    }
+  }
+}

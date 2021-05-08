@@ -1,0 +1,163 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.LeavePolicy-View-wraperr {
+  .Action-TableCell {
+    display: inline-flex;
+  }
+  .Deleted-vertical {
+    display: inline-flex;
+    padding-right: 30px;
+    .mdi {
+      color: #d4cece;
+    }
+    @include rtl {
+      padding-right: 0px;
+      padding-left: 30px;
+    }
+  }
+  .row-min-width {
+    min-width: 20rem;
+  }
+  .row-max-width {
+    max-width: 1rem;
+  }
+  .hedar-title {
+    font-size: 14px;
+    padding: 12px 12px 12px 44px;
+    font-weight: bold;
+  }
+  .MuiPaper-elevation1 {
+    box-shadow: none !important;
+  }
+  .dots-vertical {
+    .MuiButtonBase-root {
+      background-color: #e2e2e2;
+      color: $c-white;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+    }
+    .mdi {
+      color: #000;
+    }
+  }
+
+  .Table-style {
+    .MuiTableCell-root {
+      padding: 19px 28px !important;
+      font-weight: 800;
+      border-bottom: none !important;
+    }
+
+    .MuiTableCell-head {
+      color: rgba(0, 0, 0, 0.87);
+      font-weight: bolder;
+      line-height: 1.5rem;
+    }
+
+    .Table-Cell-img-user {
+      position: relative;
+
+      .user-img {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        top: -9px;
+        left: -52px;
+        @include rtl {
+          right: -52px;
+          left: 0px;
+        }
+      }
+    }
+    .MuiTableBody-root {
+      .MuiTableRow-root:nth-of-type(odd) {
+        background: #f4f4f4 !important;
+      }
+    }
+
+    .Table-Cell-user {
+      display: inline-block;
+    }
+  }
+}
+
+.attendance-check-header {
+  width: 100%;
+  height: auto;
+  min-height: 59px;
+  background-color: #f4f4f4;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .attendance-check-filter {
+    display: flex;
+    align-items: center;
+    .MuiButtonBase-root {
+      margin-right: 1rem;
+      border-radius: 0.4rem;
+      font-weight: 900;
+      @include rtl {
+        margin-right: 0;
+        margin-left: 1rem;
+      }
+    }
+    .dots-vertical {
+      .MuiButtonBase-root {
+        background-color: $c-primary;
+        color: $c-white;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    .filter-button {
+      .MuiButtonBase-root {
+        background-color: $c-header-button;
+        color: $c-primary;
+        width: 7rem;
+        height: 2rem;
+      }
+      .mdi {
+        margin-left: -0.5rem;
+        margin-right: 0.5rem;
+        @include rtl {
+          margin-left: 0.5rem;
+          margin-right: -0.5rem;
+        }
+      }
+    }
+    .location-button {
+      .MuiButtonBase-root {
+        background-color: $c-header-button;
+        color: $c-primary;
+        width: 7rem;
+        height: 2rem;
+      }
+    }
+  }
+  .attendance-check-search {
+    display: flex;
+    align-items: center;
+    .leave-button {
+      margin-top: -0.4rem;
+      .MuiButtonBase-root {
+        border-radius: 0.4rem;
+        background-color: #65acfe;
+        color: $c-white;
+        width: 7rem;
+        height: 2rem;
+      }
+    }
+  }
+}
