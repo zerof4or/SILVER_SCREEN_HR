@@ -54,7 +54,7 @@ export const HeaderMenuComponent = () => {
         idRef="headerMenuPopoverRef"
         attachedWith={activeItemRef.current}
         handleClose={popoverCloseHandler}
-        component={<HeaderMenuPopoverComponent activeItem={activeItem} />}
+        component={<HeaderMenuPopoverComponent activeItem={activeItem} /> || <span />}
       />
     </div>
   );

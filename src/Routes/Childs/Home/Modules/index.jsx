@@ -1,1 +1,2 @@
-export * from './ContactsModule/ContactsModule.Routes';
+export * from './Contacts';
+export * from './Corporate';

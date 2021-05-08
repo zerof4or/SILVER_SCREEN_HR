@@ -4,6 +4,7 @@ export const CompanyMenu = [
     name: 'Shared:administration',
     icon: 'mdi mdi-account',
     order: 1,
+    isLastChildrenInMainMenu: true,
     childrens: [],
   },
   {
@@ -11,6 +12,7 @@ export const CompanyMenu = [
     name: 'Shared:human-resources',
     icon: 'mdi mdi-account-multiple',
     order: 2,
+    isLastChildrenInMainMenu: true,
     childrens: [],
   },
 ];
