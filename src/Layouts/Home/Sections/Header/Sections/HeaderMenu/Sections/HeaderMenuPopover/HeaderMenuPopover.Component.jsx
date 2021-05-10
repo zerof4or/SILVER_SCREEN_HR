@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ButtonBase } from '@material-ui/core';
+import { GlobalHistory } from '../../../../../../../../Helpers';
 
 export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
   const { t } = useTranslation('Shared');
@@ -12,6 +13,13 @@ export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
         window.location.pathname.startsWith(item.path)),
     []
   );
+  const navigationClickHandler = useCallback(
+    (item) => () => {
+      if (item.path) GlobalHistory.push(item.path);
+      if (item.externalPath) window.open(item.externalPath, '_blank');
+    },
+    []
+  );
   return (
     activeItem &&
     activeItem.childrens &&
@@ -20,11 +28,12 @@ export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
         className="header-menu-popover-wrapper childs-wrapper"
         key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}
       >
-        {item && (item.isLastChildrenInMainMenu || item.childrens.length === 0) && (
+        {item && (item.isLastChildrenInMainMenu || !item.childrens || item.childrens.length === 0) && (
           <ButtonBase
             className={`menu-popover-item-btn-wrapper${
               (getIsActiveMenuItem(item) && ' is-active') || ''
             }`}
+            onClick={navigationClickHandler(item)}
           >
             {item.icon && <span className={item.icon} />}
             {item.name && (
@@ -34,7 +43,7 @@ export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
             )}
           </ButtonBase>
         )}
-        {item && !item.isLastChildrenInMainMenu && item.childrens.length > 0 && (
+        {item && item.childrens && !item.isLastChildrenInMainMenu && item.childrens.length > 0 && (
           <div
             className={`menu-popover-item-group-wrapper${
               (getIsActiveMenuItem(item) && ' is-active') || ''

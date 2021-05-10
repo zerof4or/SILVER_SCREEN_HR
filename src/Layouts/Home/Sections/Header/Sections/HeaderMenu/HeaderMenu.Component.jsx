@@ -17,7 +17,7 @@ export const HeaderMenuComponent = () => {
       setActiveItemIndex(index);
       setActiveItem(item);
       if (item.path) GlobalHistory.push(item.path);
-      if (item.externalPath) window.location.href = item.externalPath;
+      if (item.externalPath) window.open(item.externalPath, '_blank');
     },
     []
   );

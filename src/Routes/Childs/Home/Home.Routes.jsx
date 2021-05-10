@@ -21,7 +21,7 @@ export const HomeRoutes = [
     name: 'Shared:corporate',
     component: CorporateModule,
     layout: '/home',
-    default: true,
+    default: false,
     isRoute: true,
     authorize: true,
     isDisabled: false,

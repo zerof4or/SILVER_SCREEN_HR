@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { PrivateRouteComponent } from './Sections';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import loadable from '@loadable/component';
 const NotFoundLayout = loadable(() => import('../../Layouts/NotFound/NotFound.Layout'));
 
 export const SwitchRouteComponent = ({ routes }) => {
-  const [route, setRoute] = useState(routes.find((f) => f.default === true));
+  const [route, setRoute] = useState(routes.find((f) => f.default));
+  const history = useHistory();
   useEffect(() => {
-    setRoute(routes.find((f) => f.default === true));
-  }, [routes]);
+    history.listen(() => {
+      setRoute(routes.find((f) => f.default));
+    });
+  }, [history, routes]);
   return (
     <Switch>
       {routes.map((value, key) => {
