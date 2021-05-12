@@ -25,10 +25,6 @@ body {
     text-align: right;
   }
 }
-#root > .container {
-  width: 100%;
-  padding: 0;
-}
 @include rtl-in {
   .MuiPickersCalendarHeader-iconButton {
     .MuiSvgIcon-root {

@@ -11,6 +11,7 @@ import { LoginActions } from '../../../../Store/Actions';
 import LogoImg from '../../../../Assets/Images/Defaults/logo.png';
 import './Header.Style.scss';
 import { useOnClickOutside } from '../../../../Hubs';
+import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 
 const FirstLettersExp = /\b(\w)/gm;
 const parentTranslationPath = 'HeaderView';
@@ -20,6 +21,8 @@ export const HeaderComponent = () => {
   const dispatch = useDispatch();
   const loginResponse = useSelector((state) => state.LoginReducers.loginResponse);
   const userProfileRef = useRef(null);
+  const [headerActionsPopover, setHeaderActionsPopover] = useState(null);
+  const [headerMenuPopover, setHeaderMenuPopover] = useState(null);
   const [imageReq, setImageReq] = useState(null);
   const [isOpenMenu, setIsOpenMenu] = useState({
     userProfile: false,
@@ -44,6 +47,18 @@ export const HeaderComponent = () => {
       }));
   });
   setLogoutAction(logoutClicked);
+  const actionsPopoverClickedHandler = (event) => {
+    setHeaderActionsPopover(event.currentTarget);
+  };
+  const menuPopoverClickedHandler = (event) => {
+    setHeaderMenuPopover(event.currentTarget);
+  };
+  const actionsPopoverCloseHandler = () => {
+    setHeaderActionsPopover(null);
+  };
+  const menuPopoverCloseHandler = () => {
+    setHeaderMenuPopover(null);
+  };
   useEffect(() => {
     if (loginResponse) setImageReq(loginResponse);
   }, [loginResponse]);
@@ -55,12 +70,40 @@ export const HeaderComponent = () => {
       </div>
       <div className="section middle-section-wrapper">
         <HeaderMenuComponent />
+        <ButtonBase
+          className="btns-icon theme-transparent header-menu-open-btn"
+          onClick={menuPopoverClickedHandler}
+        >
+          <span className="mdi mdi-menu" />
+        </ButtonBase>
+        <PopoverComponent
+          idRef="headerMenuPopoverRef"
+          attachedWith={headerMenuPopover}
+          popoverClasses="header-menu-popover-wrapper"
+          handleClose={menuPopoverCloseHandler}
+          component={<HeaderMenuComponent />}
+        />
         <ButtonBase className="btns-icon theme-transparent search-btn">
           <span className="mdi mdi-magnify" />
         </ButtonBase>
       </div>
       <div className="section last-section-wrapper">
         <HeaderActionsComponent />
+        <ButtonBase
+          className={`btns-icon theme-transparent btns-header-actions${
+            (headerActionsPopover && ' is-active') || ''
+          }`}
+          onClick={actionsPopoverClickedHandler}
+        >
+          <span className="mdi mdi-dots-vertical" />
+        </ButtonBase>
+        <PopoverComponent
+          idRef="headerActionsPopoverRef"
+          attachedWith={headerActionsPopover}
+          popoverClasses="header-actions-popover-wrapper"
+          handleClose={actionsPopoverCloseHandler}
+          component={<HeaderActionsComponent />}
+        />
         <div className="p-relative" ref={userProfileRef}>
           <ButtonBase
             className="btns theme-transparent user-button-wrapper"

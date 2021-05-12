@@ -1,0 +1,9 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.container-wrapper {
+  @include d-flex;
+  width: 100%;
+  margin-top: 52.8px;
+  .views-wrapper {
+    @include d-inline-flex;
+  }
+}
