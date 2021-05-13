@@ -1,6 +1,81 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
-.Employee-wraper {
-  padding-top: 2rem;
+.EmployeeView {
+  .Sub-InnerHeader {
+    width: 100%;
+    height: auto;
+    min-height: 51px;
+    background-color: #f4f4f4;
+    padding-left: 1rem;
+    padding-right: 1rem;
+   // padding-top: 3.4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .attendance-check-search {
+      display: flex;
+      align-items: center;
+      .leave-button {
+        margin-top: -0.4rem;
+        .MuiButtonBase-root {
+          border-radius: 0.4rem;
+          background-color: #65acfe;
+          color: $c-white;
+          width: 7rem;
+          height: 2rem;
+        }
+      }
+    }
+    .attendance-check-filter {
+      display: flex;
+      align-items: center;
+      
+      .MuiButtonBase-root {
+        margin-right: 1rem;
+        border-radius: 0.4rem;
+        font-weight: 900;
+        @include rtl {
+          margin-right: 0;
+          margin-left: 1rem;
+        }
+      }
+      .dots-vertical {
+        .MuiButtonBase-root {
+          background-color: $c-primary;
+          color: $c-white;
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+      .filter-button {
+        .MuiButtonBase-root {
+          background-color: $c-header-button;
+          color: $c-primary;
+          width: 7rem;
+          height: 2rem;
+        }
+        .mdi {
+          margin-left: -0.5rem;
+          margin-right: 0.5rem;
+          @include rtl {
+            margin-left: 0.5rem;
+            margin-right: -0.5rem;
+          }
+        }
+      }
+      .location-button {
+        .MuiButtonBase-root {
+          background-color: $c-header-button;
+          color: $c-primary;
+          width: 7rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
 
+  .Employee-wraper {
+   
+  }
 }

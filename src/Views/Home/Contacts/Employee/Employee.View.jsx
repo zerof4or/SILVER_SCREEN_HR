@@ -1,11 +1,12 @@
 //, useDispatch , useEffect
 import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useSelector } from 'react-redux';
-import { InnerHeaderComponent, Inputs, Tables } from '../../../../Components';
+// import { useSelector } from 'react-redux';  InnerHeaderComponent,
+import { Inputs, Tables } from '../../../../Components';
 // import { TableActions } from '../../../../Enums/TableActions.Enum';
 import { ButtonBase } from '@material-ui/core';
 import maintenanceContract from '../../../../StaticJOSN/maintenanceContract.json';
+import './Employee.Style.scss';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -15,20 +16,20 @@ export const EmployeeView = () => {
   // const [activeSideButton, setActiveSideButton] = useState(1);
   // const [activeItem, setActiveItem] = useState(null);
   // const loginResponse = useSelector((state) => state.login.loginResponse);
-  const [sideList] = useState([
-    {
-      key: 1,
-      value: 'Employees',
-    },
-    {
-      key: 2,
-      value: t('ORG Chart'),
-    },
-    {
-      key: 3,
-      value: 'Team',
-    },
-  ]);
+  // const [sideList] = useState([
+  //   {
+  //     key: 1,
+  //     value: 'Employees',
+  //   },
+  //   {
+  //     key: 2,
+  //     value: t('ORG Chart'),
+  //   },
+  //   {
+  //     key: 3,
+  //     value: 'Team',
+  //   },
+  // ]);
   // const activeSideButtonChange = useCallback((value) => {
   //   setActiveSideButton(value);
   // }, []);
@@ -42,9 +43,12 @@ export const EmployeeView = () => {
     // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
   }, []);
 
+
+
+  
   return (
-    <div className='w-100'>
-      <div className='view-wrapper'>
+    <div className='EmployeeView w-100'>
+      {/* <div className='view-wrapper'>
         <InnerHeaderComponent
           component={
             <>
@@ -60,8 +64,8 @@ export const EmployeeView = () => {
             </>
           }
         />
-            </div>
-        <div className='attendance-check-header'>
+            </div> */}
+        <div className='Sub-InnerHeader'>
           <div className='attendance-check-filter'>
             <div className='dots-vertical'>
               <ButtonBase>
@@ -98,6 +102,14 @@ export const EmployeeView = () => {
             <div className='w-100'>
               <Tables
                 data={maintenanceContract.result}
+                selectAllOptions={{
+                  // getIsSelected,
+                  // onSelectClicked,
+                  // onSelectAllClicked,
+                  // getIsDisabled,
+                  disabledRows: [],
+                  withCheckAll: true,
+                }}
                 headerData={[
                   {
                     id: 1,
