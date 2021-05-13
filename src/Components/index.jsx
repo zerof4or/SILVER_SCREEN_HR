@@ -5,3 +5,5 @@ export * from './Checkboxes/Checkboxes.Component';
 export * from './Inputs/Inputs.Component';
 export * from './Select/Select.Component';
 export * from './InnerHeader/InnerHeader.Component';
+export * from './TablesComponent/Tables';
+export * from './Checkboxes/Checkboxes.Component';

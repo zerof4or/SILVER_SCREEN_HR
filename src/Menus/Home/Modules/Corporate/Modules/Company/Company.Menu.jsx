@@ -15,4 +15,28 @@ export const CompanyMenu = [
     isLastChildrenInMainMenu: true,
     childrens: [],
   },
+  {
+    path: '/home/corporate/company/finance',
+    name: 'Shared:finance',
+    icon: 'mdi mdi-account-multiple',
+    order: 3,
+    isLastChildrenInMainMenu: true,
+    childrens: [],
+  },
+  {
+    path: '/home/corporate/company/procurement',
+    name: 'Shared:procurement',
+    icon: 'mdi mdi-account-multiple',
+    order: 4,
+    isLastChildrenInMainMenu: true,
+    childrens: [],
+  },
+  {
+    path: '/home/corporate/company/legal',
+    name: 'Shared:legal',
+    icon: 'mdi mdi-account-multiple',
+    order: 5,
+    isLastChildrenInMainMenu: true,
+    childrens: [],
+  },
 ];

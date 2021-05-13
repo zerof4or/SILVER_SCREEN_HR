@@ -1,6 +1,6 @@
 import {
   CoursesView,
-  DepartmentView,
+  EmployeeView,
   LeavePolicyView,
   RefferralView,
   RequestView,
@@ -10,9 +10,9 @@ import {
 
 export const ContactsModuleRoutes = [
   {
-    path: '/department',
-    name: 'DepartmentView:employees',
-    component: DepartmentView,
+    path: '/Employee',
+    name: 'EmployeeView:employees',
+    component: EmployeeView,
     layout: '/home/contacts',
     default: true,
     isRoute: true,

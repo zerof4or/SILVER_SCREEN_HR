@@ -17,7 +17,7 @@ const HomeLayout = () => {
           isOpenSideExtended={isOpenSideExtended}
           onChangeSideExtended={onChangeSideExtended}
         />
-        <div className="views-wrapper">
+        <div className="Syatem-views-wrapper">
           <SwitchRouteComponent routes={HomeRoutes} />
         </div>
       </div>

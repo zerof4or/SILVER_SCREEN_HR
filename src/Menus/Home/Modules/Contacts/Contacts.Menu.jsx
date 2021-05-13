@@ -1,6 +1,6 @@
 export const ContactsMenu = [
   {
-    path: '/home/contacts/employees',
+    path: '/home/contacts/Employee',
     name: 'Shared:employees',
     icon: 'mdi mdi-account',
     isExact: true,

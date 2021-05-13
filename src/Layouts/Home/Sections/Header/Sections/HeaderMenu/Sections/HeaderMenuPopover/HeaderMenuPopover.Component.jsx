@@ -21,47 +21,46 @@ export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
     []
   );
   return (
-    activeItem &&
-    activeItem.childrens &&
-    activeItem.childrens.map((item, index) => (
-      <div
-        className="header-menu-popover-wrapper childs-wrapper"
-        key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}
-      >
-        {item && (item.isLastChildrenInMainMenu || !item.childrens || item.childrens.length === 0) && (
-          <ButtonBase
-            className={`menu-popover-item-btn-wrapper${
-              (getIsActiveMenuItem(item) && ' is-active') || ''
-            }`}
-            onClick={navigationClickHandler(item)}
-          >
-            {item.icon && <span className={item.icon} />}
-            {item.name && (
-              <span className={`item-group-name${(item.icon && ' px-1') || ''}`}>
-                {t(item.name)}
-              </span>
-            )}
-          </ButtonBase>
-        )}
-        {item && item.childrens && !item.isLastChildrenInMainMenu && item.childrens.length > 0 && (
+    <div className='header-menu-popover-conteaner'>
+      {activeItem &&
+        activeItem.childrens &&
+        activeItem.childrens.map((item, index) => (
           <div
-            className={`menu-popover-item-group-wrapper${
-              (getIsActiveMenuItem(item) && ' is-active') || ''
-            }`}
-          >
-            <span className="item-group-name">{(item.name && t(item.name)) || 'N/A'}</span>
-            {/* {activeItem.childrens &&
+            className='header-menu-popover-wrapper'
+            key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}>
+            {item &&
+              (item.isLastChildrenInMainMenu || !item.childrens || item.childrens.length === 0) && (
+                <ButtonBase
+                  className={`w-100 menu-popover-item-btn-wrapper${
+                    (getIsActiveMenuItem(item) && ' is-active') || ''
+                  }` }
+                  onClick={navigationClickHandler(item)}>
+                  {item.icon && <span className={item.icon} />}
+                  {item.name && (
+                    <span className={`item-group-name${(item.icon && ' px-1') || ''}`}>
+                      {t(item.name)}
+                    </span>
+                  )}
+                </ButtonBase>
+              )}
+            {item && item.childrens && !item.isLastChildrenInMainMenu && item.childrens.length > 0 && (
+              <div
+                className={`menu-popover-item-group-wrapper${
+                  (getIsActiveMenuItem(item) && ' is-active') || ''
+                }`}>
+                <span className='item-group-name title'>{(item.name && t(item.name)) || 'N/A'}</span>
+                {/* {activeItem.childrens &&
               activeItem.childrens.map((item, index) => ( */}
-            <HeaderMenuPopoverComponent
-              activeItem={item}
-              parentIndex={index}
-              // key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}
-            />
-            {/* ))} */}
-          </div>
-        )}
+                <HeaderMenuPopoverComponent
+                  activeItem={item}
+                  parentIndex={index}
+                  // key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}
+                />
+                {/* ))} */}
+              </div>
+            )}
 
-        {/* {activeItem &&
+            {/* {activeItem &&
         activeItem.childrens &&
         activeItem.childrens.map((item, index) => (
           <React.Fragment key={`menuPopoverItemKey${(parentIndex + 1) * (index + 1)}`}>
@@ -77,8 +76,9 @@ export const HeaderMenuPopoverComponent = ({ activeItem, parentIndex }) => {
             )}
           </React.Fragment>
         ))} */}
-      </div>
-    ))
+          </div>
+        ))}
+    </div>
   );
 };
 

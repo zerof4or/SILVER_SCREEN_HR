@@ -30,7 +30,7 @@ export const HomeMenu = [
     childrens: [],
   },
   {
-    externalPath: 'https://youtube.com',
+    externalPath: 'https://www.google.com',
     name: 'Shared:website',
     icon: 'mdi mdi-web',
     order: 5,

@@ -13,8 +13,8 @@ import LoginViewAr from '../Views/Accounts/Login/I18n/ar.json';
 // Start Contacts Module Views
 import TeamViewEn from '../Views/Home/Contacts/Team/I18n/en.json';
 import TeamViewAr from '../Views/Home/Contacts/Team/I18n/ar.json';
-import DepartmentViewEn from '../Views/Home/Contacts/Department/I18n/en.json';
-import DepartmentViewAr from '../Views/Home/Contacts/Department/I18n/ar.json';
+import EmployeeViewEn from '../Views/Home/Contacts/Employee/I18n/en.json';
+import EmployeeViewAr from '../Views/Home/Contacts/Employee/I18n/ar.json';
 import CoursesViewEn from '../Views/Home/Contacts/Courses/I18n/en.json';
 import CoursesViewAr from '../Views/Home/Contacts/Courses/I18n/ar.json';
 import RefferralViewEn from '../Views/Home/Contacts/Refferral/I18n/en.json';
@@ -40,7 +40,7 @@ export function localizationInit() {
         Shared: SharedEn,
         LoginView: LoginViewEn,
         TeamView: TeamViewEn,
-        DepartmentView: DepartmentViewEn,
+        EmployeeView: EmployeeViewEn,
         CoursesView: CoursesViewEn,
         RefferralView: RefferralViewEn,
         LeavePolicyView: LeavePolicyViewEn,
@@ -51,7 +51,7 @@ export function localizationInit() {
         Shared: SharedAr,
         LoginView: LoginViewAr,
         TeamView: TeamViewAr,
-        DepartmentView: DepartmentViewAr,
+        EmployeeView: EmployeeViewAr,
         CoursesView: CoursesViewAr,
         RefferralView: RefferralViewAr,
         LeavePolicyView: LeavePolicyViewAr,
