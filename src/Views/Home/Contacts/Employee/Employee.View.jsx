@@ -1,12 +1,13 @@
 //, useDispatch , useEffect, useCallback // import { useSelector } from 'react-redux';  InnerHeaderComponent,
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Inputs } from '../../../../Components';
+// import { Inputs } from '../../../../Components';
 import { ButtonBase } from '@material-ui/core';
 import maintenanceContract from '../../../../StaticJOSN/maintenanceContract.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
+import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -42,7 +43,7 @@ export const EmployeeView = () => {
               handleClose={actionsPopoverCloseHandler}
               component={
                 <div>
-                  <div>Popover Opation 1</div>
+                  <div> {t('Filter')}Popover Opation 1</div>
                   <div>Popover Opation 2</div>
                   <div>Popover Opation 3</div>
                   <div>Popover Opation 4</div>
@@ -59,8 +60,10 @@ export const EmployeeView = () => {
           <div className='location-button'>
             <ButtonBase>Location</ButtonBase>
           </div>
+ 
         </div>
-        <div className='attendance-check-search'>
+      <div><Sorterletters/></div> 
+        {/* <div className='attendance-check-search'>
           <div className='leave-button'>
             <ButtonBase>Add new employee</ButtonBase>
           </div>
@@ -72,7 +75,7 @@ export const EmployeeView = () => {
               fieldClasses='inputs theme-primary ml-2'
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className='Employee-wraper'>

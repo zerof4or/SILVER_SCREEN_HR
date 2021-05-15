@@ -23,7 +23,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
     console.log('value: ', value);
   }, []);
   return (
-    <div className="EmployeeTabelView w-100">
+    <div className='EmployeeTabelView w-100'>
       <Tables
         data={Data.result}
         selectAllOptions={{
@@ -51,29 +51,45 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
             component: (item) => <span>{(item && item.contactName) || 'N/A'}</span>,
             isDraggable: true,
           },
-          { id: 3, isSortable: true, label: t(`${translationPath}Email`), input: 'propertyName' },
-          { id: 4, isSortable: true, label: t(`${translationPath}Phone`), input: 'portfolioName' },
+          {
+            id: 3,
+            isSortable: true,
+            label: t(`${translationPath}Email`),
+            isDraggable: true,
+            input: 'propertyName',
+          },
+          {
+            id: 4,
+            isSortable: true,
+            label: t(`${translationPath}Phone`),
+            isDraggable: true,
+            input: 'portfolioName',
+          },
           {
             id: 5,
             isSortable: true,
             label: t(`${translationPath}Group`),
             input: 'amount',
+            isDraggable: true,
           },
           {
             id: 7,
             isDate: true,
             label: t(`${translationPath}StartDate`),
             input: 'startDate',
+            isDraggable: true,
           },
           {
             id: 8,
             isDate: true,
             label: t(`${translationPath}EndDate`),
             input: 'endDate',
+            isDraggable: true,
           },
           {
             id: 9,
             label: t(`${translationPath}Address`),
+            isDraggable: true,
             // eslint-disable-next-line react/display-name
             component: (item) => (
               <span>
@@ -91,9 +107,9 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
             // eslint-disable-next-line react/display-name
             component: (item) => (
               <>
-                <div className="Option-wraper">
-                  <ButtonBase onClick={actionsPopoverClickedHandler} classNam="dots-vertical">
-                    <span className="mdi mdi-dots-vertical" />
+                <div className='Option-wraper'>
+                  <ButtonBase onClick={actionsPopoverClickedHandler} classNam='dots-vertical'>
+                    <span className='mdi mdi-dots-vertical' />
                   </ButtonBase>
                 </div>
               </>
@@ -111,19 +127,18 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         activePage={filter.pageIndex}
       />
       <PopoverComponent
-        idRef="headerActionsPopovercogRef"
+        idRef='headerActionsPopovercogRef'
         attachedWith={ActionsPopover}
-        popoverClasses=""
+        popoverClasses=''
         header-actions-popover-wrapper
         handleClose={actionsPopoverCloseHandler}
         component={
-          <div className="Popap-Option">
+          <div className='Popap-Option'>
             {TableListOpationActions.map((item, index) => (
               <ButtonBase
-                className="Option"
+                className='Option'
                 key={`OptionKey${index + 1}`}
-                onClick={() => ClickButtonListOpation(item.key)}
-              >
+                onClick={() => ClickButtonListOpation(item.key)}>
                 <div className={item.icon} />
                 <div>{item.value}</div>
               </ButtonBase>
