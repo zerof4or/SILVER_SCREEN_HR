@@ -1,18 +1,24 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonBase } from '@material-ui/core';
 import { Tables } from '../../../../../Components';
 import PropTypes from 'prop-types';
+import PopoverComponent from '../../../../../Components/Popover/Popover.Component';
 export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath, filter }) => {
   const { t } = useTranslation(parentTranslationPath);
-
+  const [ActionsPopover, setActionsPopover] = useState(null);
   const tableActionClicked = useCallback((actionEnum, item) => {
     // if (actionEnum === TableActions.delete.key) setActiveItem(item);         setFilter
     // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
   }, []);
-
+  const actionsPopoverClickedHandler = (event) => {
+    setActionsPopover(event.currentTarget);
+  };
+  const actionsPopoverCloseHandler = () => {
+    setActionsPopover(null);
+  };
   return (
-    <div className='w-100'>
+    <div className='EmployeeTabelView w-100'>
       <Tables
         data={Data.result}
         selectAllOptions={{
@@ -26,25 +32,38 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         headerData={[
           {
             id: 1,
-            label: t(`${translationPath}ref-no`),
+            label: t(`${translationPath}Name`),
             input: 'maintenanceContractId',
           },
           {
             id: 2,
-            label: t(`${translationPath}maintenanceCompany`),
+            label: t(`${translationPath}Designation`),
             // eslint-disable-next-line react/display-name
             component: (item) => <span>{(item && item.contactName) || 'N/A'}</span>,
           },
-          { id: 3, label: t(`${translationPath}propertyname`), input: 'propertyName' },
-          { id: 4, label: t(`${translationPath}portfolioname`), input: 'portfolioName' },
+          { id: 3, label: t(`${translationPath}Email`), input: 'propertyName' },
+          { id: 4, label: t(`${translationPath}Phone`), input: 'portfolioName' },
           {
             id: 5,
-            label: t(`${translationPath}amount`),
+            label: t(`${translationPath}Group`),
             input: 'amount',
           },
           {
-            id: 6,
-            label: t(`${translationPath}amountType`),
+            id: 7,
+            isDate: true,
+            label: t(`${translationPath}StartDate`),
+            input: 'startDate',
+          },
+          {
+            id: 8,
+
+            isDate: true,
+            label: t(`${translationPath}EndDate`),
+            input: 'endDate',
+          },
+          {
+            id: 9,
+            label: t(`${translationPath}Address`),
             // eslint-disable-next-line react/display-name
             component: (item) => (
               <span>
@@ -55,31 +74,17 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
             ),
           },
           {
-            id: 7,
-            label: t(`${translationPath}contractDate`),
-            isDate: true,
-            input: 'contractDate',
-          },
-          {
-            id: 8,
-            isDate: true,
-            label: t(`${translationPath}StartDate`),
-            input: 'startDate',
-          },
-          {
-            id: 9,
-            isDate: true,
-            label: t(`${translationPath}EndDate`),
-            input: 'endDate',
-          },
-          {
             id: 13,
             label: t(`${translationPath}Settings`),
             // eslint-disable-next-line react/display-name
             component: (item) => (
-              <ButtonBase>
-                <span className='mdi mdi-cog' />
-              </ButtonBase>
+              <>
+                <div className='Option-wraper'>
+                  <ButtonBase onClick={actionsPopoverClickedHandler} classNam='dots-vertical'>
+                    <span className='mdi mdi-dots-vertical' />
+                  </ButtonBase>
+                </div>
+              </>
             ),
           },
         ]}
@@ -92,6 +97,61 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         totalItems={Data.totalCount}
         itemsPerPage={filter.pageSize}
         activePage={filter.pageIndex}
+      />
+      <PopoverComponent
+        idRef='headerActionsPopovercogRef'
+        attachedWith={ActionsPopover}
+        popoverClasses=''
+        header-actions-popover-wrapper
+        handleClose={actionsPopoverCloseHandler}
+        component={
+          <div className='Popap-Option'>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-pencil' />
+              <div>Edit</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-delete-empty' />
+              <div>Delete</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-briefcase-plus' />
+              <div>Assign to Project</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-clipboard-list-outline' />
+              <div>Add to List</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-email-send' />
+              <div>Send Email</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-archive' />
+              <div>Archive</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-video-plus' />
+              <div>Video Call</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-chat-processing-outline' />
+              <div>Chat</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-account-details' />
+              <div>View Details</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-printer-settings' />
+              <div>Printer Details</div>
+            </ButtonBase>
+            <ButtonBase className='Option'>
+              <div className='mdi mdi-star-plus-outline' />
+              <div>Add To Favorite</div>
+            </ButtonBase>
+          </div>
+        }
       />
     </div>
   );

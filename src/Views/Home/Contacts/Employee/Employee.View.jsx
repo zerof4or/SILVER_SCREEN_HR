@@ -6,6 +6,7 @@ import { ButtonBase } from '@material-ui/core';
 import maintenanceContract from '../../../../StaticJOSN/maintenanceContract.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
+import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -15,20 +16,39 @@ export const EmployeeView = () => {
   // const [activeSideButton, setActiveSideButton] = useState(1);
   // const [activeItem, setActiveItem] = useState(null);
   // const loginResponse = useSelector((state) => state.login.loginResponse);
-
+  const [ActionsPopover, setActionsPopover] = useState(null);
   const [filter] = useState({
     pageIndex: 0,
     pageSize: 25,
   });
-
+  const actionsPopoverClickedHandler = (event) => {
+    setActionsPopover(event.currentTarget);
+  };
+  const actionsPopoverCloseHandler = () => {
+    setActionsPopover(null);
+  };
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
         <div className='attendance-check-filter'>
           <div className='dots-vertical'>
-            <ButtonBase>
+            <ButtonBase onClick={actionsPopoverClickedHandler}>
               <span className='mdi mdi-dots-vertical' />
             </ButtonBase>
+            <PopoverComponent
+              idRef='headerActionsPopoverRef'
+              attachedWith={ActionsPopover}
+              popoverClasses='header-actions-popover-wrapper'
+              handleClose={actionsPopoverCloseHandler}
+              component={
+                <div>
+                  <div>Popover Opation 1</div>
+                  <div>Popover Opation 2</div>
+                  <div>Popover Opation 3</div>
+                  <div>Popover Opation 4</div>
+                </div>
+              }
+            />
           </div>
           <div className='filter-button'>
             <ButtonBase>
@@ -42,7 +62,7 @@ export const EmployeeView = () => {
         </div>
         <div className='attendance-check-search'>
           <div className='leave-button'>
-            <ButtonBase>Add New Leave</ButtonBase>
+            <ButtonBase>Add new employee</ButtonBase>
           </div>
           <div className='search-text'>
             <Inputs

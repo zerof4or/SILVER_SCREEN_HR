@@ -8,7 +8,6 @@
     background-color: #f4f4f4;
     padding-left: 1rem;
     padding-right: 1rem;
-   // padding-top: 3.4rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -20,9 +19,9 @@
         margin-top: -0.4rem;
         .MuiButtonBase-root {
           border-radius: 0.4rem;
-          background-color: #65acfe;
+          background-color: $c-blue;
           color: $c-white;
-          width: 7rem;
+          width: 10rem;
           height: 2rem;
         }
       }
@@ -30,7 +29,6 @@
     .attendance-check-filter {
       display: flex;
       align-items: center;
-      
       .MuiButtonBase-root {
         margin-right: 1rem;
         border-radius: 0.4rem;
@@ -75,7 +73,49 @@
     }
   }
 
-  .Employee-wraper {
-   
+  .EmployeeTabelView {
+    .Option-wraper {
+      .css-10d1a0h-MuiButtonBase-root {
+        border-radius: 14px;
+        background-color: #d2d0d0;
+        width: 35px;
+        display: flex;
+        height: 35px;
+        justify-content: center;
+      }
+    }
+  }
+}
+.Employee-wraper {
+}
+.Popap-Option {
+  display: inline-block;
+  width: 100%;
+  max-width: 156px;
+  justify-content: center;
+  font-size: 15px;
+  padding: 0.3rem;
+  margin: 0px;
+  .Option {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 8px;
+    justify-content: space-between;
+  }
+
+  .Option:hover {
+    background-color: $c-Basic !important;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    font-weight: 900;
+    text-decoration: underline;
+    .mdi {
+      color: #65acfe;
+    }
   }
 }
