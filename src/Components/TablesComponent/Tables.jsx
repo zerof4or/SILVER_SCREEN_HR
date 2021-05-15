@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef, memo, useEffect } from 'react';
+import React, { useCallback, useState, useRef, memo } from 'react';
 import Table from '@material-ui/core/Table';
 import './Tables.Style.scss';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,15 +11,15 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
-import { Tooltip } from '@material-ui/core';
-import { TableActions, TableFilterOperatorsEnum, TableFilterTypesEnum } from '../../Enums';
+// import { Tooltip } from '@material-ui/core';
+import { TableFilterOperatorsEnum, TableFilterTypesEnum } from '../../Enums';
 // import { bottomBoxComponentUpdate } from '../../Helper';
-import { useOnClickOutside } from '../../Hubs';
-import { useEventListener, useLocalStorage } from '../../Hooks';
+// import { useOnClickOutside } from '../../Hubs';
+import { useLocalStorage } from '../../Hooks';
 // import { PaginationComponent } from '../PaginationComponent/PaginationComponent';
-import { PopoverComponent } from '../Popover/Popover.Component';
+// import { PopoverComponent } from '../Popover/Popover.Component';
 import { TableFilterComponent } from './Sections';
 import CheckboxesComponent from '../Checkboxes/Checkboxes.Component';
 
@@ -38,14 +38,14 @@ const Tables = memo(
     footerData,
     selectAllOptions,
     sortColumnClicked,
-    defaultActions,
-    actionsOptions,
+    // defaultActions,
+    // actionsOptions,
     focusedRowChanged,
     isOriginalPagination,
-    onPageIndexChanged,
-    onPageSizeChanged,
+    // onPageIndexChanged,
+    // onPageSizeChanged,
     dateFormat,
-    externalPopoverComponent,
+    // externalPopoverComponent,
     isSellectAllDisabled,
     bodyRowId,
     tableFilterClassWrapper,
@@ -54,16 +54,21 @@ const Tables = memo(
     filterData,
     textInputPlaceholder,
     isWithFilter,
+    onHeaderColumnsReorder,
   }) => {
     const { t } = useTranslation([parentTranslationPath, 'Shared']);
+    const [reorderedHeader, setReorderedHeader] = useState(null);
+    const [currentDragingColumn, setCurrentDragingColumn] = useState(null);
+    const [currentDragOverIndex, setCurrentDragOverIndex] = useState(null);
     const [language] = useLocalStorage('localization', {
       currentLanguage: 'en',
       isRtl: false,
     });
-    const buttonRef = useRef(null);
     const [currentOrderById, setCurrentOrderById] = useState(-1);
-    const [actionsAttachedWith, setActionsMenuAttachedWith] = useState(null);
-    const [activeItem, setActiveItem] = useState(null);
+    // actionsAttachedWith
+    // const [, setActionsMenuAttachedWith] = useState(null);
+    // activeItem
+    const [, setActiveItem] = useState(null);
     const [currentOrderDirection, setCurrentOrderDirection] = useState('desc');
     const tableRef = useRef(null);
     const [focusedRow, setFocusedRow] = useState(-1);
@@ -111,12 +116,6 @@ const Tables = memo(
           : -1,
       [activePage, selectAllOptions]
     );
-    const handleClose = useCallback(() => {
-      setActionsMenuAttachedWith(null);
-    }, []);
-    const handleOpen = useCallback(() => {
-      setActionsMenuAttachedWith(buttonRef);
-    }, []);
     const bodyRowClicked = useCallback(
       (rowIndex, item) => {
         setActiveItem(item);
@@ -134,154 +133,63 @@ const Tables = memo(
       },
       [focusedRow, focusedRowChanged]
     );
-    const getTableActionValue = (key) =>
-      Object.values(TableActions).find((item) => item.key === key);
+    // const getTableActionValue = (key) =>
+    //   Object.values(TableActions).find((item) => item.key === key);
     const getSortDataName = () => {
-      const currentHeader = headerData.find((item) => item.id === currentOrderById);
+      const currentHeader = (reorderedHeader || headerData).find(
+        (item) => item.id === currentOrderById
+      );
       if (currentHeader) return currentHeader.input;
       return null;
     };
-    useOnClickOutside(tableRef, (e) => {
-      handleClose();
-      if (
-        e.target &&
-        e.target.className &&
-        typeof e.target.className === 'string' &&
-        (e.target.className.includes('actions-wrapper') ||
-          e.target.className.includes('table-action-btn') ||
-          e.target.className.includes('table-action-icon'))
-      )
-        return;
-      if (focusedRow !== -1) setFocusedRow(-1);
-    });
-    const TableTooltip = () => {
-      const [lastClientWidth, setLastClientWidth] = useState();
+    const getStickyStyle = useCallback(
+      (item) => ({
+        position: 'sticky',
+        left: !language.isRtl
+          ? item.left || item.left === 0
+            ? item.left
+            : 'initial'
+          : item.right || item.right === 0
+          ? item.right
+          : 'initial',
+        right: !language.isRtl
+          ? item.right || item.right === 0
+            ? item.right
+            : 'initial'
+          : item.left || item.left === 0
+          ? item.left
+          : 'initial',
+      }),
+      [language.isRtl]
+    );
+    const onDragColumnHandler = useCallback(
+      (index) => (event) => {
+        event.dataTransfer.setData('text', event.currentTarget.id);
+        setCurrentDragingColumn(index);
+      },
+      []
+    );
+    const onDragEndColumnHandler = useCallback(() => {
+      if (currentDragOverIndex !== null) setCurrentDragOverIndex(null);
+    }, [currentDragOverIndex]);
+    const onDragOverColumnHandler = useCallback(
+      (index) => (event) => {
+        event.preventDefault();
+        if (currentDragOverIndex !== index) setCurrentDragOverIndex(index);
+      },
+      [currentDragOverIndex]
+    );
+    const onDropColumnHandler = useCallback(
+      (index) => (event) => {
+        event.preventDefault();
 
-      const rowRef = document.getElementById(`${bodyRowId}${focusedRow * (activePage + 1)}`);
-      const [coordinations, setCoordinations] = useState(() => rowRef.getBoundingClientRect());
-      const [tableCoordinations, setTableCoordinations] = useState(
-        (tableRef && tableRef.current && tableRef.current.getBoundingClientRect()) || { right: 0 }
-      );
-      const timer = useRef(null);
-      const innerTime = useRef(null);
-      const sizeRecheckTime = useRef(null);
-      const [opacity, setOpacity] = useState(0);
-      const [transition, setTransition] = useState(null);
-
-      const updateCoordinations = useCallback(() => {
-        setOpacity(0);
-        setTransition(null);
-        if (timer.current !== null) clearTimeout(timer.current);
-        timer.current = setTimeout(() => {
-          setTransition('opacity 0.3s linear');
-          if (innerTime.current !== null) clearTimeout(innerTime.current);
-          innerTime.current = setTimeout(() => {
-            // do something
-            if (rowRef) setCoordinations(rowRef.getBoundingClientRect());
-            setOpacity(1);
-          }, 300);
-        }, 299);
-      }, [rowRef]);
-      const sizeRechecker = useCallback(() => {
-        if (rowRef && rowRef.current) {
-          if (!lastClientWidth || rowRef.current.clientWidth !== lastClientWidth) {
-            setLastClientWidth(rowRef.current.clientWidth);
-            if (sizeRecheckTime.current !== null) clearTimeout(sizeRecheckTime.current);
-            sizeRecheckTime.current = setTimeout(() => {
-              if (!lastClientWidth || lastClientWidth !== rowRef.current.clientWidth)
-                sizeRechecker();
-            }, 50);
-          }
-        }
-      }, [lastClientWidth, rowRef]);
-      const updateSize = useCallback(() => {
-        setOpacity(0);
-        setTransition(null);
-        if (tableRef.current) setTableCoordinations(tableRef.current.getBoundingClientRect());
-        if (timer.current !== null) clearTimeout(timer.current);
-        timer.current = setTimeout(() => {
-          setTransition('opacity 0.3s linear');
-          innerTime.current = setTimeout(() => {
-            // do something
-            if (rowRef) setTableCoordinations(tableRef.current.getBoundingClientRect());
-            setOpacity(1);
-          }, 249);
-        }, 250);
-        sizeRechecker();
-      }, [rowRef, sizeRechecker]);
-
-      useEventListener('resize', () => updateSize());
-      useEventListener('scroll', updateCoordinations);
-      useEffect(() => {
-        updateSize();
-      }, [updateSize]);
-      useEffect(
-        () => () => {
-          if (timer.current !== null) clearTimeout(timer.current);
-          if (sizeRecheckTime.current !== null) clearTimeout(sizeRecheckTime.current);
-          if (innerTime.current !== null) clearTimeout(innerTime.current);
-        },
-        []
-      );
-      return (
-        <div
-          className={`table-actions-wrapper ${actionsOptions.classes || ''}`}
-          style={{
-            top: Math.abs(coordinations.top - tableCoordinations.top),
-            right: !language.isRtl ? 0 : 'initial',
-            left: language.isRtl ? 0 : 'initial',
-            height: coordinations.height,
-            opacity,
-            transition,
-          }}>
-          {(actionsOptions.actions || defaultActions || []).map((item, index) => (
-            <React.Fragment key={`tableAction${index + 1}`}>
-              {(item.enum !== TableActions.externalComponent &&
-                (!item.isHidden || (item.isHidden && item.isHidden(activeItem))) && (
-                  <Tooltip title={item.title && item.title}>
-                    <Button
-                      ref={buttonRef}
-                      className={getTableActionValue(item.enum).buttonClasses}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        if (actionsOptions && actionsOptions.onActionClicked) {
-                          if (item.enum === 'dotsHorizontal') handleOpen();
-                          actionsOptions.onActionClicked(
-                            item.enum,
-                            data[focusedRow],
-                            focusedRow,
-                            event
-                          );
-                        }
-                      }}
-                      disabled={item.isDisabled || actionsOptions.isDisabled}>
-                      <span className={getTableActionValue(item.enum).icon} />
-                      {getTableActionValue(item.enum).label && (
-                        <span className={getTableActionValue(item.enum).labelClasses}>
-                          {t(getTableActionValue(item.enum).label)}
-                        </span>
-                      )}
-                    </Button>
-                  </Tooltip>
-                )) ||
-                (actionsOptions.externalComponent && actionsOptions.externalComponent(item)) ||
-                undefined}
-              {(actionsAttachedWith && (
-                <PopoverComponent
-                  idRef='actionsPopRef'
-                  handleClose={handleClose}
-                  attachedWith={actionsAttachedWith.current}
-                  popoverClasses='popover-contact-prefernces'
-                  component={externalPopoverComponent}
-                />
-              )) ||
-                undefined}
-            </React.Fragment>
-          ))}
-        </div>
-      );
-    };
+        const localColumns = [...(reorderedHeader || headerData)];
+        localColumns.splice(index, 0, localColumns.splice(currentDragingColumn, 1)[0]);
+        if (onHeaderColumnsReorder) onHeaderColumnsReorder(localColumns);
+        else setReorderedHeader(localColumns);
+      },
+      [currentDragingColumn, headerData, onHeaderColumnsReorder, reorderedHeader]
+    );
     const dataReturn = (dataItem, columnPath) => {
       if (!columnPath) return (typeof dataItem !== 'object' && dataItem) || '';
       if (!columnPath.includes('.')) return dataItem[columnPath];
@@ -292,65 +200,49 @@ const Tables = memo(
       });
       return a;
     };
-    // useEffect(() => {
-    //   if (!isOriginalPagination && onPageIndexChanged) {
-    //     bottomBoxComponentUpdate(
-    //       <PaginationComponent
-    //         pageIndex={activePage}
-    //         pageSize={itemsPerPage}
-    //         totalCount={totalItems}
-    //         perPageText='row-per-page'
-    //         translationPath=''
-    //         parentTranslationPath='Shared'
-    //         onPageIndexChanged={onPageIndexChanged}
-    //         onPageSizeChanged={onPageSizeChanged}
-    //       />
-    //     );
-    //   }
-    // });
-    // useEffect(
-    //   () => () => {
-    //     bottomBoxComponentUpdate(null);
-    //   },
-    //   []
-    // );
     return (
-      <div className='w-100 table-responsive' ref={tableRef}>
+      <div className="w-100 table-responsive" ref={tableRef}>
         <TableContainer>
           <Table
-            className='table-wrapper'
-            aria-labelledby='tableTitle'
+            className="table-wrapper"
+            aria-labelledby="tableTitle"
             size={tableOptions.tableSize} // 'small' or 'medium'
-            aria-label='enhanced table'>
+            aria-label="enhanced table"
+          >
             <TableHead>
               <TableRow>
                 {/* {isCollapsed && <TableCell></TableCell>} */}
                 {selectAllOptions && (
-                  <TableCell padding='checkbox'>
+                  <TableCell
+                    padding="checkbox"
+                    style={
+                      (selectAllOptions.isSticky && getStickyStyle(selectAllOptions)) || undefined
+                    }
+                  >
                     {!isSellectAllDisabled && (
                       <>
-                      <CheckboxesComponent
-                        idRef='tableSelectAllRef'
-                        singleIndeterminate={
-                          selectAllOptions.selectedRows &&
-                          selectAllOptions.selectedRows.length > 0 &&
-                          selectAllOptions.selectedRows.length < totalItems &&
-                          !selectAllOptions.isSelectAll
-                        }
-                        singleChecked={
-                          (totalItems > 0 &&
+                        <CheckboxesComponent
+                          idRef="tableSelectAllRef"
+                          singleIndeterminate={
                             selectAllOptions.selectedRows &&
-                            selectAllOptions.selectedRows.length === totalItems) ||
-                          selectAllOptions.isSelectAll
-                        }
-                        isDisabled={selectAllOptions.isDisableAll}
-                        onSelectedCheckboxClicked={selectAllOptions.onSelectAllClicked}
-                      />
+                            selectAllOptions.selectedRows.length > 0 &&
+                            selectAllOptions.selectedRows.length < totalItems &&
+                            !selectAllOptions.isSelectAll
+                          }
+                          singleChecked={
+                            (totalItems > 0 &&
+                              selectAllOptions.selectedRows &&
+                              selectAllOptions.selectedRows.length === totalItems) ||
+                            selectAllOptions.isSelectAll
+                          }
+                          isDisabled={selectAllOptions.isDisableAll}
+                          onSelectedCheckboxClicked={selectAllOptions.onSelectAllClicked}
+                        />
                       </>
                     )}
                   </TableCell>
                 )}
-                {headerData
+                {(reorderedHeader || headerData)
                   .filter((column) => !column.isHidden)
                   .map((item, index) => (
                     <TableCell
@@ -359,15 +251,26 @@ const Tables = memo(
                         item.isSortable && currentOrderById === item.id
                           ? currentOrderDirection
                           : false
-                      }>
+                      }
+                      className={`${(index === currentDragOverIndex && 'drag-over-cell') || ''}`}
+                      draggable={item.isDraggable}
+                      onDragOver={onDragOverColumnHandler(index)}
+                      onDragEnd={onDragEndColumnHandler}
+                      onDrag={onDragColumnHandler(index)}
+                      onDrop={onDropColumnHandler(index)}
+                      style={(item.isSticky && getStickyStyle(item)) || undefined}
+                    >
                       {item.isSortable ? (
                         <TableSortLabel
                           active={currentOrderById === item.id}
                           direction={currentOrderById === item.id ? currentOrderDirection : 'desc'}
-                          onClick={createSortHandler(item.id)}>
-                          {t(`${translationPath}${item.label}`)}
+                          onClick={createSortHandler(item.id)}
+                        >
+                          {(item.headerComponent && item.headerComponent(item, index)) ||
+                            t(`${translationPath}${item.label}`)}
                         </TableSortLabel>
                       ) : (
+                        (item.headerComponent && item.headerComponent(item, index)) ||
                         t(`${translationPath}${item.label}`)
                       )}
                     </TableCell>
@@ -397,7 +300,7 @@ const Tables = memo(
                   return (
                     <React.Fragment key={`bodyRow${rowIndex * (activePage + 1)}`}>
                       <TableRow
-                        role='checkbox'
+                        role="checkbox"
                         aria-checked={
                           (selectAllOptions &&
                             selectAllOptions.getIsSelected &&
@@ -416,9 +319,16 @@ const Tables = memo(
                           event.stopPropagation();
                           bodyRowClicked(rowIndex, row);
                         }}
-                        className={rowIndex === focusedRow ? 'table-row-overlay' : ''}>
+                        className={rowIndex === focusedRow ? 'table-row-overlay' : ''}
+                      >
                         {selectAllOptions && (
-                          <TableCell padding='checkbox'>
+                          <TableCell
+                            padding="checkbox"
+                            style={
+                              (selectAllOptions.isSticky && getStickyStyle(selectAllOptions)) ||
+                              undefined
+                            }
+                          >
                             <CheckboxesComponent
                               idRef={`tableSelectRef${rowIndex + 1}`}
                               singleChecked={
@@ -443,12 +353,14 @@ const Tables = memo(
                           </TableCell>
                         )}
                         {headerData.length > 0 &&
-                          headerData
+                          (reorderedHeader || headerData)
                             .filter((column) => !column.isHidden)
                             .map((column, columnIndex) => (
                               <TableCell
                                 key={`bodyColumn${columnIndex * (activePage + 1) + rowIndex}`}
-                                className={column.cellClasses || ''}>
+                                className={column.cellClasses || ''}
+                                style={(column.isSticky && getStickyStyle(column)) || undefined}
+                              >
                                 {(column.isDate &&
                                   ((dataReturn(row, column.input) &&
                                     moment(dataReturn(row, column.input)).format(
@@ -466,7 +378,7 @@ const Tables = memo(
                 })}
             </TableBody>
             {footerData && footerData.length > 0 && (
-              <TableFooter className='footer-wrapper'>
+              <TableFooter className="footer-wrapper">
                 <TableRow>
                   {footerData.map((item, index) => (
                     <TableCell colSpan={item.colSpan} key={`footerCell${index + 1}`}>
@@ -478,14 +390,10 @@ const Tables = memo(
             )}
           </Table>
         </TableContainer>
-        {(actionsOptions || defaultActions) &&
-          (actionsOptions.actions || defaultActions).length > 0 &&
-          !actionsOptions.isDisabled &&
-          focusedRow !== -1 && <TableTooltip />}
         {isOriginalPagination && (
           <TablePagination
             rowsPerPageOptions={tableOptions.itemsPerPageOptions}
-            component='div'
+            component="div"
             count={totalItems}
             rowsPerPage={itemsPerPage}
             page={activePage}
@@ -506,7 +414,7 @@ const Tables = memo(
             }}
             onChangePage={activePageChanged}
             onChangeRowsPerPage={itemsPerPageChanged}
-            className='pagination-wrapper'
+            className="pagination-wrapper"
           />
         )}
       </div>
@@ -526,26 +434,26 @@ Tables.propTypes = {
   dateFormat: PropTypes.string,
   itemsPerPage: PropTypes.number,
   isOriginalPagination: PropTypes.bool,
-  defaultActions: PropTypes.arrayOf(
-    PropTypes.shape({
-      enum: PropTypes.oneOf(Object.values(TableActions).map((item) => item.key)),
-      isDisabled: PropTypes.bool,
-    })
-  ),
-  actionsOptions: PropTypes.shape({
-    actions: PropTypes.arrayOf(
-      PropTypes.shape({
-        enum: PropTypes.oneOf(Object.values(TableActions).map((item) => item.key)),
-        isDisabled: PropTypes.bool,
-      })
-    ),
-    externalComponent: PropTypes.oneOfType([PropTypes.elementType, PropTypes.func, PropTypes.node]),
-    classes: PropTypes.string,
-    isDisabled: PropTypes.bool,
-    isReverceDisabled: PropTypes.bool,
-    actionsIsDisabledInput: PropTypes.string,
-    onActionClicked: PropTypes.func,
-  }),
+  // defaultActions: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     enum: PropTypes.oneOf(Object.values(TableActions).map((item) => item.key)),
+  //     isDisabled: PropTypes.bool,
+  //   })
+  // ),
+  // actionsOptions: PropTypes.shape({
+  //   actions: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       enum: PropTypes.oneOf(Object.values(TableActions).map((item) => item.key)),
+  //       isDisabled: PropTypes.bool,
+  //     })
+  //   ),
+  //   externalComponent: PropTypes.oneOfType([PropTypes.elementType, PropTypes.func, PropTypes.node]),
+  //   classes: PropTypes.string,
+  //   isDisabled: PropTypes.bool,
+  //   isReverceDisabled: PropTypes.bool,
+  //   actionsIsDisabledInput: PropTypes.string,
+  //   onActionClicked: PropTypes.func,
+  // }),
   activePage: PropTypes.number.isRequired,
   totalItems: PropTypes.number.isRequired,
   selectAllOptions: PropTypes.shape({
@@ -557,6 +465,9 @@ Tables.propTypes = {
     isSelectAll: PropTypes.bool,
     withCheckAll: PropTypes.bool,
     isDisableAll: PropTypes.bool,
+    isSticky: PropTypes.bool,
+    left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     disabledRows: PropTypes.arrayOf(PropTypes.number),
   }),
   activePageChanged: PropTypes.func,
@@ -570,6 +481,11 @@ Tables.propTypes = {
       input: PropTypes.string,
       isDate: PropTypes.bool,
       cellClasses: PropTypes.string,
+      isDraggable: PropTypes.bool,
+      isSticky: PropTypes.bool,
+      left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      headerComponent: PropTypes.oneOfType([PropTypes.elementType, PropTypes.func, PropTypes.node]),
     })
   ),
   data: PropTypes.instanceOf(Array),
@@ -585,10 +501,11 @@ Tables.propTypes = {
       ]),
     })
   ),
+  onHeaderColumnsReorder: PropTypes.func,
   focusedRowChanged: PropTypes.func,
-  onPageIndexChanged: PropTypes.func,
-  onPageSizeChanged: PropTypes.func,
-  externalPopoverComponent: PropTypes.func,
+  // onPageIndexChanged: PropTypes.func,
+  // onPageSizeChanged: PropTypes.func,
+  // externalPopoverComponent: PropTypes.func,
   bodyRowId: PropTypes.string,
   // filter
   tableFilterClassWrapper: PropTypes.string,
@@ -613,6 +530,7 @@ Tables.propTypes = {
   textInputPlaceholder: PropTypes.string,
   isWithFilter: PropTypes.bool,
 };
+Tables.displayName = 'Tables';
 Tables.defaultProps = {
   isSellectAllDisabled: false,
   dateFormat: 'YYYY-MM-DD',
@@ -628,49 +546,50 @@ Tables.defaultProps = {
   itemsPerPage: 10,
   activePageChanged: undefined,
   itemsPerPageChanged: undefined,
-  defaultActions: [
-    {
-      enum: TableActions.openFile.key,
-      isDisabled: false,
-      externalComponent: null,
-    },
-    {
-      enum: TableActions.editText.key,
-      isDisabled: false,
-      externalComponent: null,
-    },
-    {
-      enum: TableActions.phoneSolid.key,
-      isDisabled: false,
-      externalComponent: null,
-    },
-    {
-      enum: TableActions.emailSolid.key,
-      isDisabled: false,
-      externalComponent: null,
-    },
-    {
-      enum: TableActions.dotsHorizontal.key,
-      isDisabled: false,
-      externalComponent: null,
-    },
-  ],
-  actionsOptions: {
-    classes: '',
-    isDisabled: false,
-    isReverceDisabled: false,
-    onActionClicked: () => {},
-    actionsIsDisabledInput: null,
-  },
+  // defaultActions: [
+  //   {
+  //     enum: TableActions.openFile.key,
+  //     isDisabled: false,
+  //     externalComponent: null,
+  //   },
+  //   {
+  //     enum: TableActions.editText.key,
+  //     isDisabled: false,
+  //     externalComponent: null,
+  //   },
+  //   {
+  //     enum: TableActions.phoneSolid.key,
+  //     isDisabled: false,
+  //     externalComponent: null,
+  //   },
+  //   {
+  //     enum: TableActions.emailSolid.key,
+  //     isDisabled: false,
+  //     externalComponent: null,
+  //   },
+  //   {
+  //     enum: TableActions.dotsHorizontal.key,
+  //     isDisabled: false,
+  //     externalComponent: null,
+  //   },
+  // ],
+  // actionsOptions: {
+  //   classes: '',
+  //   isDisabled: false,
+  //   isReverceDisabled: false,
+  //   onActionClicked: () => {},
+  //   actionsIsDisabledInput: null,
+  // },
   selectAllOptions: null,
   sortColumnClicked: () => {},
   headerData: [],
   data: [],
   footerData: [],
+  onHeaderColumnsReorder: undefined,
   focusedRowChanged: () => {},
-  onPageIndexChanged: undefined,
-  onPageSizeChanged: undefined,
-  externalPopoverComponent: undefined,
+  // onPageIndexChanged: undefined,
+  // onPageSizeChanged: undefined,
+  // externalPopoverComponent: undefined,
   bodyRowId: 'bodyRowRef',
   // filter
   tableFilterClassWrapper: '',
