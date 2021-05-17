@@ -1,3 +1,5 @@
+import { HumanResourcesMenu } from './Modules';
+
 export const CompanyMenu = [
   {
     path: '/home/corporate/company/administration',
@@ -13,7 +15,7 @@ export const CompanyMenu = [
     icon: 'mdi mdi-account-multiple',
     order: 2,
     isLastChildrenInMainMenu: true,
-    childrens: [],
+    childrens: HumanResourcesMenu,
   },
   {
     path: '/home/corporate/company/finance',

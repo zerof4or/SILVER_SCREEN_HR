@@ -9,6 +9,11 @@ import LoginViewEn from '../Views/Accounts/Login/I18n/en.json';
 import LoginViewAr from '../Views/Accounts/Login/I18n/ar.json';
 // End Account Views
 
+// Start Layouts
+import HeaderViewEn from '../Layouts/Home/Sections/Header/I18n/en.json';
+import HeaderViewAr from '../Layouts/Home/Sections/Header/I18n/ar.json';
+// End Layouts
+
 // Start Home Views
 // Start Contacts Module Views
 import TeamViewEn from '../Views/Home/Contacts/Team/I18n/en.json';
@@ -38,6 +43,7 @@ export function localizationInit() {
     resources: {
       en: {
         Shared: SharedEn,
+        HeaderView: HeaderViewEn,
         LoginView: LoginViewEn,
         TeamView: TeamViewEn,
         EmployeeView: EmployeeViewEn,
@@ -49,6 +55,7 @@ export function localizationInit() {
       },
       ar: {
         Shared: SharedAr,
+        HeaderView: HeaderViewAr,
         LoginView: LoginViewAr,
         TeamView: TeamViewAr,
         EmployeeView: EmployeeViewAr,

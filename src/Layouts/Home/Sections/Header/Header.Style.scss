@@ -2,10 +2,9 @@
 .menu-popover-item-btn-wrapper {
   padding: 4px 15px !important;
   font-size: 12px;
-
 }
 
- .title{
+.title {
   color: #515151;
   text-transform: UPPERCASE;
   padding: 4px 15px;
@@ -14,30 +13,14 @@
   display: block;
 }
 
-
 .header-menu-popover-conteaner {
   display: inline;
-  .css-10d1a0h-MuiButtonBase-root
-  {
+  .css-10d1a0h-MuiButtonBase-root {
     justify-content: normal !important;
   }
-  
-
 }
 
-
-
-
-
 .header-wrapper {
-
-
-
-
-
-
-
-  
   @include d-flex-v-center-h-between;
   width: 100%;
   position: fixed;
@@ -69,7 +52,6 @@
     justify-content: space-between;
     position: relative;
     .header-menu-wrapper {
-
       @include d-flex-center;
       width: 100%;
       @include laptops-max {
@@ -142,7 +124,8 @@
       border-radius: 0.5rem;
       background-color: $c-white;
       box-shadow: $bs-secondary;
-      padding: 1rem 0;
+      padding: 0 1rem;
+      min-width: 265px;
     }
     .user-button-wrapper {
       @include phones-max {

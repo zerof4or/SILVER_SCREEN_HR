@@ -1,189 +1,148 @@
-import React, { memo, useEffect, useState, useCallback, useRef } from 'react';
+import React, { memo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { useDispatch, useSelector } from 'react-redux';
-import Avatar from '@material-ui/core/Avatar';
 import { useTranslation } from 'react-i18next';
-import {
-  getDownloadableLink,
-  languageChange,
-  showError,
-  showSuccess,
-  GlobalHistory,
-} from '../../../../../../Helpers';
-import { CollapseComponent, Spinner } from '../../../../../../Components';
-import {
-  OrganizationUserSearch,
-  UpdateMyProfileImage,
-  uploadFile,
-} from '../../../../../../Services';
+import { languageChange } from '../../../../../../Helpers';
+import { CollapseComponent } from '../../../../../../Components';
+import { Switch } from '@material-ui/core';
+import i18next from 'i18next';
 
-import { LoginActions } from '../../../../../../Store/Actions';
-
-const FirstLettersExp = /\b(\w)/gm;
 const parentTranslationPath = 'HeaderView';
-const translationLocation = 'userMenuView.';
+const transaltionPath = 'UserMenuComponent.';
 export const UserMenuComponent = memo(({ logout }) => {
   const { t } = useTranslation(parentTranslationPath);
-  const dispatch = useDispatch();
-  const [imageReq, setImageReq] = useState(null);
   const [languageToggler, setLanguageToggler] = useState(false);
-  const loginResponse = useSelector((state) => state.LoginReducers.loginResponse);
-  const [isLoading, setIsLoading] = useState(false);
-  const uploaderRef = useRef(null);
-  const [languages] = useState([
-    {
-      key: 'en',
-      value: `${translationLocation}english`,
-    },
-    {
-      key: 'ar',
-      value: `${translationLocation}arabic`,
-    },
-  ]);
-  useEffect(() => {
-    if (loginResponse) setImageReq(loginResponse);
-  }, [loginResponse]);
+  // const loginResponse = useSelector((state) => state.LoginReducers.loginResponse);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [languages] = useState([
+  //   {
+  //     key: 'en',
+  //     value: `${transaltionPath}english`,
+  //   },
+  //   {
+  //     key: 'ar',
+  //     value: `${transaltionPath}arabic`,
+  //   },
+  // ]);
   const languageClicked = useCallback(languageChange, []);
-
+  const displayModeHandler = () => {
+    setIsDarkMode((item) => !item);
+  };
   const languageTogglerClicked = () => {
     setLanguageToggler(!languageToggler);
   };
-  const getOrganizationUserSearch = useCallback(async () => {
-    setIsLoading(true);
-    const response = await OrganizationUserSearch({
-      userName: loginResponse.userName,
-      pageIndex: 0,
-      pageSize: 25,
-    });
-    if (response && response.result) {
-      setIsLoading(false);
-      localStorage.setItem(
-        'activeUserItem',
-        JSON.stringify(response.result.find((item) => item.id === loginResponse.userId))
-      );
-      if (window.location.pathname.includes('home/Users/edit'))
-        window.location.href = `/home/Users/edit?id=${loginResponse.userId}`;
-      else GlobalHistory.push(`/home/Users/edit?id=${loginResponse.userId}`);
-    } else setIsLoading(false);
-  }, [loginResponse]);
-  const editProfileHandler = () => {
-    getOrganizationUserSearch();
-  };
-  const fileChanged = useCallback(
-    async (event) => {
-      if (!event.target.value) return;
-      setIsLoading(true);
-      const response = await uploadFile({ file: event.target.files[0] });
-      if (response) {
-        const profileImageRes = await UpdateMyProfileImage(response.uuid);
-        if (profileImageRes) {
-          if (JSON.parse(localStorage.getItem('session')).userId === profileImageRes.id) {
-            const updatedState = JSON.parse(localStorage.getItem('session'));
-            const updateLocal = { ...updatedState, profileImg: profileImageRes.profileImg };
-            localStorage.setItem('session', JSON.stringify(updateLocal));
-            dispatch(LoginActions.update(updateLocal));
-          }
-          if (
-            localStorage.getItem('activeUserItem') &&
-            JSON.parse(localStorage.getItem('activeUserItem')).id === profileImageRes.id
-          ) {
-            const updateActiveUser = JSON.parse(localStorage.getItem('activeUserItem'));
-            localStorage.setItem(
-              'activeUserItem',
-              JSON.stringify({ ...updateActiveUser, profileImg: profileImageRes.profileImg })
-            );
-            if (window.location.pathname.includes('home/Users/edit'))
-              window.location.href = `/home/Users/edit?id=${profileImageRes.id}`;
-          }
-          showSuccess(t(`${translationLocation}image-changed-successfully`));
-        } else showError(t(`${translationLocation}save-image-failed`));
-        setIsLoading(false);
-      } else {
-        showError(t(`${translationLocation}upload-image-failed`));
-        setIsLoading(false);
-      }
-    },
-    [dispatch, t]
-  );
+  // const getOrganizationUserSearch = useCallback(async () => {
+  //   setIsLoading(true);
+  //   const response = await OrganizationUserSearch({
+  //     userName: loginResponse.userName,
+  //     pageIndex: 0,
+  //     pageSize: 25,
+  //   });
+  //   if (response && response.result) {
+  //     setIsLoading(false);
+  //     localStorage.setItem(
+  //       'activeUserItem',
+  //       JSON.stringify(response.result.find((item) => item.id === loginResponse.userId))
+  //     );
+  //     if (window.location.pathname.includes('home/Users/edit'))
+  //       window.location.href = `/home/Users/edit?id=${loginResponse.userId}`;
+  //     else GlobalHistory.push(`/home/Users/edit?id=${loginResponse.userId}`);
+  //   } else setIsLoading(false);
+  // }, [loginResponse]);
+  // const editProfileHandler = () => {
+  //   getOrganizationUserSearch();
+  // };
 
   return (
     <div className="cards">
       <div className="card-content">
-        <Spinner isActive={isLoading} isAbsolute />
+        {/* <Spinner isActive={isLoading} isAbsolute /> */}
         <div className="d-flex-column-center">
-          <div className="p-relative">
-            {loginResponse && loginResponse.fullName && (!imageReq || !imageReq.profileImg) && (
-              <Avatar className="avatars-wrapper">
-                {loginResponse.fullName.match(FirstLettersExp).join('')}
-              </Avatar>
-            )}
-            {imageReq && imageReq.profileImg && (
-              <img
-                src={getDownloadableLink(imageReq.profileImg)}
-                alt={t('user-image')}
-                className="user-img"
-              />
-            )}
-            <input
-              type="file"
-              className="d-none"
-              onChange={fileChanged}
-              accept="image/*"
-              ref={uploaderRef}
-            />
-            <ButtonBase
-              className="btns-icon theme-outline-dark btns-small mx-0 user-btn"
-              onClick={() => uploaderRef.current.click()}
-            >
-              <span className="mdi mdi-camera" />
-            </ButtonBase>
-          </div>
-          <p className="c-gray-darker">{loginResponse && loginResponse.fullName}</p>
-          <div className="separator-h" />
+          <ButtonBase className="btns theme-menu">
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-account" />
+              <span className="mx-3">{t(`${transaltionPath}profile`)}</span>
+            </div>
+            <span className="mdi mdi-menu-down" />
+          </ButtonBase>
           <div className="separator-h" />
           <ButtonBase className="btns theme-menu">
-            <span className="mdi mdi-cog-outline" />{' '}
-            <span className="mx-3">{t(`${translationLocation}setting`)}</span>
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-cog" />
+              <span className="mx-3">{t(`${transaltionPath}account-settings`)}</span>
+            </div>
+            <span className="mdi mdi-menu-down" />
+          </ButtonBase>
+          <div className="separator-h" />
+          <ButtonBase className="btns theme-menu" onClick={displayModeHandler}>
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-moon-waning-crescent mdi-rotate-315" />
+              <span className="mx-3">{t(`${transaltionPath}dark-mode`)}</span>
+            </div>
+            <Switch checked={isDarkMode} className="switches" />
+          </ButtonBase>
+          <div className="separator-h" />
+          <ButtonBase className="btns theme-menu" onClick={displayModeHandler}>
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-white-balance-sunny" />
+              <span className="mx-3">{t(`${transaltionPath}light-mode`)}</span>
+            </div>
+            <Switch checked={!isDarkMode} className="switches" />
+          </ButtonBase>
+          <div className="separator-h" />
+          <ButtonBase className="btns theme-menu">
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-television" />
+              <span className="mx-3">{t(`${transaltionPath}create-your-display`)}</span>
+            </div>
           </ButtonBase>
           <div className="separator-h" />
           <ButtonBase className="btns theme-menu" onClick={languageTogglerClicked}>
-            <span className="mdi mdi-translate" />{' '}
-            <span className="mx-3">{t(`${translationLocation}language`)}</span>
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-translate" />
+              <span className="mx-3">{t(`${transaltionPath}languages`)}</span>
+            </div>
+            <div className="d-inline-flex fa-center">
+              <span>{t(`${transaltionPath}${i18next.language}`)}</span>
+              <span className={`mdi mdi-menu-${(languageToggler && 'down') || 'right'} px-1`} />
+            </div>
           </ButtonBase>
-          <div className="separator-h mb-2" />
-
+          <div className="separator-h" />
+          {console.log(i18next.languages)}
           <CollapseComponent
             isOpen={languageToggler}
             classes="w-100 px-3"
             component={
               <>
-                {languages.map((item, index) => (
-                  <React.Fragment key={`languages${item.key}`}>
-                    <ButtonBase
-                      className="btns theme-menu"
-                      onClick={() => languageClicked(item.key)}
-                    >
-                      {t(item.value)}
+                {i18next.languages.map((item, index) => (
+                  <React.Fragment key={`languages${item}`}>
+                    <ButtonBase className="btns theme-menu" onClick={() => languageClicked(item)}>
+                      <span>{t(`${transaltionPath}${item}`)}</span>
                     </ButtonBase>
-                    <div
-                      className={`separator-h${index === languages.length - 1 ? ' mb-2' : ''}`}
-                    />
+                    {index !== i18next.languages.length - 1 && <div className="separator-h" />}
                   </React.Fragment>
                 ))}
               </>
             }
           />
+          <div className="separator-h" />
+          <ButtonBase className="btns theme-menu" onClick={logout}>
+            <div className="d-inline-flex fa-center">
+              <span className="mdi mdi-logout" />
+              <span className="mx-3">{t(`${transaltionPath}logout`)}</span>
+            </div>
+          </ButtonBase>
         </div>
       </div>
-      <div className="card-footer">
+      {/* <div className="card-footer">
         <ButtonBase className="btns theme-solid mb-2" onClick={editProfileHandler}>
-          <span>{t(`${translationLocation}edit-profile`)}</span>
+          <span>{t(`${transaltionPath}edit-profile`)}</span>
         </ButtonBase>
         <ButtonBase className="btns theme-outline mb-2" onClick={logout}>
-          <span>{t(`${translationLocation}logout`)}</span>
+          <span>{t(`${transaltionPath}logout`)}</span>
         </ButtonBase>
-      </div>
+      </div> */}
     </div>
   );
 });

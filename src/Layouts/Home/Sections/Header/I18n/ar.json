@@ -1,3 +1,13 @@
 {
-  
+  "UserMenuComponent": {
+    "profile": "الملف الشخصي",
+    "account-settings": "إعدادات الحساب",
+    "dark-mode": "الوضع المظلم",
+    "light-mode": "وضع الضوء",
+    "create-your-display": "قم بإنشاء شاشتك",
+    "languages": "اللغات",
+    "ar": "العربية",
+    "en": "الإنجليزية",
+    "logout": "تسجيل الخروج"
+  }
 }
