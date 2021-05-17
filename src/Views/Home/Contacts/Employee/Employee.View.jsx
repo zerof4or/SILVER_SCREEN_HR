@@ -1,8 +1,8 @@
 //, useDispatch , useEffect, useCallback // import { useSelector } from 'react-redux';  InnerHeaderComponent,
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { Inputs } from '../../../../Components';
-import { ButtonBase } from '@material-ui/core';
+import { Button, ButtonBase, ButtonGroup } from '@material-ui/core';
 import maintenanceContract from '../../../../StaticJOSN/maintenanceContract.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
@@ -17,7 +17,29 @@ export const EmployeeView = () => {
   // const [activeSideButton, setActiveSideButton] = useState(1);
   // const [activeItem, setActiveItem] = useState(null);
   // const loginResponse = useSelector((state) => state.login.loginResponse);
+  const [CehckIt] = useState(true);
+  const [ViewType, setViewType] = useState(1);
+  const [ViewName, setViewName] = useState('Table');
+  const [itemOpationView] = useState([
+    {
+      key: 1,
+      value: 'Table',
+      icon: 'mdi mdi-table-large',
+    },
+    {
+      key: 2,
+      value: 'Grid',
+      icon: 'mdi mdi-view-grid-outline',
+    },
+    {
+      key: 3,
+      value: 'Card',
+      icon: 'mdi mdi-credit-card-outline',
+    },
+  ]);
+  console.log('ViewType: ', ViewType);
   const [ActionsPopover, setActionsPopover] = useState(null);
+  const [ViewPopover, setViewPopover] = useState(null);
   const [filter] = useState({
     pageIndex: 0,
     pageSize: 25,
@@ -28,6 +50,20 @@ export const EmployeeView = () => {
   const actionsPopoverCloseHandler = () => {
     setActionsPopover(null);
   };
+  const ViewPopoverClickedHandler = (event) => {
+    setViewPopover(event.currentTarget);
+  };
+  const ViewPopoverCloseHandler = () => {
+    setViewPopover(null);
+  };
+
+  const ClickButtonviewOpation = useCallback(
+    (value) => {
+      setViewName(value.value);
+      setViewType(value.key);
+    },
+    [setViewType]
+  );
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
@@ -43,10 +79,8 @@ export const EmployeeView = () => {
               handleClose={actionsPopoverCloseHandler}
               component={
                 <div>
-                  <div> {t('Filter')}Popover Opation 1</div>
-                  <div>Popover Opation 2</div>
-                  <div>Popover Opation 3</div>
-                  <div>Popover Opation 4</div>
+                  <ButtonBase>{t('disabled')}</ButtonBase>
+                  <ButtonBase>{t('enabled')}</ButtonBase>
                 </div>
               }
             />
@@ -60,13 +94,11 @@ export const EmployeeView = () => {
           <div className='location-button'>
             <ButtonBase>Location</ButtonBase>
           </div>
- 
         </div>
-      <div><Sorterletters/></div> 
+        <div>
+          <Sorterletters />
+        </div>
         {/* <div className='attendance-check-search'>
-          <div className='leave-button'>
-            <ButtonBase>Add new employee</ButtonBase>
-          </div>
           <div className='search-text'>
             <Inputs
               onInputChanged={() => {}}
@@ -79,7 +111,90 @@ export const EmployeeView = () => {
       </div>
 
       <div className='Employee-wraper'>
-        <div className='mt-3'>
+        <div className='action-contener  w-100'>
+          <div className='action-tabel-wraper'>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-account-plus ' />
+                &nbsp; Assign to Project
+              </ButtonBase>
+            </div>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-playlist-plus' />
+                &nbsp;
+              </ButtonBase>
+            </div>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-email' />
+              </ButtonBase>
+            </div>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-forum' />
+              </ButtonBase>
+            </div>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-video-plus' />
+              </ButtonBase>
+            </div>
+            <div className='bbt-gray space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-delete' />
+              </ButtonBase>
+            </div>
+            <div className='bbt-gray space'>
+              <ButtonBase disabled={CehckIt}>
+                <span className='mdi mdi-archive' />
+              </ButtonBase>
+            </div>
+            
+          </div>
+
+          <ButtonGroup aria-label='split button' className=' space'>
+            <div className='bbt-dark  space ViewName'>
+              <ButtonBase>{ViewName}</ButtonBase>
+            </div>
+            <div className='bbt-gray space'>
+              <ButtonBase onClick={ViewPopoverClickedHandler}>
+                <span className='mdi mdi-arrow-down-bold ' />
+              </ButtonBase>
+            </div>
+            <PopoverComponent
+              idRef='ViewPopoverRef'
+              attachedWith={ViewPopover}
+              popoverClasses='View-popover-wrapper'
+              handleClose={ViewPopoverCloseHandler}
+              component={
+                <div className='Popover-View w-100'>
+                  {itemOpationView.map((item, index) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <div className='view-item w-100'>
+                      <Button
+                        key={`itemKey${index + 1}`}
+                        onClick={() => ClickButtonviewOpation(item)}>
+                        <div className='item-wraper'>
+                          <span className={item.icon} /> {item.value}
+                        </div>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              }
+            />
+          </ButtonGroup>
+          <div className='bbt-primary space'>
+            <ButtonBase>
+              <span className='mdi mdi-account-plus ' />
+              &nbsp; Add new employee
+            </ButtonBase>
+          </div>
+          
+          <div></div>
+        </div>
+        <div className='EmployeeTabelView-wraper'>
           <EmployeeTabelView
             Data={maintenanceContract}
             parentTranslationPath={parentTranslationPath}

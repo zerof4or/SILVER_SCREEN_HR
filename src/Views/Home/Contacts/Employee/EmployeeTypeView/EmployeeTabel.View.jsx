@@ -22,6 +22,12 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
   const ClickButtonListOpation = useCallback((value) => {
     console.log('value: ', value);
   }, []);
+
+
+  // const onSelectAllClicked = () => {
+
+  // };
+
   return (
     <div className='EmployeeTabelView w-100'>
       <Tables
@@ -29,7 +35,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         selectAllOptions={{
           // getIsSelected,
           // onSelectClicked,
-          // onSelectAllClicked,
+          //  onSelectAllClicked,
           // getIsDisabled,
           disabledRows: [],
           withCheckAll: true,
@@ -101,9 +107,10 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
           },
           {
             id: 13,
-            label: t(`${translationPath}Settings`),
             isSticky: true,
             right: 0,
+            // eslint-disable-next-line react/display-name
+            headerComponent:()=><span className='mdi mdi-cog  cog-icon' />,
             // eslint-disable-next-line react/display-name
             component: (item) => (
               <>

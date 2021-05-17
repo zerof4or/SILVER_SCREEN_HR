@@ -1,6 +1,47 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
 .EmployeeView {
+  .action-contener {
+    @include d-flex;
+    padding: 1rem;
+    border-bottom: 1px solid #c7c7cc;
+  }
+
+  .cog-icon {
+    padding-left: 7px;
+    @include rtl {
+      padding-left: 0px;
+      padding-right: 7px;
+    }
+  }
+
+  .action-tabel-wraper {
+    .space {
+      padding-left: 9px;
+
+      @include rtl {
+        padding-left: 0px;
+        padding-right: 9px;
+      }
+    }
+
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    @include laptops-max {
+      justify-content: center;
+    }
+
+    @include phones-max {
+      justify-content: center;
+    }
+  }
+.space-right
+{
+  padding-right: 10px;
+}
+
+
   .Sub-InnerHeader {
     width: 100%;
     height: auto;
@@ -117,5 +158,25 @@
     .mdi {
       color: #65acfe;
     }
+  }
+}
+.Popover-View {
+  .view-item {
+    display: flex;
+    
+    .MuiButtonBase-root {
+      width: 100%;
+      color: rgb(0, 0, 0);
+      font-weight: 300;
+      text-transform: capitalize;
+      letter-spacing: 0px;
+
+    }
+    .item-wraper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
   }
 }

@@ -6,8 +6,8 @@ export const TableListOpationActions = [
   },
   {
     key: 2,
-    value: 'Delete',
-    icon: 'mdi mdi-delete-empty',
+    value: 'View Details',
+    icon: 'mdi mdi-account-details',
   },
   {
     key: 3,
@@ -36,8 +36,8 @@ export const TableListOpationActions = [
   },
   {
     key: 8,
-    value: 'View Details',
-    icon: 'mdi mdi-account-details',
+    value: 'Archive ',
+    icon: 'mdi mdi-archive',
   },
   {
     key: 9,
@@ -48,5 +48,10 @@ export const TableListOpationActions = [
     key: 10,
     value: 'Add To Favorite',
     icon: 'mdi mdi-star-plus-outline',
+  },
+  {
+    key: 11,
+    value: 'Delete',
+    icon: 'mdi mdi-delete-empty',
   },
 ];

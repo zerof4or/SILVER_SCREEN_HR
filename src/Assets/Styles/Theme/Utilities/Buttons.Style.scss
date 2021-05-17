@@ -207,3 +207,76 @@
     color: $c-primary;
   }
 }
+
+.bbt-dark {
+  .MuiButtonBase-root {
+    color: #ffffff;
+    min-width: 2rem;
+    height: 2rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    background-color: #000000;
+    color: $c-white;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+  }
+  .mdi {
+    color: rgb(255, 255, 255);
+  }
+  .css-10d1a0h-MuiButtonBase-root.Mui-disabled {
+    cursor: not-allowed;
+    color: #878787;
+    .mdi {
+      color: #878787;
+    }
+  }
+}
+.bbt-gray {
+  .MuiButtonBase-root {
+    color: #ffffff;
+    min-width: 2rem;
+    height: 2rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    background-color: #f5f5f5;
+    color: $c-white;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+  }
+  .mdi {
+    color: #878787;
+  }
+}
+.bbt-primary {
+  .MuiButtonBase-root {
+    color: #ffffff;
+    min-width: 5rem;
+    width: 11rem;
+    height: 2rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    background-color: $c-blue;
+    color: $c-white;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+  }
+  .mdi {
+    color: rgb(255, 255, 255);
+  }
+  .css-10d1a0h-MuiButtonBase-root.Mui-disabled {
+    cursor: not-allowed;
+    color: #878787;
+    .mdi {
+      color: #878787;
+    }
+  }
+}
