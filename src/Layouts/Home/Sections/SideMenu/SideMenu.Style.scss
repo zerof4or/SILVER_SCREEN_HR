@@ -24,12 +24,14 @@
     color: $c-gray-dark;
     width: 100%;
     min-height: 35px;
+    display: none;
     visibility: hidden;
     margin: 0 0 1rem;
     &.is-active {
       color: $c-white;
     }
     @include tablets-max {
+      display: inherit;
       visibility: inherit;
     }
   }

@@ -9,6 +9,7 @@ import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
 import { Inputs } from '../../../../Components';
+import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -231,12 +232,14 @@ export const EmployeeView = () => {
           <div></div>
         </div>
         <div className='EmployeeTabelView-wraper'>
-          <EmployeeTabelView
-            Data={Data}
-            parentTranslationPath={parentTranslationPath}
-            translationPath={translationPath}
-            filter={filter}
-          />
+          {(Data.totalCount === 0 && <NoSearchResultComponent/>) || (
+            <EmployeeTabelView
+              Data={Data}
+              parentTranslationPath={parentTranslationPath}
+              translationPath={translationPath}
+              filter={filter}
+            />
+          )}
         </div>
       </div>
     </div>
