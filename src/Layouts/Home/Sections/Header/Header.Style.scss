@@ -127,13 +127,31 @@
       padding: 0 1rem;
       min-width: 265px;
     }
+    .status-menu-collapse-wrapper {
+      border-radius: 0.5rem;
+      background-color: $c-white;
+      box-shadow: $bs-secondary;
+      padding: 0 1rem;
+      min-width: 200px;
+    }
+    .notifications-menu-collapse-wrapper {
+      border-radius: 0.5rem;
+      background-color: $c-white;
+      box-shadow: $bs-secondary;
+      max-width: 444px;
+      right: 144px;
+
+      padding: 0 1rem;
+      min-width: 200px;
+    }
     .user-button-wrapper {
       @include phones-max {
         margin: 0rem;
       }
       padding-right: 1rem;
+      padding-left: 1rem;
       @include rtl {
-        padding-right: 0;
+        padding-right: 1rem;
         padding-left: 1rem;
       }
       min-width: initial;
@@ -141,8 +159,12 @@
         min-width: 35px;
         height: 38px;
         width: 38px;
-        border-radius: 5px;
-        border: 3px solid $c-green;
+        padding: 2px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
       }
       .user-name-wrapper {
         @include d-inline-flex;
@@ -166,6 +188,18 @@
           }
         }
       }
+
+      display: inline-flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
     }
   }
 
@@ -285,4 +319,32 @@
       }
     }
   }
+}
+.square-Online {
+  color: rgb(75, 214, 75);
+}
+.square-Away {
+  color: rgb(211, 198, 13);
+}
+.square-disturb {
+  color: rgb(214, 75, 75);
+}
+.square-invisible {
+  color: rgb(209, 216, 209);
+}
+
+.create-states {
+  color: #878787;
+  font-size: 12px;
+  text-decoration: underline;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+.main-title-staus {
+  font-size: 15px;
+  color: black;
+  padding: 8px;
+  font-weight: bold;
 }

@@ -9,5 +9,16 @@
     "ar": "Arabic",
     "en": "English",
     "logout": "Logout"
+  },
+  "StatusMenuComponent": {
+    "online": "Online",
+    "Away": "Away",
+    "Status": "Status",
+    "do-not-disturb": "Do Not Disturb",
+    "invisible": "Invisible",
+    "create-your-own-status": "Create Your Own Status"
+  },
+  "NotificationsMenuComponent": {
+    "Notification": "Notification",
   }
 }

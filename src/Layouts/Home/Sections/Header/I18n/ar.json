@@ -9,5 +9,16 @@
     "ar": "العربية",
     "en": "الإنجليزية",
     "logout": "تسجيل الخروج"
+  },
+  "StatusMenuComponent": {
+    "online": "اون لاين",
+    "Away": "بعيد",
+    "Status": "الحالة",
+    "do-not-disturb": "لا تزعج",
+    "invisible": "غير مرئى",
+    "create-your-own-status": "إنشاء وضع خاص بك"
+  },
+  "NotificationsMenuComponent": {
+    "Notification": "الاشعارات",
   }
 }

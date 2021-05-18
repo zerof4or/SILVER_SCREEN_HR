@@ -3,10 +3,23 @@
 .EmployeeView {
   .action-contener {
     @include d-flex;
-    padding: 1rem;
+    padding: 0.4rem;
     border-bottom: 1px solid #c7c7cc;
   }
+  .total-title-wraper {
+    padding: 8px;
+    font-weight: 600;
+    margin-left: 6px;
+    @include rtl {
+      margin-left: 0px;
+      margin-right: 6px;
+    }
+    .total-title {
+    }
 
+    .total-num {
+    }
+  }
   .cog-icon {
     padding-left: 7px;
     @include rtl {
@@ -17,11 +30,11 @@
 
   .action-tabel-wraper {
     .space {
-      padding-left: 9px;
+      padding-left: 4px;
 
       @include rtl {
         padding-left: 0px;
-        padding-right: 9px;
+        padding-right: 4px;
       }
     }
 
@@ -36,11 +49,9 @@
       justify-content: center;
     }
   }
-.space-right
-{
-  padding-right: 10px;
-}
-
+  .space-right {
+    padding-right: 10px;
+  }
 
   .Sub-InnerHeader {
     width: 100%;
@@ -163,20 +174,18 @@
 .Popover-View {
   .view-item {
     display: flex;
-    
+
     .MuiButtonBase-root {
       width: 100%;
       color: rgb(0, 0, 0);
       font-weight: 300;
       text-transform: capitalize;
       letter-spacing: 0px;
-
     }
     .item-wraper {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
-
   }
 }

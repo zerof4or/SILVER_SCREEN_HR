@@ -8,6 +8,7 @@ import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
+import { Inputs } from '../../../../Components';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -16,9 +17,10 @@ export const EmployeeView = () => {
   // const [isLoading, setIsLoading] = useState(false);
   // const [activeSideButton, setActiveSideButton] = useState(1);
   // const [activeItem, setActiveItem] = useState(null);
-  // const loginResponse = useSelector((state) => state.login.loginResponse);
+  // const loginResponse = useSelector((state) => state.login.loginResponse); setData
   const [CehckIt] = useState(true);
   const [ViewType, setViewType] = useState(1);
+  const [Data, setData] = useState(maintenanceContract);
   const [ViewName, setViewName] = useState('Table');
   const [itemOpationView] = useState([
     {
@@ -41,8 +43,8 @@ export const EmployeeView = () => {
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ViewPopover, setViewPopover] = useState(null);
   const [filter] = useState({
-    pageIndex: 0,
-    pageSize: 25,
+    pageIndex: 1,
+    pageSize: 60,
   });
   const actionsPopoverClickedHandler = (event) => {
     setActionsPopover(event.currentTarget);
@@ -52,6 +54,7 @@ export const EmployeeView = () => {
   };
   const ViewPopoverClickedHandler = (event) => {
     setViewPopover(event.currentTarget);
+    console.log('event.currentTarget: ', event.currentTarget);
   };
   const ViewPopoverCloseHandler = () => {
     setViewPopover(null);
@@ -64,6 +67,30 @@ export const EmployeeView = () => {
     },
     [setViewType]
   );
+
+  // const FilterHandler = (value) => {
+  //   const result = maintenanceContract.result.filter(
+  //     (item) => item.propertyName === +value.target.value
+  //   );
+  //   console.log(result);
+  //   setData({
+  //     result: result,
+
+  //     totalCount: 1,
+  //   });
+  // };
+
+  const FilterHandler = (value) => {
+    const result = maintenanceContract.result.filter((item) =>
+      item.propertyName.toLowerCase().includes(value.target.value.toLowerCase())
+    );
+    console.log(result);
+    setData({
+      result: result,
+      totalCount: result.length,
+    });
+  };
+
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
@@ -98,16 +125,16 @@ export const EmployeeView = () => {
         <div>
           <Sorterletters />
         </div>
-        {/* <div className='attendance-check-search'>
+        <div className='attendance-check-search'>
           <div className='search-text'>
             <Inputs
-              onInputChanged={() => {}}
+              onInputChanged={(event) => FilterHandler(event)}
               endAdornment={<span className='mdi mdi-magnify px-2' />}
               wrapperClasses='theme-primary'
               fieldClasses='inputs theme-primary ml-2'
             />
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className='Employee-wraper'>
@@ -150,7 +177,17 @@ export const EmployeeView = () => {
                 <span className='mdi mdi-archive' />
               </ButtonBase>
             </div>
-            
+            <div className='total-title-wraper'>
+              {' '}
+              <span className='total-title'>Total contacts:</span>{' '}
+              <span className='total-num'>
+                {maintenanceContract.totalCount === Data.totalCount
+                  ? maintenanceContract.totalCount
+                  : (maintenanceContract.totalCount !== Data.totalCount &&
+                      Data.totalCount + ` From   (   ${maintenanceContract.totalCount}  )`) ||
+                    ''}
+              </span>
+            </div>
           </div>
 
           <ButtonGroup aria-label='split button' className=' space'>
@@ -191,12 +228,11 @@ export const EmployeeView = () => {
               &nbsp; Add new employee
             </ButtonBase>
           </div>
-          
           <div></div>
         </div>
         <div className='EmployeeTabelView-wraper'>
           <EmployeeTabelView
-            Data={maintenanceContract}
+            Data={Data}
             parentTranslationPath={parentTranslationPath}
             translationPath={translationPath}
             filter={filter}
