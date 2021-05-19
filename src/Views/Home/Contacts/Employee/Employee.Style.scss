@@ -1,6 +1,13 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
 .EmployeeView {
+  .DataView-bbt {
+    padding-right: 10px;
+    @include rtl {
+      padding-right: 0px;
+      padding-left: 10px;
+    }
+  }
   .action-contener {
     @include d-flex;
     padding: 0.4rem;

@@ -31,6 +31,8 @@
   "is-between": "بين",
   "NotFoundViews": {
     "Error-page-not-found": "الصفحة غير موجودة",
+    "this-page-Under-Construction-and-Development":"هذه الصفحة قيد الإنشاء والتطوير",
+    "It-will-be-present-in-the-shortest-time":"ستكون هذه الصفحة جاهزه في اقرب فرصة ",
     "not-found": "غير موجود",
     "no-internet-connection": "لا يوجد اتصال بالانترنت",
     "No-Content": "لا يوجد بيانات",

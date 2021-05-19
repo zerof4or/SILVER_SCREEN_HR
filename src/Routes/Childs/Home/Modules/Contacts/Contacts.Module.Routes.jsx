@@ -10,7 +10,7 @@ import {
 
 export const ContactsModuleRoutes = [
   {
-    path: '/Employee',
+    path: '/employee',
     name: 'EmployeeView:employees',
     component: EmployeeView,
     layout: '/home/contacts',

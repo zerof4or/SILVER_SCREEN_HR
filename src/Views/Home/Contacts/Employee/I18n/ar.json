@@ -4,6 +4,10 @@
   "import": "إدخال",
   "advance-search": "بحث متقدم",
   "filter": "فلتر",
+  "title": "لقب",
+  "Group": "مجموعة",
+  "Name": "الاسم",
+  "Phone": "الهاتف",
   "search-contacts": "البحث في جهات الإتصال",
   "contact-image": "صورة جهة الإتصال",
   "hide": "إخفاء",
@@ -82,7 +86,7 @@
   "invalid-email": "ايميل غير صحيح",
   "email-is-required": "البريد الكتروني مطلوب",
   "CC": "CC",
-  "bcc": "BCC",
+  "Designation": "لقب",
   "invalid-email-format": "صيغة البريد الإلكتروني غير صحيحة",
   "email-send-failed": "فشل في ارسال البريد الإلكتروني",
   "email-send-successfully": "تم إرسال البريد الإلكتروني بنجاح",
@@ -138,7 +142,7 @@
       "Address": "عنوان",
       "Company Documents": "وثائق الشركة",
       "Upload Image & Documents": "تحميل الصور والوثائق",
-      "title": "لقب",
+
       "first_name": "الاسم الاول",
       "last_name": "الكنية",
       "gender": "جنس",
@@ -218,10 +222,9 @@
       "please-select-file-first": "الرجاء تحديد الملف أولاً",
       "file-upload-in-progress": "تحميل الملف قيد التقدم",
       "contact-file-sent-successfully": "تم إرسال ملف جهة الإتصال بنجاح",
-      "contact-file-sending-failed": "فشل إرسال ملف جهة الإتصال" , 
-      "download":"تحميل"  , 
-      "cancel":"الغاء"
-      
+      "contact-file-sending-failed": "فشل إرسال ملف جهة الإتصال",
+      "download": "تحميل",
+      "cancel": "الغاء"
     },
     "contactsMergeView": {
       "merge": "دمج",

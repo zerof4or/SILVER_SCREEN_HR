@@ -19,6 +19,11 @@
     "create-your-own-status": "إنشاء وضع خاص بك"
   },
   "NotificationsMenuComponent": {
-    "Notification": "الاشعارات"
+    "Notification": "الاشعارات",
+    "see-your-all-Notification" : "انظرإلى كل إشعاراتك" 
+  },
+  "CalendarmMenuComponent": {
+    "your-Calendar": "التقويم الخاص بك",
+    "see-your-all-Calendar": "انظر التقويم الخاص بك"
   }
 }

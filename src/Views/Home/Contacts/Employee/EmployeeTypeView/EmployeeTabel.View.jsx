@@ -40,7 +40,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       id: 1,
       isSortable: true,
       label: t(`${translationPath}Name`),
-      input: 'maintenanceContractId',
+      input: 'name',
       isSticky: true,
       left: 0,
     },
@@ -49,56 +49,53 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       isSortable: true,
       label: t(`${translationPath}Designation`),
       // eslint-disable-next-line react/display-name
-      component: (item) => <span>{(item && item.contactName) || 'N/A'}</span>,
+      component: (item) => <span>{(item && item.designation) || 'N/A'}</span>,
       isDraggable: true,
     },
     {
       id: 3,
       isSortable: true,
       label: t(`${translationPath}Email`),
+      // eslint-disable-next-line react/display-name
+      component: (item) => (
+        <span>
+          {(item &&
+            item.email.map((item, index) => (
+              <>
+                {' '}
+                <div>{item.emailaddress1}</div> <div>{(item && item.emailaddress2) || ''}</div>{' '}
+              </>
+            ))) ||
+            'N/A'}
+        </span>
+      ),
       isDraggable: true,
-      input: 'propertyName',
     },
     {
       id: 4,
       isSortable: true,
       label: t(`${translationPath}Phone`),
       isDraggable: true,
-      input: 'portfolioName',
+      // eslint-disable-next-line react/display-name
+      component: (item) => (
+        <span>
+          {(item &&
+            item.Phone.map((item, index) => (
+              <>
+                {' '}
+                <div>{item.Phoneno}</div> <div>{(item && item.Phoneno2) || ''}</div>{' '}
+              </>
+            ))) ||
+            'N/A'}
+        </span>
+      ),
     },
     {
       id: 5,
       isSortable: true,
       label: t(`${translationPath}Group`),
-      input: 'amount',
+      input: 'Group',
       isDraggable: true,
-    },
-    {
-      id: 7,
-      isDate: true,
-      label: t(`${translationPath}StartDate`),
-      input: 'startDate',
-      isDraggable: true,
-    },
-    {
-      id: 8,
-      isDate: true,
-      label: t(`${translationPath}EndDate`),
-      input: 'endDate',
-      isDraggable: true,
-    },
-    {
-      id: 9,
-      label: t(`${translationPath}Address`),
-      isDraggable: true,
-      // eslint-disable-next-line react/display-name
-      component: (item) => (
-        <span>
-          {(item && item.amountType === 1
-            ? t(`${translationPath}FixedAmount`)
-            : t(`${translationPath}PercentageAmount`)) || 'N/A'}
-        </span>
-      ),
     },
     {
       id: 13,

@@ -1,15 +1,18 @@
+/* eslint-disable no-unused-vars */
 //, useDispatch , useEffect, useCallback // import { useSelector } from 'react-redux';  InnerHeaderComponent,
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { Inputs } from '../../../../Components';
 import { Button, ButtonBase, ButtonGroup } from '@material-ui/core';
-import maintenanceContract from '../../../../StaticJOSN/maintenanceContract.json';
+import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
-import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
+// import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
 import { Inputs } from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
+import DataView from '../../../../Components/DataView/DataView.Component';
+import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -19,30 +22,10 @@ export const EmployeeView = () => {
   // const [activeSideButton, setActiveSideButton] = useState(1);
   // const [activeItem, setActiveItem] = useState(null);
   // const loginResponse = useSelector((state) => state.login.loginResponse); setData
-  const [CehckIt] = useState(true);
+  const [CehckIt] = useState(false);
   const [ViewType, setViewType] = useState(1);
-  const [Data, setData] = useState(maintenanceContract);
-  const [ViewName, setViewName] = useState('Table');
-  const [itemOpationView] = useState([
-    {
-      key: 1,
-      value: 'Table',
-      icon: 'mdi mdi-table-large',
-    },
-    {
-      key: 2,
-      value: 'Grid',
-      icon: 'mdi mdi-view-grid-outline',
-    },
-    {
-      key: 3,
-      value: 'Card',
-      icon: 'mdi mdi-credit-card-outline',
-    },
-  ]);
-  console.log('ViewType: ', ViewType);
+  const [Data, setData] = useState(ContactsDummyData);
   const [ActionsPopover, setActionsPopover] = useState(null);
-  const [ViewPopover, setViewPopover] = useState(null);
   const [filter] = useState({
     pageIndex: 1,
     pageSize: 60,
@@ -53,21 +36,6 @@ export const EmployeeView = () => {
   const actionsPopoverCloseHandler = () => {
     setActionsPopover(null);
   };
-  const ViewPopoverClickedHandler = (event) => {
-    setViewPopover(event.currentTarget);
-    console.log('event.currentTarget: ', event.currentTarget);
-  };
-  const ViewPopoverCloseHandler = () => {
-    setViewPopover(null);
-  };
-
-  const ClickButtonviewOpation = useCallback(
-    (value) => {
-      setViewName(value.value);
-      setViewType(value.key);
-    },
-    [setViewType]
-  );
 
   // const FilterHandler = (value) => {
   //   const result = maintenanceContract.result.filter(
@@ -82,8 +50,8 @@ export const EmployeeView = () => {
   // };
 
   const FilterHandler = (value) => {
-    const result = maintenanceContract.result.filter((item) =>
-      item.propertyName.toLowerCase().includes(value.target.value.toLowerCase())
+    const result = ContactsDummyData.result.filter((item) =>
+      item.name.toLowerCase().includes(value.target.value.toLowerCase())
     );
     console.log(result);
     setData({
@@ -123,9 +91,7 @@ export const EmployeeView = () => {
             <ButtonBase>Location</ButtonBase>
           </div>
         </div>
-        <div>
-          <Sorterletters />
-        </div>
+        <div>{/* <Sorterletters /> */}</div>
         <div className='attendance-check-search'>
           <div className='search-text'>
             <Inputs
@@ -179,50 +145,19 @@ export const EmployeeView = () => {
               </ButtonBase>
             </div>
             <div className='total-title-wraper'>
-              {' '}
               <span className='total-title'>Total contacts:</span>{' '}
               <span className='total-num'>
-                {maintenanceContract.totalCount === Data.totalCount
-                  ? maintenanceContract.totalCount
-                  : (maintenanceContract.totalCount !== Data.totalCount &&
-                      Data.totalCount + ` From   (   ${maintenanceContract.totalCount}  )`) ||
+                {ContactsDummyData.totalCount === Data.totalCount
+                  ? ContactsDummyData.totalCount
+                  : (ContactsDummyData.totalCount !== Data.totalCount &&
+                      Data.totalCount + ` From   (   ${ContactsDummyData.totalCount}  )`) ||
                     ''}
               </span>
             </div>
           </div>
-
-          <ButtonGroup aria-label='split button' className=' space'>
-            <div className='bbt-dark  space ViewName'>
-              <ButtonBase>{ViewName}</ButtonBase>
-            </div>
-            <div className='bbt-gray space'>
-              <ButtonBase onClick={ViewPopoverClickedHandler}>
-                <span className='mdi mdi-arrow-down-bold ' />
-              </ButtonBase>
-            </div>
-            <PopoverComponent
-              idRef='ViewPopoverRef'
-              attachedWith={ViewPopover}
-              popoverClasses='View-popover-wrapper'
-              handleClose={ViewPopoverCloseHandler}
-              component={
-                <div className='Popover-View w-100'>
-                  {itemOpationView.map((item, index) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <div className='view-item w-100'>
-                      <Button
-                        key={`itemKey${index + 1}`}
-                        onClick={() => ClickButtonviewOpation(item)}>
-                        <div className='item-wraper'>
-                          <span className={item.icon} /> {item.value}
-                        </div>
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              }
-            />
-          </ButtonGroup>
+          <div className='DataView-bbt'>
+            <DataView  onviewChanged={(item)=>setViewType(item.key)} />
+          </div>
           <div className='bbt-primary space'>
             <ButtonBase>
               <span className='mdi mdi-account-plus ' />
@@ -232,14 +167,17 @@ export const EmployeeView = () => {
           <div></div>
         </div>
         <div className='EmployeeTabelView-wraper'>
-          {(Data.totalCount === 0 && <NoSearchResultComponent/>) || (
-            <EmployeeTabelView
-              Data={Data}
-              parentTranslationPath={parentTranslationPath}
-              translationPath={translationPath}
-              filter={filter}
-            />
-          )}
+          {(Data.totalCount === 0 && <NoSearchResultComponent />) ||
+            (ViewType !== 1 ? (
+              <EmployeeCard />
+            ) : (
+              <EmployeeTabelView
+                Data={Data}
+                parentTranslationPath={parentTranslationPath}
+                translationPath={translationPath}
+                filter={filter}
+              />
+            ))}
         </div>
       </div>
     </div>

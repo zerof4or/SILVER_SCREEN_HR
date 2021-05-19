@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import NoSearchResult from '../../Assets/Images/Defaults/NoSearchResult.png';
+import NoSearchResult from '../../Assets/Images/Defaults/mpa-the-result.gif';//NoSearchResult.png
 import './NoSearchResult.scss';
 
 export const NoSearchResultComponent = () => {

@@ -32,11 +32,14 @@ export const HeaderComponent = () => {
     status: false,
     events: false,
   });
+  const [isopenCollapse, setisopenCollapse] = useState(null);
   const userProfileClicked = () => {
     setIsOpenMenu((item) => ({ ...item, userProfile: !item.userProfile, status: false }));
+    setisopenCollapse(!isopenCollapse);
   };
   const statusClicked = () => {
     setIsOpenMenu((item) => ({ ...item, status: !item.status, userProfile: false }));
+    setisopenCollapse(!isopenCollapse);
   };
   const logoutClicked = () => {
     localStorage.removeItem('session');
@@ -51,6 +54,7 @@ export const HeaderComponent = () => {
         ...item,
         userProfile: false,
       }));
+      setisopenCollapse(false);
   });
 
   useOnClickOutside(statesRef, () => {
@@ -59,6 +63,7 @@ export const HeaderComponent = () => {
         ...item,
         status: false,
       }));
+      setisopenCollapse(false);
   });
 
   setLogoutAction(logoutClicked);
@@ -78,7 +83,9 @@ export const HeaderComponent = () => {
   const StatusColorClicked = () => {
     setIsOpenMenu((item) => ({ ...item, status: !item.status }));
   };
-
+  const AllClose = () => {
+    setIsOpenMenu((item) => ({ ...item, status: false , userProfile: false }));
+  };
   useEffect(() => {
     if (loginResponse) setImageReq(loginResponse);
   }, [loginResponse]);
@@ -114,7 +121,7 @@ export const HeaderComponent = () => {
         </ButtonBase>
       </div>
       <div className='section last-section-wrapper' ref={statesRef}>
-        <HeaderActionsComponent />
+        <HeaderActionsComponent AllClose={AllClose} CloseCollapse={isopenCollapse} />
         <ButtonBase
           className={`btns-icon theme-transparent btns-header-actions${
             (headerActionsPopover && ' is-active') || ''

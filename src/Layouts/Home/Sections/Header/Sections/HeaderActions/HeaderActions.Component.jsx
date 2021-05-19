@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import PropTypes from 'prop-types';
 import Badge from '@material-ui/core/Badge';
 import PropTypes from 'prop-types';
@@ -6,16 +6,25 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { CollapseComponent } from '../../../../../../Components';
 import { NotificationsMenuComponent } from '../NotificationsMenu/NotificationsMenu.Component';
 import { useOnClickOutside } from '../../../../../../Hubs';
-export const HeaderActionsComponent = () => {
+import { CalendarmMenuComponent } from '../CalendarmMenu/CalendarmMenu.Component';
+export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
   const [isOpenMenu, setIsOpenMenu] = useState({
     notifications: false,
+    calendar: false,
   });
   const statesRef = useRef(null);
-  console.log('statesRef: ', statesRef);
+  const calendarRef = useRef(null);
   const NotificationsClicked = () => {
-    setIsOpenMenu((item) => ({ ...item, notifications: !item.notifications }));
+    setIsOpenMenu((item) => ({ ...item, notifications: !item.notifications, calendar: false }));
+    AllClose();
+ 
   };
 
+  const CalendarClicked = () => {
+    setIsOpenMenu((item) => ({ ...item, calendar: !item.calendar, notifications: false }));
+    AllClose();
+
+  };
   useOnClickOutside(statesRef, () => {
     if (isOpenMenu.notifications)
       setIsOpenMenu((item) => ({
@@ -23,6 +32,18 @@ export const HeaderActionsComponent = () => {
         notifications: false,
       }));
   });
+  useOnClickOutside(statesRef, () => {
+    if (isOpenMenu.calendar)
+      setIsOpenMenu((item) => ({
+        ...item,
+        calendar: false,
+      }));
+  });
+  useEffect(() => {
+    if(CloseCollapse)
+    setIsOpenMenu((item) => ({ ...item, calendar: false, notifications: false }));
+  }, [CloseCollapse])
+ 
 
   return (
     <div className='header-actions-wrapper childs-wrapper'>
@@ -40,12 +61,19 @@ export const HeaderActionsComponent = () => {
           </ButtonBase>
         </Badge>
       </div>
-      <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={16} max={9}>
-          <ButtonBase>
+      <div className='header-action-item-wrapper' ref={calendarRef}>
+        <Badge className='header-action-item' badgeContent={5} max={9}>
+          <ButtonBase onClick={CalendarClicked}>
             <span className='mdi mdi-calendar-month-outline' />
           </ButtonBase>
         </Badge>
+        <CollapseComponent
+          isOpen={isOpenMenu.calendar}
+          top={60}
+          isAbsolute
+          classes='calendar-menu-collapse-wrapper'
+          component={<CalendarmMenuComponent />}
+        />
       </div>
       <div className='header-action-item-wrapper'>
         <Badge className='header-action-item' badgeContent={27} max={9}>
@@ -69,21 +97,23 @@ export const HeaderActionsComponent = () => {
         </Badge>
       </div>
       <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={4} max={9}>
+        <Badge className='header-action-item' badgeContent={5} max={9}>
           <ButtonBase onClick={NotificationsClicked}>
             <span className='mdi mdi-bell' />
           </ButtonBase>
         </Badge>
+        <CollapseComponent
+          isOpen={isOpenMenu.notifications}
+          top={60}
+          isAbsolute
+          classes='notifications-menu-collapse-wrapper'
+          component={<NotificationsMenuComponent />}
+        />
       </div>
-
-      <CollapseComponent
-        isOpen={isOpenMenu.notifications}
-        top={60}
-        isAbsolute
-        classes='notifications-menu-collapse-wrapper'
-        component={<NotificationsMenuComponent />}
-      />
     </div>
   );
 };
-HeaderActionsComponent.propTypes = { NotificationsClicked: PropTypes.func.isRequired };
+HeaderActionsComponent.propTypes = {
+  AllClose: PropTypes.func.isRequired,
+  CloseCollapse: PropTypes.bool.isRequired,
+};

@@ -11,11 +11,14 @@
   "normal": "Normal",
   "platinum": "Platinum",
   "silver": "Silver",
+  "Designation": "Designation",
   "gold": "Gold",
   "today-actions": "Today Actions",
   "contacts": "Contacts",
   "select": "Select",
+  "Group": "Group",
   "order-by": "Order by",
+  "Phone": "Phone",
   "last-added": "Last Added",
   "first-added": "First Added",
   "ascending": "Ascending",
@@ -57,7 +60,7 @@
   "spouse": "Spouse",
   "employee": "Employee",
   "class": "Class",
-  "name": "Name",
+  "Name": "Name",
   "type": "Type",
   "creation": "Creation",
   "progress": "Progress",
@@ -218,9 +221,9 @@
       "please-select-file-first": "Please Select File First",
       "file-upload-in-progress": "File Upload In Progress",
       "contact-file-sent-successfully": "Contact File Sent Successfully",
-      "contact-file-sending-failed": "Contact File Sending Failed" , 
-      "download":"Download", 
-      "cancel":"Cancel"
+      "contact-file-sending-failed": "Contact File Sending Failed",
+      "download": "Download",
+      "cancel": "Cancel"
     },
     "contactsMergeView": {
       "merge": "Merge",
@@ -230,8 +233,8 @@
       "obsolete": "Obsolete",
       "original": "Original",
       "contacts-merged-successfully": "Contacts merged successfully",
-      "contacts-merged-failed": "Contacts merged failed" , 
-      "download":"Download"
+      "contacts-merged-failed": "Contacts merged failed",
+      "download": "Download"
     }
   }
 }

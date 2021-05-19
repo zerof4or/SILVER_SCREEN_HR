@@ -8,3 +8,4 @@ export * from './InnerHeader/InnerHeader.Component';
 export * from './TablesComponent/Tables';
 export * from './Checkboxes/Checkboxes.Component';
 export * from './DialogComponent/DialogComponent';
+export * from './UnderConstructionandDevelopmentComponent/UnderConstructionandDevelopmentComponent';
