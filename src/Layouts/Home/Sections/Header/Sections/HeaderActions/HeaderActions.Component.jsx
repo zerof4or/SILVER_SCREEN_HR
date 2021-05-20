@@ -12,7 +12,7 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
     notifications: false,
     calendar: false,
   });
-  const statesRef = useRef(null);
+  const notificationsRef = useRef(null);
   const calendarRef = useRef(null);
   const NotificationsClicked = () => {
     setIsOpenMenu((item) => ({ ...item, notifications: !item.notifications, calendar: false }));
@@ -25,14 +25,14 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
     AllClose();
 
   };
-  useOnClickOutside(statesRef, () => {
+  useOnClickOutside(notificationsRef, () => {
     if (isOpenMenu.notifications)
       setIsOpenMenu((item) => ({
         ...item,
         notifications: false,
       }));
   });
-  useOnClickOutside(statesRef, () => {
+  useOnClickOutside(calendarRef, () => {
     if (isOpenMenu.calendar)
       setIsOpenMenu((item) => ({
         ...item,
@@ -46,7 +46,7 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
  
 
   return (
-    <div className='header-actions-wrapper childs-wrapper'>
+    <div className='header-actions-wrapper childs-wrapper' ref={notificationsRef}>
       <div className='header-action-item-wrapper'>
         <Badge className='header-action-item' badgeContent={54} max={9}>
           <ButtonBase>

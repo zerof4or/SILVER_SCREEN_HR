@@ -16,6 +16,7 @@ export const HeaderMenuComponent = () => {
       if (item.childrens && item.childrens.length > 0) activeItemRef.current = event.currentTarget;
       setActiveItemIndex(index);
       setActiveItem(item);
+      if (!item.isRoute && item.isRoute !== undefined) return;
       if (item.path) GlobalHistory.push(item.path);
       if (item.externalPath) window.open(item.externalPath, '_blank');
     },
@@ -34,24 +35,23 @@ export const HeaderMenuComponent = () => {
     []
   );
   return (
-    <div className="header-menu-wrapper">
+    <div className='header-menu-wrapper'>
       {HomeMenu.map((item, index) => (
         <ButtonBase
           className={`btns theme-transparent header-menu-btn${
             (getIsActiveMenuBtn(item) && ' is-active') || ''
           }`}
           key={`headerMenuBtnsKey${index}`}
-          onClick={headerMenuClicked(item, index)}
-        >
+          onClick={headerMenuClicked(item, index)}>
           {item.icon && <span className={item.icon} />}
-          {item.name && <span className="px-1">{t(item.name)}</span>}
+          {item.name && <span className='px-1'>{t(item.name)}</span>}
           {item.childrens && item.childrens.length > 0 && (
             <span className={`mdi mdi-chevron-${(activeItemIndex === index && 'up') || 'down'}`} />
           )}
         </ButtonBase>
       ))}
       <PopoverComponent
-        idRef="headerMenuPopoverRef"
+        idRef='headerMenuPopoverRef'
         attachedWith={activeItemRef.current}
         handleClose={popoverCloseHandler}
         component={<HeaderMenuPopoverComponent activeItem={activeItem} /> || <span />}

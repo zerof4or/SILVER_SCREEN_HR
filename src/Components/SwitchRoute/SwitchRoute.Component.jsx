@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { PrivateRouteComponent } from './Sections';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import loadable from '@loadable/component';
-const NotFoundLayout = loadable(() => import('../../Layouts/NotFound/NotFound.Layout'));
+// import loadable from '@loadable/component';
+import { UnderConstructionandDevelopmentComponent } from '../UnderConstructionandDevelopmentComponent/UnderConstructionandDevelopmentComponent';
+// const NotFoundLayout = loadable(() => import('../../Layouts/NotFound/NotFound.Layout'));
 
 export const SwitchRouteComponent = ({ routes }) => {
   const [route, setRoute] = useState(routes.find((f) => f.default));
@@ -39,7 +40,7 @@ export const SwitchRouteComponent = ({ routes }) => {
         );
       })}
       <Redirect exact from={route.layout} to={route.layout + route.path} />
-      <Route path="*" component={NotFoundLayout} />
+      <Route path="*" component={UnderConstructionandDevelopmentComponent} />
     </Switch>
   );
 };

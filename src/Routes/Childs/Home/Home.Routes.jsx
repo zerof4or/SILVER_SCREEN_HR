@@ -1,7 +1,7 @@
 import loadable from '@loadable/component';
+import { UnderConstructionandDevelopmentComponent } from '../../../Components';
 const ContactsModule = loadable(() => import('../../../Views/Home/Contacts/Contacts.Module'));
 const CorporateModule = loadable(() => import('../../../Views/Home/Corporate/Corporate.Module'));
-const ProjectsModule = loadable(() => import('../../../Views/Home/Projects/Projects.Module'));
 export const HomeRoutes = [
   {
     id: 1,
@@ -17,7 +17,7 @@ export const HomeRoutes = [
   },
   {
     id: 2,
-    path: '/home/corporate',
+    path: '/corporate',
     name: 'Shared:corporate',
     component: CorporateModule,
     layout: '/home',
@@ -29,9 +29,21 @@ export const HomeRoutes = [
   },
   {
     id: 3,
-    path: '/home/projects',
+    path: '/projects',
     name: 'Shared:projects',
-    component: ProjectsModule,
+    component: UnderConstructionandDevelopmentComponent,
+    layout: '/home',
+    default: false,
+    isRoute: true,
+    authorize: true,
+    isDisabled: false,
+    isExact: false,
+  },
+  {
+    id: 4,
+    path: '/dashboard',
+    name: 'Shared:projects',
+    component: UnderConstructionandDevelopmentComponent,
     layout: '/home',
     default: false,
     isRoute: true,

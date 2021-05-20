@@ -11,13 +11,15 @@ export const HomeMenu = [
   {
     path: '/home/contacts',
     name: 'Shared:contacts',
+    isRoute:false,
     icon: 'mdi mdi-calendar-account',
     order: 2,
     childrens: ContactsMenu,
   },
   {
-    path: '/home/corporate',
+  path: '/home/corporate',
     name: 'Shared:company',
+    isRoute:false,
     icon: 'mdi mdi-buffer',
     order: 3,
     childrens: CorporateMenu,

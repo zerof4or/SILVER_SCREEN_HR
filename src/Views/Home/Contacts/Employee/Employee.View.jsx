@@ -156,7 +156,7 @@ export const EmployeeView = () => {
             </div>
           </div>
           <div className='DataView-bbt'>
-            <DataView  onviewChanged={(item)=>setViewType(item.key)} />
+            <DataView onviewChanged={(item) => setViewType(item.key)} />
           </div>
           <div className='bbt-primary space'>
             <ButtonBase>
