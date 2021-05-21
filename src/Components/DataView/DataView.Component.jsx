@@ -7,8 +7,7 @@ import CollapseComponent from '../Collapse/Collapse.Component';
 import './DataView.Style.scss';
 import { PropTypes } from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-export const DataView = ({onviewChanged}) => {
+export const DataView = ({ onviewChanged }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [view, setview] = useState({
     key: 1,
@@ -23,42 +22,48 @@ export const DataView = ({onviewChanged}) => {
   const ViewBBTClicked = () => {
     setIsOpenMenu(!isOpenMenu);
   };
-  const ClickButtonviewOpation = useCallback((value) => {
-    setview(value);
-    onviewChanged(value)
-    setIsOpenMenu(false);
-  }, [onviewChanged]);
+  const ClickButtonviewOpation = useCallback(
+    (value) => {
+      setview(value);
+      onviewChanged(value);
+      setIsOpenMenu(false);
+    },
+    [onviewChanged]
+  );
   return (
     <div className='DataView-view-wrapper' ref={viewRef}>
       <div className='view-item'>
-        <div className=''>
-          <div className='button-wrapper'>
-            <div className='filter-button'>
-              <ButtonBase onClick={ViewBBTClicked}>
-                <div>
-                  <span className={`${view.icon}`}></span>
-                </div>
-                {view.value} {'View'}
-                <span className='mdi mdi-chevron-down  arrow' />
-              </ButtonBase>
-            </div>
-            <CollapseComponent
-              isOpen={isOpenMenu}
-              top={60}
-              isAbsolute
-              classes='view-menu-collapse-wrapper'
-              component={TableViewType.map((item, index) => (
-                // eslint-disable-next-line react/jsx-key
-                <div className='view-item w-100'>
-                  <Button key={`itemKey${index + 1}`} onClick={() => ClickButtonviewOpation(item)}>
-                    <div className='item-wraper'>
-                      <span className={`${item.icon}`} /> {item.value}
-                    </div>
-                  </Button>
-                </div>
-              ))}
-            />
+        <div className='button-wrapper-DataView'>
+          <div className='button-STYLE' label="Sort by">
+            <ButtonBase onClick={ViewBBTClicked} >
+              <div>
+                <span className={`${view.icon}`}></span>
+              </div>
+              {view.value} {'View'}
+              <span className='mdi mdi-chevron-down  arrow' />
+            </ButtonBase>
           </div>
+          <CollapseComponent
+            isOpen={isOpenMenu}
+            top={60}
+            isAbsolute
+            classes='view-menu-collapse-wrapper'
+            component={TableViewType.map((item, index) => (
+              <div   key={`itemKey${index + 1}`} className='view-item w-100'>
+                <Button  onClick={() => ClickButtonviewOpation(item)}>
+                  <div className='item-wraper'>
+                    <div className={`${item.icon}`} />
+                    &nbsp;
+                    <div className=''>
+                      {item.value}
+                      &nbsp;
+                      {'View'}
+                    </div>
+                  </div>
+                </Button>
+              </div>
+            ))}
+          />
         </div>
       </div>
     </div>
@@ -66,5 +71,5 @@ export const DataView = ({onviewChanged}) => {
 };
 export default DataView;
 DataView.propTypes = {
-  onviewChanged: PropTypes.string
+  onviewChanged: PropTypes.string,
 };

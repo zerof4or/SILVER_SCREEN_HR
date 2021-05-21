@@ -4,9 +4,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { useTranslation } from 'react-i18next';
 import { languageChange } from '../../../../../../Helpers';
 import { CollapseComponent } from '../../../../../../Components';
-import { Switch } from '@material-ui/core';
 import i18next from 'i18next';
-
+import './UserMenu.Style.scss';
 const parentTranslationPath = 'HeaderView';
 const transaltionPath = 'UserMenuComponent.';
 export const UserMenuComponent = memo(({ logout }) => {
@@ -68,86 +67,80 @@ export const UserMenuComponent = memo(({ logout }) => {
     }
   }, []);
   return (
-    <div className="cards">
-      <div className="card-content">
-        {/* <Spinner isActive={isLoading} isAbsolute /> */}
-        <div className="d-flex-column-center">
-          <ButtonBase className="btns theme-menu">
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-account" />
-              <span className="mx-3">{t(`${transaltionPath}profile`)}</span>
+    <div className='UserMenu'>
+      <div className='cards'>
+        <div className='card-content'>
+          {/* <Spinner isActive={isLoading} isAbsolute /> */}
+          <div className='d-flex-column-center'>
+            <ButtonBase className='btns theme-menu'>
+              <div className='d-inline-flex fa-center'>
+                <span className='mdi mdi-account' />
+                <span className='mx-3'>{t(`${transaltionPath}profile`)}</span>
+              </div>
+              <span className='mdi mdi-menu-down' />
+            </ButtonBase>
+            <div className='separator-h' />
+            <ButtonBase className='btns theme-menu'>
+              <div className='d-inline-flex fa-center'>
+                <span className='mdi mdi-cog' />
+                <span className='mx-3'>{t(`${transaltionPath}account-settings`)}</span>
+              </div>
+              <span className='mdi mdi-menu-down' />
+            </ButtonBase>
+            <div className='separator-h' />
+            <div className='menu-mood'>
+              <ButtonBase
+                className={!isDarkMode ? 'btns theme-menu' : 'btns theme-menu selectd'}
+                onClick={displayModeHandler}>
+                <span className='mdi mdi-moon-waning-crescent mdi-rotate-315' />
+              </ButtonBase>
+              <ButtonBase
+                className={isDarkMode ? 'btns theme-menu' : 'btns theme-menu selectd'}
+                onClick={displayModeHandler}>
+                <span className='mdi mdi-white-balance-sunny' />
+              </ButtonBase>
+              <ButtonBase className='btns theme-menu'>
+                <span className='mdi mdi-television' />
+              </ButtonBase>
             </div>
-            <span className="mdi mdi-menu-down" />
-          </ButtonBase>
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu">
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-cog" />
-              <span className="mx-3">{t(`${transaltionPath}account-settings`)}</span>
-            </div>
-            <span className="mdi mdi-menu-down" />
-          </ButtonBase>
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu" onClick={displayModeHandler}>
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-moon-waning-crescent mdi-rotate-315" />
-              <span className="mx-3">{t(`${transaltionPath}dark-mode`)}</span>
-            </div>
-            <Switch checked={isDarkMode} className="switches" />
-          </ButtonBase>
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu" onClick={displayModeHandler}>
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-white-balance-sunny" />
-              <span className="mx-3">{t(`${transaltionPath}light-mode`)}</span>
-            </div>
-            <Switch checked={!isDarkMode} className="switches" />
-          </ButtonBase>
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu">
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-television" />
-              <span className="mx-3">{t(`${transaltionPath}create-your-display`)}</span>
-            </div>
-          </ButtonBase>
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu" onClick={languageTogglerClicked}>
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-translate" />
-              <span className="mx-3">{t(`${transaltionPath}languages`)}</span>
-            </div>
-            <div className="d-inline-flex fa-center">
-              <span>{t(`${transaltionPath}${i18next.language}`)}</span>
-              <span className={`mdi mdi-menu-${(languageToggler && 'down') || 'right'} px-1`} />
-            </div>
-          </ButtonBase>
-          <div className="separator-h" />
-          <CollapseComponent
-            isOpen={languageToggler}
-            classes="w-100 px-3"
-            component={
-              <>
-                {i18next.languages.map((item, index) => (
-                  <React.Fragment key={`languages${item}`}>
-                    <ButtonBase className="btns theme-menu" onClick={() => languageClicked(item)}>
-                      <span>{t(`${transaltionPath}${item}`)}</span>
-                    </ButtonBase>
-                    {index !== i18next.languages.length - 1 && <div className="separator-h" />}
-                  </React.Fragment>
-                ))}
-              </>
-            }
-          />
-          <div className="separator-h" />
-          <ButtonBase className="btns theme-menu" onClick={logout}>
-            <div className="d-inline-flex fa-center">
-              <span className="mdi mdi-logout" />
-              <span className="mx-3">{t(`${transaltionPath}logout`)}</span>
-            </div>
-          </ButtonBase>
+            <div className='separator-h' />
+            <ButtonBase className='btns theme-menu' onClick={languageTogglerClicked}>
+              <div className='d-inline-flex fa-center'>
+                <span className='mdi mdi-translate' />
+                <span className='mx-3'>{t(`${transaltionPath}languages`)}</span>
+              </div>
+              <div className='d-inline-flex fa-center'>
+                <span>{t(`${transaltionPath}${i18next.language}`)}</span>
+                <span className={`mdi mdi-menu-${(languageToggler && 'down') || 'right'} px-1`} />
+              </div>
+            </ButtonBase>
+            <div className='separator-h' />
+            <CollapseComponent
+              isOpen={languageToggler}
+              classes='w-100 px-3'
+              component={
+                <>
+                  {i18next.languages.map((item, index) => (
+                    <React.Fragment key={`languages${item}`}>
+                      <ButtonBase className='btns theme-menu' onClick={() => languageClicked(item)}>
+                        <span>{t(`${transaltionPath}${item}`)}</span>
+                      </ButtonBase>
+                      {index !== i18next.languages.length - 1 && <div className='separator-h' />}
+                    </React.Fragment>
+                  ))}
+                </>
+              }
+            />
+            <div className='separator-h' />
+            <ButtonBase className='btns theme-menu' onClick={logout}>
+              <div className='d-inline-flex fa-center'>
+                <span className='mdi mdi-logout' />
+                <span className='mx-3'>{t(`${transaltionPath}logout`)}</span>
+              </div>
+            </ButtonBase>
+          </div>
         </div>
-      </div>
-      {/* <div className="card-footer">
+        {/* <div className="card-footer">
         <ButtonBase className="btns theme-solid mb-2" onClick={editProfileHandler}>
           <span>{t(`${transaltionPath}edit-profile`)}</span>
         </ButtonBase>
@@ -155,6 +148,7 @@ export const UserMenuComponent = memo(({ logout }) => {
           <span>{t(`${transaltionPath}logout`)}</span>
         </ButtonBase>
       </div> */}
+      </div>
     </div>
   );
 });
