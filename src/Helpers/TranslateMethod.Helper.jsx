@@ -90,7 +90,8 @@ export const languageChange = (currentLanguage) => {
   const isRtl = currentLanguage === 'ar';
   const direction = currentLanguage === 'ar' ? 'rtl' : '';
   localStorage.setItem('localization', JSON.stringify({ currentLanguage, isRtl }));
-  document.body.setAttribute('class', direction);
+  document.body.classList.remove('rtl')
+  document.body.classList.add(direction);
   document.body.setAttribute('dir', direction);
   document.documentElement.lang = currentLanguage;
   i18next.changeLanguage(currentLanguage);

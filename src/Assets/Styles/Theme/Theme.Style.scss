@@ -26,11 +26,19 @@ body {
     text-align: right;
   }
   &.is-dark-mode {
-    // filter: invert(1);
-    // video,
-    // img {
-    //   filter: invert(1);
-    // }
+    .home-views-wrapper,
+    .MuiPaper-root,
+    .side-extended-wrapper,
+    .MuiCollapse-root {
+      filter: invert(1);
+      video,
+      img {
+        filter: invert(1);
+      }
+      .MuiCollapse-root {
+        filter: invert(0);
+      }
+    }
   }
 }
 @include rtl-in {

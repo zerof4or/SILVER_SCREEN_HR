@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import './SideExtended.Style.scss';
 import { useTranslation } from 'react-i18next';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { Fade } from '@material-ui/core';
-import AddingList from './lists/AddingList/AddingList';
 export const SideExtendedComponent = ({ isOpenSideExtended, onChangeSideExtended }) => {
   const { t } = useTranslation('Shared');
   return (
@@ -23,19 +21,6 @@ export const SideExtendedComponent = ({ isOpenSideExtended, onChangeSideExtended
         </ButtonBase>
       </div>
       <div className="side-extended-body-wrapper"></div>
-      <div className='favorite-by-wrapper'>
-            <Fade in={!!isOpenSideExtended} unmountOnExit>
-              <div className='filter-by-title px-3'>{t('favorite-list')}</div>
-            </Fade>
-            <ButtonBase className='favorite-button mr-1' >
-              <span className='mdi mdi-playlist-plus' />
-            </ButtonBase>
-          </div>
-          <div className='adding-list-wrapper'>
-            <Fade >
-              <AddingList />
-            </Fade>
-          </div>
     </div>
   );
 };
