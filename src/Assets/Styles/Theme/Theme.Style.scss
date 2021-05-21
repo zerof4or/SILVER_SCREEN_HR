@@ -25,6 +25,13 @@ body {
   &.rtl {
     text-align: right;
   }
+  &.is-dark-mode {
+    // filter: invert(1);
+    // video,
+    // img {
+    //   filter: invert(1);
+    // }
+  }
 }
 @include rtl-in {
   .MuiPickersCalendarHeader-iconButton {

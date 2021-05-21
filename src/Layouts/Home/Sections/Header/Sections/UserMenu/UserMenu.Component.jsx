@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { useTranslation } from 'react-i18next';
@@ -27,8 +27,15 @@ export const UserMenuComponent = memo(({ logout }) => {
   // ]);
   const languageClicked = useCallback(languageChange, []);
   const displayModeHandler = () => {
-    setIsDarkMode((item) => !item);
+    setIsDarkMode((item) => {
+      localStorage.setItem('displayMode', JSON.stringify({ isDarkMode: !item }));
+      if (item) document.body.classList.remove('is-dark-mode');
+      else if (!document.body.classList.contains('is-dark-mode'))
+        document.body.classList.add('is-dark-mode');
+      return !item;
+    });
   };
+
   const languageTogglerClicked = () => {
     setLanguageToggler(!languageToggler);
   };
@@ -53,7 +60,13 @@ export const UserMenuComponent = memo(({ logout }) => {
   // const editProfileHandler = () => {
   //   getOrganizationUserSearch();
   // };
-
+  useEffect(() => {
+    const localDisplayMode = localStorage.getItem('displayMode');
+    if (localDisplayMode && JSON.parse(localDisplayMode).isDarkMode) {
+      setIsDarkMode(JSON.parse(localDisplayMode).isDarkMode);
+      document.body.classList.add('is-dark-mode');
+    }
+  }, []);
   return (
     <div className="cards">
       <div className="card-content">
@@ -109,7 +122,6 @@ export const UserMenuComponent = memo(({ logout }) => {
             </div>
           </ButtonBase>
           <div className="separator-h" />
-          {console.log(i18next.languages)}
           <CollapseComponent
             isOpen={languageToggler}
             classes="w-100 px-3"

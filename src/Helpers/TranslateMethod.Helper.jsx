@@ -74,7 +74,7 @@ export function localizationInit() {
     if (isRtl) {
       const direction =
         JSON.parse(localStorage.getItem('localization')).currentLanguage === 'ar' ? 'rtl' : '';
-      document.body.setAttribute('class', direction);
+      document.body.classList.add(direction);
       document.body.setAttribute('dir', direction);
       document.documentElement.lang = JSON.parse(
         localStorage.getItem('localization')

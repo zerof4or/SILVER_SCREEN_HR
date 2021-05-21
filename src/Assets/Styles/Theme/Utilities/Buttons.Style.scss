@@ -139,8 +139,9 @@
   }
 
   &.theme-outline {
-    border: 1px solid $c-gray-secondary;
-    color: $c-gray-primary;
+    border: 1px solid $c-primary;
+    background-color: transparent;
+    color: $c-primary;
 
     &:not([disabled]):hover {
       background-color: $c-gray-primary;

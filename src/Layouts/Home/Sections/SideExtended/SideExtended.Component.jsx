@@ -1,8 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './SideExtended.Style.scss';
+import { useTranslation } from 'react-i18next';
+import ButtonBase from '@material-ui/core/ButtonBase';
 export const SideExtendedComponent = ({ isOpenSideExtended, onChangeSideExtended }) => {
-  return <div className="side-extended-wrapper childs-wrapper"></div>;
+  const { t } = useTranslation('Shared');
+  return (
+    <div
+      className={`side-extended-wrapper childs-wrapper${
+        (isOpenSideExtended && ' is-open-side-extended') || ''
+      }`}
+    >
+      <div className="action-wrapper">
+        <div className="title-wrapper">
+          <span className="mdi mdi-filter" />
+          <span className="px-1">{t('filter-by')}</span>
+        </div>
+        <ButtonBase className="btns-icon theme-outline toggler-btn" onClick={onChangeSideExtended}>
+          <span className={`mdi mdi-chevron-${(isOpenSideExtended && 'left') || 'right'}`} />
+        </ButtonBase>
+      </div>
+      <div className="side-extended-body-wrapper"></div>
+    </div>
+  );
 };
 
 SideExtendedComponent.propTypes = {
