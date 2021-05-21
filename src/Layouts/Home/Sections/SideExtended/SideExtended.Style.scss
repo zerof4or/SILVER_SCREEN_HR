@@ -1,7 +1,7 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 .side-extended-wrapper {
   @include d-inline-flex-column;
-  width: 10px;
+  width: 2rem;
   min-height: 100vh;
   //   overflow: hidden;
   background-color: $c-gray-lighter;
@@ -50,6 +50,33 @@
         right: initial;
         left: initial;
       }
+    }
+  }
+  .favorite-by-wrapper {
+    display: flex;
+    background-color: rgb(226, 226, 226);
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    height: 3.5rem;
+    min-width: 100%;
+    margin-top: 24rem;
+    right: 0;
+    top: 30rem;
+    padding-left: 0.2rem;
+    @include rtl {
+      right: initial;
+      left: 0;
+    }
+    .filter-by-title {
+      min-width: 7.5rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mdi::before {
+      font-size: 24px;
     }
   }
 }
