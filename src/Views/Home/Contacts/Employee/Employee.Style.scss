@@ -221,3 +221,33 @@
 {
   font-size: 13px;
 }
+.dots-vertical {
+  .MuiButtonBase-root {
+    background-color: $c-primary;
+    color: $c-white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+  }
+}
+.filter-button {
+  .MuiButtonBase-root {
+    font-weight: 900;
+    background-color: $c-header-button;
+    color: $c-primary;
+    width: 7rem;
+    height: 2rem;
+    border-radius: 7px;
+  }
+
+}
+.menu-dots-wraper
+{
+  .css-d0ukip-MuiButtonBase-root-MuiButton-root
+  {
+    color: black;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+}

@@ -1,11 +1,12 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 .DataView-view-wrapper {
   position: relative;
-  .view-menu-collapse-wrapper {
+  .Location-menu-collapse-wrapper {
     border-radius: 0.5rem;
     background-color: $c-white;
     box-shadow: $bs-secondary;
-    // padding: 0 1rem;
+    padding: 25px;
+    right: -156px;
     min-height: 0px;
     top: 41px !important;
     height: auto;

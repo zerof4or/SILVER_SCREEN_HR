@@ -52,7 +52,7 @@ export const DataView = ({onviewChanged}) => {
                 <div className='view-item w-100'>
                   <Button key={`itemKey${index + 1}`} onClick={() => ClickButtonviewOpation(item)}>
                     <div className='item-wraper'>
-                      <span className={item.icon} /> {item.value}
+                      <span className={`${item.icon}`} /> {item.value}
                     </div>
                   </Button>
                 </div>

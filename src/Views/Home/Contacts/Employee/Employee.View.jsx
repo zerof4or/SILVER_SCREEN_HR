@@ -13,6 +13,7 @@ import { NoSearchResultComponent } from '../../../../Components/NoSearchResultCo
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
 import LocationComponent from '../../../../Components/LocationComponent/Location.Component';
+import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -55,8 +56,8 @@ export const EmployeeView = () => {
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
-        {/* <div className='attendance-check-filter'>
-          <div className='dots-vertical'>
+        <div className='d-inline-flex'>
+          <div className='dots-vertical mx-1 '>
             <ButtonBase onClick={actionsPopoverClickedHandler}>
               <span className='mdi mdi-dots-vertical' />
             </ButtonBase>
@@ -66,31 +67,38 @@ export const EmployeeView = () => {
               popoverClasses='header-actions-popover-wrapper'
               handleClose={actionsPopoverCloseHandler}
               component={
-                <div>
-                  <ButtonBase>{t('disabled')}</ButtonBase>
-                  <ButtonBase>{t('enabled')}</ButtonBase>
+                <div className='menu-dots-wraper'>
+                     <div className='mx-2 p-1'><Button>Export filter results... </Button>  </div>
+                     <div className='mx-2 p-1'><Button>Import Contacts  </Button>  </div>
+                     <div className='mx-2 p-1'><Button>Show on map </Button>  </div>
+                     <div className='mx-2 p-1'><Button>Print </Button>  </div>
+                     <div className='mx-2 p-1'><Button>Contact Sync  </Button>  </div>
+                     <div className='mx-2 p-1'><Button> Merge duplicates </Button>  </div>
+                     <div className='mx-2 p-1'><Button>Export to MailChimp </Button>  </div>
+                      
+                     
                 </div>
               }
             />
-          </div>
-          <div className='filter-button'>
+          </div> 
+          <div>
+          <div className='filter-button mx-2'>
             <ButtonBase>
               <span className='mdi mdi-filter' />
               {t('Filter')}
+              <span className="mdi mdi-chevron-down  mx-1"/>
             </ButtonBase>
           </div>
-          <div className='location-button-Component'>
-            
           </div>
+          <div className='mx-2'>
+     
+            <LocationComponent />{' '}
+          </div>
+          <div className='mx-1'>
+            <Sorterletters />
+          </div>
+        </div>
 
-        </div> */}
-        <div>
-          {' '}
-          <LocationComponent />{' '}
-        </div>
-        <div>
-          <Sorterletters />
-        </div>
         <div className='attendance-check-search'>
           <div className='search-text'>
             <Inputs

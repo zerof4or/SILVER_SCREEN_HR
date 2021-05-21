@@ -43,7 +43,7 @@ export const LocationComponent = ({ onviewChanged }) => {
               isOpen={isOpenMenu}
               top={60}
               isAbsolute
-              classes='view-menu-collapse-wrapper'
+              classes='Location-menu-collapse-wrapper'
               component={<CountriesAutocomplete />}
             />
           </div>

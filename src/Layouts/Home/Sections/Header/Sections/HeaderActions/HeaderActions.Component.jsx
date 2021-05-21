@@ -113,7 +113,7 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
       </div>
       <div className='header-action-item-wrapper'>
         
-        <Badge className='header-action-item' badgeContent={32} max={9}>
+        <Badge className='header-action-item' badgeContent={3} max={9}>
           <ButtonBase onClick={TaskMenuClicked}>
             <span className='mdi mdi-checkbox-multiple-marked' />
             

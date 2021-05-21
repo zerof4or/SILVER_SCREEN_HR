@@ -120,12 +120,12 @@
         color: $c-white;
       }
     }
-    .TaskMenu-menu-collapse-wrapper{
+    .TaskMenu-menu-collapse-wrapper {
       border-radius: 0.5rem;
       background-color: $c-white;
       box-shadow: $bs-secondary;
-      padding: 0 1rem;
       min-width: 432px;
+      width: 34rem;
     }
     .user-menu-collapse-wrapper {
       border-radius: 0.5rem;
@@ -521,6 +521,91 @@
     }
     .CalendarmMenu-bbt {
       padding: 1rem;
+    }
+  }
+}
+.card-content-TaskMenuComponent {
+  .card-content-Calendar {
+  }
+
+  .TaskMenu-wraper {
+    @include d-inline-flex;
+    color: black;
+    width: 100%;
+    padding: 18px 10px 18px 10px;
+    .main-title {
+      @include d-inline-flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .task-titel {
+        color: #0095ff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .title-type {
+        border-radius: 23px;
+        @include d-inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+      }
+    }
+    .task-number {
+      display: flex;
+      padding: 7px 21px 8px 8px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sub-title {
+      color: #797979;
+      font-size: 11px;
+      margin-top: 7px;
+    }
+    .description {
+      width: 100%;
+    }
+    .time {
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      justify-content: center;
+      display: flex;
+    }
+    .date {
+      font-size: 10px;
+      font-weight: 100;
+      width: 100%;
+      justify-content: center;
+      display: flex;
+    }
+    .CalendarmMenu-bbt {
+      padding: 1rem;
+    }
+    .time-description {
+      margin-top: 7px;
+      @include d-inline-flex;
+      @include flex-h-between;
+      width: 100%;
+      color: #797979;
+      font-size: 11px;
+    }
+    .loder-line {
+      margin-top: 7px;
+      width: 100%;
+      height: 5px;
+      background-color: #c5c5d0;
+      .line-procces {
+     
+        height: 4px;
+        background-color: #0095ff;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+      }
     }
   }
 }
