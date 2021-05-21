@@ -10,7 +10,15 @@
   "system-admin": "مسؤول النظام",
   "system-parameters": "معلمات النظام",
   "dashboard": "لوحة القيادة",
-  "edit": "تعديل",
+  "contacts": "جهات الإتصال",
+  "website": "موقع الكتروني",
+  "projects": "المشاريع",
+  "company": "الشركة",
+  "organizations": "المنظمات",
+  "people": "اشخاص",
+  "human-resources": "الموارد البشرية",
+  "employees": "الموظفين",
+  "sales": "المبيعات",
   "row-per-page": "صف لكل صفحة",
   "download": "التنزيل",
   "from": "من",
@@ -31,8 +39,8 @@
   "is-between": "بين",
   "NotFoundViews": {
     "Error-page-not-found": "الصفحة غير موجودة",
-    "this-page-Under-Construction-and-Development":"هذه الصفحة قيد الإنشاء والتطوير",
-    "It-will-be-present-in-the-shortest-time":"ستكون هذه الصفحة جاهزه في اقرب فرصة ",
+    "this-page-Under-Construction-and-Development": "هذه الصفحة قيد الإنشاء والتطوير",
+    "It-will-be-present-in-the-shortest-time": "ستكون هذه الصفحة جاهزه في اقرب فرصة ",
     "not-found": "غير موجود",
     "no-internet-connection": "لا يوجد اتصال بالانترنت",
     "No-Content": "لا يوجد بيانات",
@@ -74,5 +82,12 @@
     "card-per-page": "البطاقات لكل صفحة:",
     "of": "من",
     "pages": "الصفحات"
+  },
+  "DeleteDialog": {
+    "confirm-message": "الصفوف في كل صفحة",
+    "of": "من",
+    "previous-page": "الصفحة السابقة",
+    "next-page": "الصفحة التالية",
+    "open-file": "فتح الملف"
   }
 }

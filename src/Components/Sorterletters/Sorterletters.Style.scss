@@ -1,4 +1,11 @@
 .Sorterletters {
+  .MuiGrid-root .MuiGrid-item .MuiGrid-grid-xs-12 .css-6wbyuk-MuiGrid-root {
+    box-shadow: 0px !important;
+  }
+
+  .MuiButtonGroup-root {
+    box-shadow: 0px !important;
+  }
   .MenuItemSort {
     z-index: 2;
   }
@@ -20,42 +27,74 @@
     text-transform: uppercase;
     min-width: 64px;
     padding: 6px 16px;
-    border-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     box-shadow: 0px !important;
     height: 2rem;
   }
-  .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
-    text-transform: uppercase;
-    min-width: 64px;
-    padding: 6px 16px;
-    border-radius: 4px;
+
+  .css-1o11vxz-MuiButtonGroup-root {
     box-shadow: 0px !important;
-    color: #000000;
-    background-color: #e2e2e2;
   }
 
   .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
-    color: #65acfe;
+    box-shadow: 0px !important;
+    color: #000000;
     background-color: #e2e2e2;
-    border-right: 5px solid #bdbdbd;
-    border-color: #222222;
-    font-weight: 900;
+    width: 40px !important;
+    text-transform: capitalize;
+    min-width: 40px;
+    padding: 3px 1px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+  }
+
+  .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
+    box-shadow: 0px !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0px;
+  }
+
+  .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
+    color: #000000;
+    box-shadow: 0px !important;
+    background-color: #e2e2e2;
+    //border-right: 5px solid #bdbdbd;
+    // border-color: #222222;
     box-shadow: 0px !important;
     height: 2rem;
   }
+
+  .css-1o11vxz-MuiButtonGroup-root {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    border-radius: 0px;
+    box-shadow: 0px !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+
   .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:first-of-type) {
     color: #000000;
-
+    width: 40px;
+    max-width: 40px;
+    box-shadow: 0px !important;
     height: 2rem;
     box-shadow: 0px !important;
     background-color: #e2e2e2;
   }
-  .filter-icon
-  {
-   color: #222222;
+  .filter-icon {
+    color: #222222;
   }
-  .filter-icon-defult
-  {
-    color: #65acfe;;
+  .filter-icon-defult {
+    color: #65acfe;
   }
 }

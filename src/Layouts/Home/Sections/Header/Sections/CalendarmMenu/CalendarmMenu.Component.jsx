@@ -14,7 +14,7 @@ export const CalendarmMenuComponent = memo(() => {
         {/* <Spinner isActive={isLoading} isAbsolute /> */}
         <div className='d-flex-column-center main-title-staus'>
           <span className='mx-3'>{t(`${transaltionPath}your-Calendar`)}</span>
-        </div>
+        </div> 
       </div>
       <div className='card-content-CalendarmMenuComponent'>
         <div className='CalendarmMenu-wraper'>

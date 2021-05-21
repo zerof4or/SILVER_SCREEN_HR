@@ -21,7 +21,7 @@ export const Sorterletters = () => {
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
-   setSelectedIndex(0) 
+    setSelectedIndex(0);
   };
 
   const handleMenuItemClick = (event, index) => {
@@ -49,13 +49,14 @@ export const Sorterletters = () => {
             className='ButtonGroup-Sorterletters'
             onClick={handleClick}
             onDoubleClick={() => setSelectedIndex(0)}>
-            {selectedIndex === 0 ? (
+            {/* {selectedIndex === 0 ? (
               <span className='mdi mdi-filter-off-outline px-1  filter-icon-defult' />
             ) : (
               <span className='mdi mdi-filter-menu px-1  filter-icon' />
-            )}
-
-            {options[selectedIndex]}
+            )} */}
+            {/* 
+            {options[selectedIndex]} */}
+            All
           </Button>
           <Button
             className='ButtonGroup-Sorterletters'
@@ -65,7 +66,11 @@ export const Sorterletters = () => {
             aria-label='select merge strategy'
             aria-haspopup='menu'
             onClick={handleToggle}>
-            <span className='mdi mdi-sort-alphabetical-variant px-4' />
+            {selectedIndex === 0 ? (
+              <span className='mdi mdi-sort-alphabetical-variant' />
+            ) : (
+              options[selectedIndex]
+            )}
           </Button>
         </ButtonGroup>
         <Popper

@@ -121,6 +121,9 @@ const LoginView = () => {
                 <Link className="links" to="/account/identity-verification">
                   {t(`${translationPath}forgot-password`)}
                 </Link>
+                <Link className="links" to="/home">
+                  {t(`${translationPath}Login Without Password`)}
+                </Link>
               </div>
               <div className="d-flex-v-center-h-end">
                 <div className={`animated-btn-wrapper${animationStartClasses}`}>

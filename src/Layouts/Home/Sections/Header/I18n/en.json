@@ -25,5 +25,14 @@
   "CalendarmMenuComponent": {
     "your-Calendar": "Your Calendar",
     "see-your-all-Calendar": "See Your All Calendar "
+  },
+  "MessagesMenuComponent": {
+    "your-Calendar": "Your Calendar",
+    "Messages": "Messages",
+    "see-your-all-Messages": "See Your All Messages "
+  },
+  "TaskMenu": {
+    "your-Task": "Your Task",
+    "see-your-all-Task": "See All Task"
   }
 }

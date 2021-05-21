@@ -1,0 +1,88 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.DataView-view-wrapper {
+  position: relative;
+  .view-menu-collapse-wrapper {
+    border-radius: 0.5rem;
+    background-color: $c-white;
+    box-shadow: $bs-secondary;
+    // padding: 0 1rem;
+    min-height: 0px;
+    top: 41px !important;
+    height: auto;
+    transition-duration: 300ms;
+    min-width: 139px !important;
+  }
+  .button-wrapper {
+    .MuiButtonBase-root {
+      height: 34px;
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 7px;
+      height: 34px;
+      width: 145px;
+      justify-content: space-evenly;
+      font-weight: 800;
+    }
+  }
+  .filter-button {
+    .MuiButtonBase-root {
+      height: 34px;
+      background-color: #e2e2e2;
+      color: #000000;
+      border-radius: 7px;
+      height: 34px;
+      width: 145px;
+      justify-content: space-evenly;
+      font-weight: 800;
+    }
+    .chip {
+      margin-left: -0.5rem;
+      margin-right: 0.5rem;
+      @include rtl {
+        margin-left: 0.5rem;
+        margin-right: -0.5rem;
+      }
+    }
+    // .arrow {
+    //   margin-left: -0.5rem;
+    //   @include rtl {
+    //     margin-left: 0rem;
+    //     margin-right: -0.5rem;
+    //   }
+    // }
+  }
+  // padding-left: 5rem;
+  // @include rtl {
+  //   padding-left: 0;
+  //   padding-right: 5rem;
+  // }
+  // display: flex;
+  // align-items: center;
+  // height: 3rem;
+  // background-color: #4e4e4e;
+  // position: fixed;
+  // top: 3.3rem;
+  // left: 0;
+  // width: 100%;
+  // z-index: 9;
+  // .inner-header-view-item {
+  //   .header-side-menu-button {
+  //     cursor: pointer;
+  //     margin-right: 2rem;
+  //     width: auto;
+  //     padding-left: 0.8rem;
+  //     padding-right: 0.8rem;
+  //     height: 1.9rem;
+  //     border-radius: 0.6rem;
+  //     color: #ececec;
+  //     &.is-active {
+  //       background-color: #e2e2e2;
+  //       color: $c-gray-primary;
+  //     }
+  //     &:hover {
+  //       background-color: #ececec;
+  //       color: $c-gray-primary;
+  //     }
+  //   }
+  // }
+}

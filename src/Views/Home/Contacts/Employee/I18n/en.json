@@ -16,6 +16,12 @@
   "today-actions": "Today Actions",
   "contacts": "Contacts",
   "select": "Select",
+  "DeleteDialog": {
+    "confirm-message": "Confirm Message",
+    "DeleteText": "DeleteText",
+    "Cancel": "الغاء",
+    "Confirm": "Confirm"
+  },
   "Group": "Group",
   "order-by": "Order by",
   "Phone": "Phone",
@@ -235,6 +241,13 @@
       "contacts-merged-successfully": "Contacts merged successfully",
       "contacts-merged-failed": "Contacts merged failed",
       "download": "Download"
+    },
+    "DeleteDialog": {
+      "confirm-message": "الصفوف في كل صفحة",
+      "of": "من",
+      "previous-page": "الصفحة السابقة",
+      "next-page": "الصفحة التالية",
+      "open-file": "فتح الملف"
     }
   }
 }

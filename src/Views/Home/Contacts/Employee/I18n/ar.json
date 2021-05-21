@@ -15,6 +15,12 @@
   "today-actions": "إجراءات اليوم",
   "contacts": "جهات الإتصال",
   "select": "إختر",
+  "DeleteDialog": {
+    "confirm-message": "رسالة تنبيه",
+    "DeleteText": "رسالة الحذف",
+    "Cancel": "الغاء",
+    "Confirm": "موافق"
+  },
   "normal": "عادي",
   "platinum": "بلاتيني",
   "silver": "فضي",
@@ -235,6 +241,13 @@
       "original": "اصلي",
       "contacts-merged-successfully": "تم دمج جهات الإتصال بنجاح",
       "contacts-merged-failed": "فشل دمج جهات الإتصال"
+    },
+    "DeleteDialog": {
+      "confirm-message": "الصفوف في كل صفحة",
+      "of": "من",
+      "previous-page": "الصفحة السابقة",
+      "next-page": "الصفحة التالية",
+      "open-file": "فتح الملف"
     }
   }
 }

@@ -134,7 +134,7 @@ export const DialogComponent = ({
                       <span>
                         {t(
                           `${
-                            (cancelText === 'cancel' && translationPathShared) || translationPath
+                            (cancelText ===t(`${translationPath}cancel`) && translationPathShared) || translationPath
                           }${cancelText}`
                         )}
                       </span>

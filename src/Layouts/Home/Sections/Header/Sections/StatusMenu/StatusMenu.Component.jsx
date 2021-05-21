@@ -11,7 +11,6 @@ export const StatusMenuComponent = memo(({ Clicked }) => {
   // const loginResponse = useSelector((state) => state.LoginReducers.loginResponse);
   // const [isLoading, setIsLoading] = useState(false); , useState
   const colorstates = JSON.parse(localStorage.getItem('stateColor'));
-  console.log('colorstates: ', colorstates);
   const ChangeClickedHandler = (value) => {
     localStorage.setItem('stateColor', JSON.stringify(value));
   };

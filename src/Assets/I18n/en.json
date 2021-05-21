@@ -8,6 +8,15 @@
   "search-holder": "Search...",
   "dashboard": "Dashboard",
   "system-admin": "System Admin",
+  "contacts": "contacts",
+  "website": "website",
+  "projects": "projects",
+  "company": "company",
+  "organizations": "organizations",
+  "people": "people",
+  "human-resources": "Human Resources",
+  "employees": "employees",
+  "sales": "Sales",
   "administration": "Administration",
   "system-parameters": "System Parameters",
   "edit": "Edit",
@@ -74,5 +83,12 @@
     "card-per-page": "Cards per page:",
     "of": "of",
     "pages": "Pages"
+  },
+  "DeleteDialog": {
+    "confirm-message": "الصفوف في كل صفحة",
+    "of": "من",
+    "previous-page": "الصفحة السابقة",
+    "next-page": "الصفحة التالية",
+    "open-file": "فتح الملف"
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom'; //, Redirect
 import PropTypes from 'prop-types';
 
 export const PrivateRouteComponent = ({
@@ -13,11 +13,12 @@ export const PrivateRouteComponent = ({
     <Route
       {...rest}
       render={(props) =>
-        localStorage.getItem('session') ? (
-          <Component {...props} exact={exact} addRoute={addRoute} />
-        ) : (
-          <Redirect to={login} />
-        )
+        <Component {...props} exact={exact} addRoute={addRoute} />
+        // localStorage.getItem('session') ? (
+        //   <Component {...props} exact={exact} addRoute={addRoute} />
+        // ) : (
+        //   <Redirect to={login} />
+        // )
       }
     />
   );

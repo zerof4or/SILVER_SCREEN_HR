@@ -7,12 +7,12 @@ import { Button, ButtonBase, ButtonGroup } from '@material-ui/core';
 import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
-import PopoverComponent from '../../../../Components/Popover/Popover.Component';
-// import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
-import { Inputs } from '../../../../Components';
+import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
+import { DialogComponent, Inputs } from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
+import LocationComponent from '../../../../Components/LocationComponent/Location.Component';
 
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
@@ -25,6 +25,7 @@ export const EmployeeView = () => {
   const [CehckIt] = useState(false);
   const [ViewType, setViewType] = useState(1);
   const [Data, setData] = useState(ContactsDummyData);
+  const [open, setopen] = useState(false);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [filter] = useState({
     pageIndex: 1,
@@ -36,18 +37,9 @@ export const EmployeeView = () => {
   const actionsPopoverCloseHandler = () => {
     setActionsPopover(null);
   };
-
-  // const FilterHandler = (value) => {
-  //   const result = maintenanceContract.result.filter(
-  //     (item) => item.propertyName === +value.target.value
-  //   );
-  //   console.log(result);
-  //   setData({
-  //     result: result,
-
-  //     totalCount: 1,
-  //   });
-  // };
+  const close = () => {
+    setopen(false);
+  };
 
   const FilterHandler = (value) => {
     const result = ContactsDummyData.result.filter((item) =>
@@ -63,7 +55,7 @@ export const EmployeeView = () => {
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
-        <div className='attendance-check-filter'>
+        {/* <div className='attendance-check-filter'>
           <div className='dots-vertical'>
             <ButtonBase onClick={actionsPopoverClickedHandler}>
               <span className='mdi mdi-dots-vertical' />
@@ -87,11 +79,18 @@ export const EmployeeView = () => {
               {t('Filter')}
             </ButtonBase>
           </div>
-          <div className='location-button'>
-            <ButtonBase>Location</ButtonBase>
+          <div className='location-button-Component'>
+            
           </div>
+
+        </div> */}
+        <div>
+          {' '}
+          <LocationComponent />{' '}
         </div>
-        <div>{/* <Sorterletters /> */}</div>
+        <div>
+          <Sorterletters />
+        </div>
         <div className='attendance-check-search'>
           <div className='search-text'>
             <Inputs
@@ -135,7 +134,7 @@ export const EmployeeView = () => {
               </ButtonBase>
             </div>
             <div className='bbt-gray space'>
-              <ButtonBase disabled={CehckIt}>
+              <ButtonBase disabled={CehckIt} onClick={() => setopen(true)}>
                 <span className='mdi mdi-delete' />
               </ButtonBase>
             </div>
@@ -180,6 +179,23 @@ export const EmployeeView = () => {
             ))}
         </div>
       </div>
+      <DialogComponent
+        titleText={t('DeleteDialog.confirm-message')}
+        saveText={t('DeleteDialog.Confirm')}
+        saveType='button'
+        maxWidth='md'
+        dialogContent={
+          <div className='d-flex-column-center'>
+            <span className='mdi mdi-close-octagon c-danger mdi-40px' />
+            <span>{`${t('DeleteText')}  ${'name'}`}</span>
+          </div>
+        }
+        saveClasses='btns theme-solid bg-danger w-100 mx-2 mb-2'
+        isOpen={open}
+        onSaveClicked={close}
+        onCloseClicked={close}
+        onCancelClicked={close}
+      />
     </div>
   );
 };

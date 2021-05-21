@@ -54,7 +54,7 @@ export const HeaderComponent = () => {
         ...item,
         userProfile: false,
       }));
-      setisopenCollapse(false);
+    setisopenCollapse(false);
   });
 
   useOnClickOutside(statesRef, () => {
@@ -63,7 +63,7 @@ export const HeaderComponent = () => {
         ...item,
         status: false,
       }));
-      setisopenCollapse(false);
+    setisopenCollapse(false);
   });
 
   setLogoutAction(logoutClicked);
@@ -84,7 +84,7 @@ export const HeaderComponent = () => {
     setIsOpenMenu((item) => ({ ...item, status: !item.status }));
   };
   const AllClose = () => {
-    setIsOpenMenu((item) => ({ ...item, status: false , userProfile: false }));
+    setIsOpenMenu((item) => ({ ...item, status: false, userProfile: false }));
   };
   useEffect(() => {
     if (loginResponse) setImageReq(loginResponse);
@@ -120,6 +120,7 @@ export const HeaderComponent = () => {
           <span className='mdi mdi-magnify' />
         </ButtonBase>
       </div>
+      
       <div className='section last-section-wrapper' ref={statesRef}>
         <HeaderActionsComponent AllClose={AllClose} CloseCollapse={isopenCollapse} />
         <ButtonBase
@@ -134,7 +135,7 @@ export const HeaderComponent = () => {
           attachedWith={headerActionsPopover}
           popoverClasses='header-actions-popover-wrapper'
           handleClose={actionsPopoverCloseHandler}
-          component={<HeaderActionsComponent />}
+          component={<HeaderActionsComponent AllClose={AllClose} />}
         />
         <div className='p-relative' ref={userProfileRef}>
           <div className='btns theme-transparent user-button-wrapper'>
@@ -153,9 +154,10 @@ export const HeaderComponent = () => {
                 />
               </ButtonBase>
             )}
-            {imageReq && imageReq.fullName && (
+            {//imageReq && imageReq.fullName && imageReq.fullName||
+             (
               <div className='user-name-wrapper'>
-                <span className='user-name-text'>{imageReq.fullName}</span>
+                <span className='user-name-text'>{ "Abdel Azeez"} </span>
                 <ButtonBase
                   className={
                     isOpenMenu.userProfile === true

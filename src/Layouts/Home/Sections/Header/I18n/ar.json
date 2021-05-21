@@ -20,10 +20,19 @@
   },
   "NotificationsMenuComponent": {
     "Notification": "الاشعارات",
-    "see-your-all-Notification" : "انظرإلى كل إشعاراتك" 
+    "see-your-all-Notification": "انظرإلى كل إشعاراتك"
   },
   "CalendarmMenuComponent": {
     "your-Calendar": "التقويم الخاص بك",
     "see-your-all-Calendar": "انظر التقويم الخاص بك"
+  },
+  "MessagesMenuComponent": {
+    "your-Calendar": "Your Calendar",
+    "Messages": "رسائل",
+    "see-your-all-Messages": "رؤية كل رسائلك"
+  },
+  "TaskMenu": {
+    "your-Task": "مهامك",
+    "see-your-all-Task": "رؤية كل مهامك"
   }
 }
