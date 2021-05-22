@@ -95,6 +95,7 @@
         margin-left: -0.5rem;
       }
       .header-action-item-wrapper {
+        position: relative;
         @include d-flex-center;
         .MuiBadge-badge {
           background-color: $c-red;
@@ -145,7 +146,6 @@
       border-radius: 0.5rem;
       background-color: $c-white;
       box-shadow: $bs-secondary;
-      right: 144px;
       padding: 0 1rem;
       max-width: 500px;
       min-width: 444px;
@@ -156,8 +156,6 @@
       background-color: $c-white;
       box-shadow: $bs-secondary;
       max-width: 444px;
-      right: 144px;
-
       padding: 0 1rem;
       min-width: 200px;
     }
@@ -289,6 +287,7 @@
       @include d-flex-column-center;
       padding: 1rem 1rem 0.25rem;
       .header-action-item-wrapper {
+        position: relative;
         @include d-flex;
         .MuiBadge-badge {
           background-color: $c-red;
