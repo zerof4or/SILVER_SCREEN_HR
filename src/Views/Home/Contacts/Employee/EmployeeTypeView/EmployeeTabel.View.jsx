@@ -208,7 +208,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className='Popap-Option'>
+          <div className='Popap-Option-menu'>
             <div className='p-2'> Choose columns </div>
             <div className='fiter-title'>Visible columns </div>
             {DataTable.map((item, index) =>
