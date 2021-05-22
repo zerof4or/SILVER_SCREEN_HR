@@ -1,5 +1,4 @@
 export const letters = [
-  'all',
   'a',
   'b',
   'c',

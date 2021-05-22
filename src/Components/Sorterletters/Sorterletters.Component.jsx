@@ -14,7 +14,6 @@ import MenuList from '@material-ui/core/MenuList';
 import { letters } from '../../Enums/letters.Enum';
 export const Sorterletters = () => {
   const options = letters;
-
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);

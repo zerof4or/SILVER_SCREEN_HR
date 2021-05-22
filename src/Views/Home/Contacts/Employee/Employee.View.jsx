@@ -8,7 +8,7 @@ import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
-import { DialogComponent, Inputs } from '../../../../Components';
+import { DialogComponent, FilterButtonComponent, Inputs } from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
@@ -68,30 +68,37 @@ export const EmployeeView = () => {
               handleClose={actionsPopoverCloseHandler}
               component={
                 <div className='menu-dots-wraper'>
-                     <div className='mx-2 p-1'><Button>Export filter results... </Button>  </div>
-                     <div className='mx-2 p-1'><Button>Import Contacts  </Button>  </div>
-                     <div className='mx-2 p-1'><Button>Show on map </Button>  </div>
-                     <div className='mx-2 p-1'><Button>Print </Button>  </div>
-                     <div className='mx-2 p-1'><Button>Contact Sync  </Button>  </div>
-                     <div className='mx-2 p-1'><Button> Merge duplicates </Button>  </div>
-                     <div className='mx-2 p-1'><Button>Export to MailChimp </Button>  </div>
-                      
-                     
+                  <div className='mx-2 p-1'>
+                    <Button>Export filter results... </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Import Contacts </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Show on map </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Print </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Contact Sync </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button> Merge duplicates </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Export to MailChimp </Button>{' '}
+                  </div>
                 </div>
               }
             />
-          </div> 
-          <div>
-          <div className='filter-button mx-2'>
-            <ButtonBase>
-              <span className='mdi mdi-filter' />
-              {t('Filter')}
-              <span className="mdi mdi-chevron-down  mx-1"/>
-            </ButtonBase>
           </div>
+          <div>
+            <div className='mx-2'>
+              <FilterButtonComponent />
+            </div>
           </div>
           <div className='mx-2'>
-     
             <LocationComponent />{' '}
           </div>
           <div className='mx-1'>
