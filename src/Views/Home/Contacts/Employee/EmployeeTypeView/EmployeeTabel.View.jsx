@@ -97,8 +97,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
           {(item &&
             item.email.map((item, index) => (
               <>
-                {' '}
-                <div>{item.emailaddress1}</div> <div>{(item && item.emailaddress2) || ''}</div>{' '}
+                <div>{item.emailaddress1}</div> <div>{(item && item.emailaddress2) || ''}</div>
               </>
             ))) ||
             'N/A'}
@@ -117,8 +116,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
           {(item &&
             item.Phone.map((item, index) => (
               <>
-                {' '}
-                <div>{item.Phoneno}</div> <div>{(item && item.Phoneno2) || ''}</div>{' '}
+                <div>{item.Phoneno}</div> <div>{(item && item.Phoneno2) || ''}</div>
               </>
             ))) ||
             'N/A'}
@@ -136,6 +134,7 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       id: 13,
       isSticky: true,
       right: 0,
+      cellClasses: 'table-cellOpation',
       // eslint-disable-next-line react/display-name
       headerComponent: (item) => (
         <>
@@ -230,17 +229,14 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
             )}
             <div className='fiter-title'>Hidden columns</div>
             <div className='Column-Checkbox'>
-              {' '}
               <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Jop
             </div>
             <div className='Column-Checkbox'>
-              {' '}
               <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Organization
             </div>
             <div className='Column-Checkbox'>
-              {' '}
               <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Address
             </div>

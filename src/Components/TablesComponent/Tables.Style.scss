@@ -209,3 +209,12 @@
     }
   }
 }
+.table-cellOpation
+{
+  border-left:  1.5px solid $c-gray-secondary;
+  width:20px;
+  @include rtl {
+    border-right:  1.5px solid $c-gray-secondary;
+    border-left:  none;
+  }
+}

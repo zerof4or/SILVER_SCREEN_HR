@@ -14,10 +14,10 @@ export const LocationButtonComponent = ({
   CollapseComponentclasses,
   parentTranslationPath,
   CollapseComponentView,
+  top,
 }) => {
   const { t } = useTranslation(parentTranslationPath);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  console.log('isOpenMenu: ', isOpenMenu);
   const LocationButtonRef = useRef(null);
   useOnClickOutside(LocationButtonRef, () => {
     if (isOpenMenu) setIsOpenMenu(false);
@@ -29,7 +29,7 @@ export const LocationButtonComponent = ({
     <div className='LocationButtonComponent-wrapper' ref={LocationButtonRef}>
       <CollapseComponent
         isOpen={isOpenMenu}
-        top={40}
+        top={top}
         isAbsolute
         classes={CollapseComponentclasses}
         component={CollapseComponentView || undefined}
@@ -54,6 +54,7 @@ LocationButtonComponent.propTypes = {
   translationPath: PropTypes.string,
   parentTranslationPath: PropTypes.string,
   translationPathForData: PropTypes.string,
+  top: PropTypes.string,
   CollapseComponentclasses: PropTypes.string,
   CollapseComponentView: PropTypes.oneOfType([
     PropTypes.elementType,
@@ -67,6 +68,7 @@ LocationButtonComponent.defaultProps = {
   parentTranslationPath: '',
   icon: 'mdi mdi-map-marker-radius  ',
   iconClass: '',
+  top: 40,
   CollapseComponentView: '',
   defaultTitle: 'Location',
   CollapseComponentclasses: 'Location-menu-collapse-wrapper',

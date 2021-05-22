@@ -13,6 +13,7 @@ export const FilterButtonComponent = ({
   CollapseComponentclasses,
   parentTranslationPath,
   CollapseComponentView,
+  top,
 }) => {
   const { t } = useTranslation(parentTranslationPath);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -28,7 +29,7 @@ export const FilterButtonComponent = ({
       <div className='Button-root'>
         <CollapseComponent
           isOpen={isOpenMenu}
-          top={40}
+          top={top}
           isAbsolute
           classes={CollapseComponentclasses}
           component={CollapseComponentView}
@@ -52,6 +53,7 @@ FilterButtonComponent.propTypes = {
   translationPath: PropTypes.string,
   parentTranslationPath: PropTypes.string,
   translationPathForData: PropTypes.string,
+  top: PropTypes.string,
   CollapseComponentclasses: PropTypes.string,
   CollapseComponentView: PropTypes.oneOfType([
     PropTypes.elementType,
@@ -67,5 +69,6 @@ FilterButtonComponent.defaultProps = {
   iconClass: '',
   CollapseComponentView: '',
   defaultTitle: 'Filter',
+  top: 40,
   CollapseComponentclasses: 'Filter-menu-collapse-wrapper',
 };

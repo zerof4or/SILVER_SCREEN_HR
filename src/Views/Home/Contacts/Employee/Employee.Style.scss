@@ -16,10 +16,12 @@
     align-items: center;
   }
   .img-contact-tabel {
-    width: 33px;
-    height: 35px;
+    width: 39px;
+    height: 42px;
     border-radius: 8px;
     margin: 0px 10px 0px 10px;
+    padding: 1PX;
+    border: 2px solid #8ee58e;
   }
   .action-contener {
     @include d-flex;
@@ -146,7 +148,6 @@
   }
 
   .EmployeeTabelView {
-    
     .Option-wraper {
       .css-10d1a0h-MuiButtonBase-root {
         border-radius: 14px;
@@ -168,7 +169,7 @@
   max-width: 156px;
   justify-content: center;
   font-size: 15px;
-  padding: 0.3rem;
+ // padding: 0.3rem;
   margin: 0px;
   .Option {
     display: inline-flex;

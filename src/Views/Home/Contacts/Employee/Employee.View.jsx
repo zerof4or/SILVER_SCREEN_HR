@@ -1,9 +1,6 @@
-/* eslint-disable no-unused-vars */
-//, useDispatch , useEffect, useCallback // import { useSelector } from 'react-redux';  InnerHeaderComponent,
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { Inputs } from '../../../../Components';
-import { Button, ButtonBase, ButtonGroup } from '@material-ui/core';
+import { Button, ButtonBase } from '@material-ui/core';
 import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
@@ -17,17 +14,12 @@ import {
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
-import LocationComponent from '../../../../Components/LocationComponent/Location.Component';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
-
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
 export const EmployeeView = () => {
   const { t } = useTranslation(parentTranslationPath);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [activeSideButton, setActiveSideButton] = useState(1);
-  // const [activeItem, setActiveItem] = useState(null);
-  // const loginResponse = useSelector((state) => state.login.loginResponse); setData
+
   const [CehckIt] = useState(false);
   const [ViewType, setViewType] = useState(1);
   const [Data, setData] = useState(ContactsDummyData);
@@ -46,7 +38,6 @@ export const EmployeeView = () => {
   const close = () => {
     setopen(false);
   };
-
   const FilterHandler = (value) => {
     const result = ContactsDummyData.result.filter((item) =>
       item.name.toLowerCase().includes(value.target.value.toLowerCase())
@@ -57,7 +48,6 @@ export const EmployeeView = () => {
       totalCount: result.length,
     });
   };
-
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
@@ -106,14 +96,10 @@ export const EmployeeView = () => {
           <div className='mx-2'>
             <LocationButtonComponent CollapseComponentView={<div>Location Component</div>} />
           </div>
-          <div className='mx-2'>
-            <LocationComponent />{' '}
-          </div>
           <div className='mx-1'>
             <Sorterletters />
           </div>
         </div>
-
         <div className='attendance-check-search'>
           <div className='search-text'>
             <Inputs
@@ -125,7 +111,6 @@ export const EmployeeView = () => {
           </div>
         </div>
       </div>
-
       <div className='Employee-wraper'>
         <div className='action-contener  w-100'>
           <div className='action-tabel-wraper'>
@@ -222,3 +207,10 @@ export const EmployeeView = () => {
     </div>
   );
 };
+/* eslint-disable no-unused-vars */
+//import { useSelector } from 'react-redux';
+// const [isLoading, setIsLoading] = useState(false);
+// const [activeSideButton, setActiveSideButton] = useState(1);
+// const [activeItem, setActiveItem] = useState(null);
+// const loginResponse = useSelector((state) => state.login.loginResponse);
+//InnerHeaderComponent
