@@ -1,1 +1,2 @@
-export * from './FilterButtonComponent/FilterButtonComponent';
+export * from './FilterButtonComponent';
+export * from './LocationButtonComponent';

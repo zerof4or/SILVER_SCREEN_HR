@@ -8,7 +8,12 @@ import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
 import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
-import { DialogComponent, FilterButtonComponent, Inputs } from '../../../../Components';
+import {
+  DialogComponent,
+  FilterButtonComponent,
+  Inputs,
+  LocationButtonComponent,
+} from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
@@ -95,8 +100,11 @@ export const EmployeeView = () => {
           </div>
           <div>
             <div className='mx-2'>
-              <FilterButtonComponent />
+              <FilterButtonComponent CollapseComponentView={<div>Filter Component</div>} />
             </div>
+          </div>
+          <div className='mx-2'>
+            <LocationButtonComponent CollapseComponentView={<div>Location Component</div>} />
           </div>
           <div className='mx-2'>
             <LocationComponent />{' '}

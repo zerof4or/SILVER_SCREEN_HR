@@ -26,21 +26,21 @@ export const FilterButtonComponent = ({
   return (
     <div className='FilterButtonComponent-wrapper' ref={FilterButtonRef}>
       <div className='Button-root'>
+        <CollapseComponent
+          isOpen={isOpenMenu}
+          top={40}
+          isAbsolute
+          classes={CollapseComponentclasses}
+          component={CollapseComponentView}
+        />
         <ButtonBase onClick={ViewCollaps}>
           <div>
             <span className={`${icon} ${iconClass}`} />
           </div>
           {t(`${translationPath}${defaultTitle}`)}
-          <span className='mdi mdi-chevron-down mx-1' />
+          <span className={isOpenMenu ? 'mdi mdi-chevron-up  mx-1' : 'mdi mdi-chevron-down mx-1'} />
         </ButtonBase>
       </div>
-      <CollapseComponent
-        isOpen={isOpenMenu}
-        top={60}
-        isAbsolute
-        classes={CollapseComponentclasses}
-        component={CollapseComponentView}
-      />
     </div>
   );
 };
@@ -67,5 +67,5 @@ FilterButtonComponent.defaultProps = {
   iconClass: '',
   CollapseComponentView: '',
   defaultTitle: 'Filter',
-  CollapseComponentclasses: 'view-menu-collapse-wrapper',
+  CollapseComponentclasses: 'Filter-menu-collapse-wrapper',
 };

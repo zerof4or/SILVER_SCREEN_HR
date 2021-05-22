@@ -1,5 +1,5 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
-.FilterButtonComponent-wrapper {
+.LocationButtonComponent-wrapper {
   position: relative;
   .Button-root {
     .MuiButtonBase-root {
@@ -12,12 +12,12 @@
     }
   }
 }
-.Filter-menu-collapse-wrapper {
+.Location-menu-collapse-wrapper {
   border-radius: 0.2rem;
   background-color: $c-white;
   box-shadow: $bs-secondary;
   padding: 0 1rem;
-  min-width: 7rem;
+  min-width: 7.5rem;
   -webkit-border-radius: 0.2rem;
   -moz-border-radius: 0.2rem;
   -ms-border-radius: 0.2rem;
