@@ -3,7 +3,12 @@
   padding: 4px 15px !important;
   font-size: 12px;
 }
-
+.popoverClassesheaderMenuPopover {
+  .css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+    top: 52px !important;
+    max-height: calc(100% - 179px);
+  }
+}
 .title {
   color: #515151;
   text-transform: UPPERCASE;
@@ -17,6 +22,10 @@
   display: inline;
   .css-10d1a0h-MuiButtonBase-root {
     justify-content: normal !important;
+    &.is-active {
+      background-color: $c-primary;
+      color: $c-white;
+    }
   }
 }
 

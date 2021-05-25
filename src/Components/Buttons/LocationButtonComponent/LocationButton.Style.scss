@@ -23,3 +23,15 @@
   -ms-border-radius: 0.2rem;
   -o-border-radius: 0.2rem;
 }
+.Location-menu-emp {
+  right: unset !important;
+  .collapse-wrapper.is-absolute {
+    position: absolute;
+    right: unset !important;
+    z-index: 2;
+    background-color: #e2e2e2;
+    min-width: 147px;
+    height: 38px;
+  }
+ 
+}
