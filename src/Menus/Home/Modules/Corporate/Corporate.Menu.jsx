@@ -4,6 +4,8 @@ import {
   AgencyMenu,
   PhotographyMenu,
   EqupmentRentalMenu,
+  ProductionServiceMenu,
+  PostProductionMenu,
 } from './Modules';
 
 export const CorporateMenu = [
@@ -15,7 +17,7 @@ export const CorporateMenu = [
   },
   {
     path: '/home/corporate/sales&marketing',
-    name: 'Shared:sales&marketing',
+    name: 'Shared:sales-marketing',
     order: 2,
     childrens: SalesMarketingMenu,
   },
@@ -29,7 +31,7 @@ export const CorporateMenu = [
     path: '/home/corporate/production-service',
     name: 'Shared:production-service',
     order: 4,
-    childrens: CompanyMenu,
+    childrens: ProductionServiceMenu,
   },
   {
     path: '/home/corporate/photography',
@@ -41,7 +43,7 @@ export const CorporateMenu = [
     path: '/home/corporate/post-production',
     name: 'Shared:post-production',
     order: 5,
-    childrens: CompanyMenu,
+    childrens: PostProductionMenu,
   },
   {
     path: '/home/corporate/equpment-rental',

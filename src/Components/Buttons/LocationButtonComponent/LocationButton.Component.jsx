@@ -26,7 +26,10 @@ export const LocationButtonComponent = ({
     setIsOpenMenu(!isOpenMenu);
   };
   return (
-    <div className='LocationButtonComponent-wrapper' ref={LocationButtonRef}>
+    <div className='LocationButtonComponent-wrapper' 
+    //ref={LocationButtonRef}
+    >
+     <div className='Location-container'>
       <CollapseComponent
         isOpen={isOpenMenu}
         top={top}
@@ -34,6 +37,7 @@ export const LocationButtonComponent = ({
         classes={CollapseComponentclasses}
         component={CollapseComponentView || undefined}
       />
+      </div>
       <div className='Button-root'>
         <ButtonBase onClick={ViewCollaps}>
           <div>

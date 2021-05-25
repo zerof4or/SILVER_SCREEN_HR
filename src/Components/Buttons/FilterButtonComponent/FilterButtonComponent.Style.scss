@@ -23,3 +23,29 @@
   -ms-border-radius: 0.2rem;
   -o-border-radius: 0.2rem;
 }
+.TabsFilter {
+  right: unset !important;
+  .collapse-wrapper.is-absolute {
+    position: absolute;
+    right: unset !important;
+    z-index: 2;
+  }
+  .css-1f3wfo0-MuiButtonBase-root-MuiTab-root {
+    min-width: 147px;
+    height: 38px;
+    background-color: #d2d0d0;
+  }
+}
+.CollapseComponentView-wraper {
+  background-color: #ffffff !important;
+  padding: 0 2rem;
+  min-width: 34rem;
+  .css-4z9bxz-MuiPaper-root {
+    box-shadow: none !important;
+  }
+  .css-1l5yae9-MuiTabs-indicator {
+    background-color: inherit;
+  }
+}
+
+

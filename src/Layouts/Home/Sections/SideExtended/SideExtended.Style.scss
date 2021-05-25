@@ -1,7 +1,7 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 .side-extended-wrapper {
   @include d-inline-flex-column;
-  width: 2rem;
+  width: 2.8rem;
   min-height: 100vh;
   //   overflow: hidden;
   z-index: 1;
@@ -29,9 +29,9 @@
       min-width: 24px;
       max-width: 24px;
       position: absolute;
-      right: 4px;
+      right: 10px;
       @include rtl {
-        left: 4px;
+        left: 10px;
         right: initial;
       }
     }

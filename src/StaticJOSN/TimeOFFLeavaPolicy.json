@@ -1,0 +1,85 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 2,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 3,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 4,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 5,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 6,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 7,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 8,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 9,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    },
+    {
+      "id": 10,
+      "leavePolicyName": "Vacations",
+      "YearlyBalance": "60 Days",
+      "MaximumCarryover": "60 Days",
+      "ActualType": "Monthly",
+      "AccurateStartDate": "15 November 2020"
+    }
+  ],
+  "totalCount": 10
+}
