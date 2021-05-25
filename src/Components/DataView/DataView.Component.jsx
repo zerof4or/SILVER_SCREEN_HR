@@ -7,7 +7,7 @@ import CollapseComponent from '../Collapse/Collapse.Component';
 import './DataView.Style.scss';
 import { PropTypes } from 'prop-types';
 
-export const DataView = ({ onviewChanged }) => {
+export const DataView = ({ onViewChanged }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [view, setview] = useState({
     key: 1,
@@ -25,36 +25,36 @@ export const DataView = ({ onviewChanged }) => {
   const ClickButtonviewOpation = useCallback(
     (value) => {
       setview(value);
-      onviewChanged(value);
+      onViewChanged(value);
       setIsOpenMenu(false);
     },
-    [onviewChanged]
+    [onViewChanged]
   );
   return (
-    <div className='DataView-view-wrapper' ref={viewRef}>
-      <div className='view-item'>
-        <div className='button-wrapper-DataView'>
-          <div className='button-STYLE' label="Sort by">
-            <ButtonBase onClick={ViewBBTClicked} >
+    <div className="DataView-view-wrapper" ref={viewRef}>
+      <div className="view-item">
+        <div className="button-wrapper-DataView">
+          <div className="button-STYLE" label="Sort by">
+            <ButtonBase onClick={ViewBBTClicked}>
               <div>
                 <span className={`${view.icon}`}></span>
               </div>
               {view.value} {'View'}
-              <span className='mdi mdi-chevron-down  arrow' />
+              <span className="mdi mdi-chevron-down  arrow" />
             </ButtonBase>
           </div>
           <CollapseComponent
             isOpen={isOpenMenu}
             top={60}
             isAbsolute
-            classes='view-menu-collapse-wrapper'
+            classes="view-menu-collapse-wrapper"
             component={TableViewType.map((item, index) => (
-              <div   key={`itemKey${index + 1}`} className='view-item w-100'>
-                <Button  onClick={() => ClickButtonviewOpation(item)}>
-                  <div className='item-wraper'>
+              <div key={`itemKey${index + 1}`} className="view-item w-100">
+                <Button onClick={() => ClickButtonviewOpation(item)}>
+                  <div className="item-wraper">
                     <div className={`${item.icon}`} />
                     &nbsp;
-                    <div className=''>
+                    <div className="">
                       {item.value}
                       &nbsp;
                       {'View'}
@@ -71,5 +71,5 @@ export const DataView = ({ onviewChanged }) => {
 };
 export default DataView;
 DataView.propTypes = {
-  onviewChanged: PropTypes.string,
+  onViewChanged: PropTypes.func.isRequired,
 };

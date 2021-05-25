@@ -51,6 +51,16 @@ export const floatHandler = (value, maxFloatNumbers) => {
     return Number(value).toFixed(maxFloatNumbers);
   return Number(value).toFixed(0);
 };
+export const getDataFromObject = (dataItem, key) => {
+  if (!key) return (typeof dataItem !== 'object' && dataItem) || '';
+  if (!key.includes('.')) return dataItem[key];
+  let a = dataItem;
+  key.split('.').map((item) => {
+    if (a) a = a[item];
+    return item;
+  });
+  return a;
+};
 export const getErrorByName = (schemaObject, fieldName, type) => {
   if (!schemaObject.error || !schemaObject.error.details) {
     return {

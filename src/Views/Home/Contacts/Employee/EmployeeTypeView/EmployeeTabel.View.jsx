@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
@@ -5,7 +6,13 @@ import { Inputs, Tables } from '../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../Enums';
-export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath, filter }) => {
+export const EmployeeTabelView = ({
+  data,
+  parentTranslationPath,
+  translationPath,
+  filter,
+  onSelectedRowsCountChanged,
+}) => {
   const { t } = useTranslation(parentTranslationPath);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ColumnsPopover, setColumnsPopover] = useState(null);
@@ -58,10 +65,9 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       id: 1,
       isSortable: true,
       label: t(`${translationPath}Name`),
-      // eslint-disable-next-line react/display-name
       component: (item) => (
-        <div className='contact-img-with-text-wraper'>
-          <img src={pickRandom(AVATARS)} className='img-contact-tabel' alt={'d'} />
+        <div className="contact-img-with-text-wraper">
+          <img src={pickRandom(AVATARS)} className="img-contact-tabel" alt={'d'} />
           <div>{(item && item.name) || 'N/A'}</div>
         </div>
       ),
@@ -72,16 +78,16 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       id: 2,
       isSortable: true,
       label: t(`${translationPath}Designation`),
-      // eslint-disable-next-line react/display-name
       component: (item) => (
         <span>
           {(item && item.designation) || 'N/A'}
           <ButtonBase
-            size='small'
-            aria-label='Edit'
-            className=''
-            onClick={EditPopoverClickedHandler}>
-            <span className='mdi mdi-pencil-outline Edit' title={t('Edit')} />
+            size="small"
+            aria-label="Edit"
+            className=""
+            onClick={EditPopoverClickedHandler}
+          >
+            <span className="mdi mdi-pencil-outline Edit" title={t('Edit')} />
           </ButtonBase>
         </span>
       ),
@@ -91,14 +97,14 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       id: 3,
       isSortable: true,
       label: t(`${translationPath}Email`),
-      // eslint-disable-next-line react/display-name
       component: (item) => (
         <span>
           {(item &&
+            item.email &&
             item.email.map((item, index) => (
-              <>
+              <span key={`TableColumnEmailKey${index + 1}`}>
                 <div>{item.emailaddress1}</div> <div>{(item && item.emailaddress2) || ''}</div>
-              </>
+              </span>
             ))) ||
             'N/A'}
         </span>
@@ -110,14 +116,14 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       isSortable: true,
       label: t(`${translationPath}Phone`),
       isDraggable: true,
-      // eslint-disable-next-line react/display-name
       component: (item) => (
         <span>
           {(item &&
+            item.Phone &&
             item.Phone.map((item, index) => (
-              <>
+              <span key={`TableColumnPhoneKey${index}`}>
                 <div>{item.Phoneno}</div> <div>{(item && item.Phoneno2) || ''}</div>
-              </>
+              </span>
             ))) ||
             'N/A'}
         </span>
@@ -135,22 +141,20 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
       isSticky: true,
       right: 0,
       cellClasses: 'table-cellOpation',
-      // eslint-disable-next-line react/display-name
       headerComponent: (item) => (
         <>
-          <div className=''>
-            <ButtonBase onClick={viewColumnsPopoverClickedHandler} classNam=''>
-              <span className='mdi mdi-cog  cog-icon' />,
+          <div>
+            <ButtonBase onClick={viewColumnsPopoverClickedHandler}>
+              <span className="mdi mdi-cog  cog-icon" />,
             </ButtonBase>
           </div>
         </>
       ),
-      // eslint-disable-next-line react/display-name
       component: (item) => (
         <>
-          <div className='Option-wraper'>
-            <ButtonBase onClick={actionsPopoverClickedHandler} classNam='dots-vertical'>
-              <span className='mdi mdi-dots-vertical' />
+          <div className="Option-wraper">
+            <ButtonBase onClick={actionsPopoverClickedHandler} className="dots-vertical">
+              <span className="mdi mdi-dots-vertical" />
             </ButtonBase>
           </div>
         </>
@@ -159,17 +163,10 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
   ];
 
   return (
-    <div className='EmployeeTabelView w-100'>
+    <div className="EmployeeTabelView w-100">
+      {console.log(data)}
       <Tables
-        data={(Data && Data.result) || []}
-        selectAllOptions={{
-          // getIsSelected,
-          // onSelectClicked,
-          //  onSelectAllClicked,
-          // getIsDisabled,
-          disabledRows: [],
-          withCheckAll: true,
-        }}
+        data={(data && data.result) || []}
         headerData={DataTable}
         defaultActions={[]}
         actionsOptions={{
@@ -177,23 +174,28 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         }}
         parentTranslationPath={parentTranslationPath}
         translationPath={translationPath}
-        totalItems={(Data && Data.totalCount) || 0}
+        totalItems={(data && data.totalCount) || 0}
         itemsPerPage={filter.pageSize}
         activePage={filter.pageIndex}
+        isWithCheckAll
+        isWithCheck
+        uniqueKeyInput='id'
+        onSelectedRowsCountChanged={onSelectedRowsCountChanged}
       />
       <PopoverComponent
-        idRef='headerActionsPopovercogRef'
+        idRef="headerActionsPopovercogRef"
         attachedWith={ActionsPopover}
-        popoverClasses=''
+        popoverClasses=""
         header-actions-popover-wrapper
         handleClose={actionsPopoverCloseHandler}
         component={
-          <div className='Popap-Option'>
+          <div className="Popap-Option">
             {TableListOpationActions.map((item, index) => (
               <ButtonBase
-                className='Option'
+                className="Option"
                 key={`OptionKey${index + 1}`}
-                onClick={() => ClickButtonListOpation(item.key)}>
+                onClick={() => ClickButtonListOpation(item.key)}
+              >
                 <div className={item.icon} />
                 <div>{item.value}</div>
               </ButtonBase>
@@ -202,22 +204,22 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         }
       />
       <PopoverComponent
-        idRef='ColumnPopoverRef'
+        idRef="ColumnPopoverRef"
         attachedWith={ColumnsPopover}
-        popoverClasses=''
+        popoverClasses=""
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className='Popap-Option-menu'>
-            <div className='p-2'> Choose columns </div>
-            <div className='fiter-title'>Visible columns </div>
+          <div className="Popap-Option-menu">
+            <div className="p-2"> Choose columns </div>
+            <div className="fiter-title">Visible columns </div>
             {DataTable.map((item, index) =>
               index !== 5 ? (
-                <div className='Column-Checkbox' key={`ColumnKey${index + 1}`}>
+                <div className="Column-Checkbox" key={`ColumnKey${index + 1}`}>
                   <div>
                     <Checkbox
                       defaultChecked
-                      color='primary'
+                      color="primary"
                       inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                     {item && item.label}
@@ -227,21 +229,21 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
                 ''
               )
             )}
-            <div className='fiter-title'>Hidden columns</div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="fiter-title">Hidden columns</div>
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Jop
             </div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Organization
             </div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Address
             </div>
-            <div className='d-inline-flex-column-center-v w-100'>
-              <Button variant='contained' color='primary' onClick={viewColumnsPopoverCloseHandler}>
+            <div className="d-inline-flex-column-center-v w-100">
+              <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
                 Save
               </Button>
             </div>
@@ -249,15 +251,15 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
         }
       />
       <PopoverComponent
-        idRef='EditPopoverRef'
+        idRef="EditPopoverRef"
         attachedWith={EditPopover}
-        popoverClasses='Edit-actions-popover-wrapper'
+        popoverClasses="Edit-actions-popover-wrapper"
         handleClose={EditPopoverCloseHandler}
         component={
           <div>
             <Inputs
-              idRef='EditInputsRef'
-              wrapperClasses='theme-underline'
+              idRef="EditInputsRef"
+              wrapperClasses="theme-underline"
               label={t(`${translationPath}Designation`)}
               inputPlaceholder={t(`${translationPath}Enter value`)}
               value={EditValue}
@@ -270,10 +272,18 @@ export const EmployeeTabelView = ({ Data, parentTranslationPath, translationPath
   );
 };
 EmployeeTabelView.propTypes = {
-  Data: PropTypes.instanceOf(Array),
-  filter: PropTypes.string.isRequired,
-  translationPath: PropTypes.string,
-  parentTranslationPath: PropTypes.string,
+  data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
+  filter: PropTypes.instanceOf(Object).isRequired,
+  onSelectedRowsCountChanged: PropTypes.func,
+  translationPath: PropTypes.string.isRequired,
+  parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-// onClick={() => ClickButtonListOpation(item.key)}
+EmployeeTabelView.defaultProps = {
+  data: {
+    result: [],
+    totalCount: 0,
+  },
+  onSelectedRowsCountChanged: undefined,
+  translationPathForData: undefined,
+};

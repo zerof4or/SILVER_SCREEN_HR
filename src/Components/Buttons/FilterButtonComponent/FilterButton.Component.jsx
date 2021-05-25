@@ -47,13 +47,11 @@ export const FilterButtonComponent = ({
 };
 export default FilterButtonComponent;
 FilterButtonComponent.propTypes = {
-  onviewChanged: PropTypes.string,
   icon: PropTypes.string,
   iconClass: PropTypes.string,
   translationPath: PropTypes.string,
   parentTranslationPath: PropTypes.string,
-  translationPathForData: PropTypes.string,
-  top: PropTypes.string,
+  top: PropTypes.number,
   CollapseComponentclasses: PropTypes.string,
   CollapseComponentView: PropTypes.oneOfType([
     PropTypes.elementType,

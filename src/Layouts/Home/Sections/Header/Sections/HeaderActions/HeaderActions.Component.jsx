@@ -103,85 +103,82 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
   }, [CloseCollapse]);
 
   return (
-    <div className='header-actions-wrapper childs-wrapper' ref={notificationsRef}>
-      <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={0} max={9}>
+    <div className="header-actions-wrapper childs-wrapper" ref={notificationsRef}>
+      <div className="header-action-item-wrapper">
+        <Badge className="header-action-item" badgeContent={0} max={9}>
           <ButtonBase>
-            <span className='mdi mdi-plus' />
+            <span className="mdi mdi-plus" />
           </ButtonBase>
         </Badge>
       </div>
-      <div className='header-action-item-wrapper'>
-        
-        <Badge className='header-action-item' badgeContent={3} max={9}>
+      <div className="header-action-item-wrapper">
+        <Badge className="header-action-item" badgeContent={3} max={9}>
           <ButtonBase onClick={TaskMenuClicked}>
-            <span className='mdi mdi-checkbox-multiple-marked' />
-            
+            <span className="mdi mdi-checkbox-multiple-marked" />
           </ButtonBase>
           <CollapseComponent
-          isOpen={isOpenMenu.TaskMenu}
-          top={60}
-          isAbsolute
-          classes='TaskMenu-menu-collapse-wrapper'
-          component={<TaskMenu/>}
-        />
+            isOpen={isOpenMenu.TaskMenu}
+            top={60}
+            isAbsolute
+            classes="TaskMenu-menu-collapse-wrapper"
+            component={<TaskMenu />}
+          />
         </Badge>
-
       </div>
-      
-      <div className='header-action-item-wrapper' ref={calendarRef}>
-        <Badge className='header-action-item' badgeContent={5} max={9}>
+
+      <div className="header-action-item-wrapper" ref={calendarRef}>
+        <Badge className="header-action-item" badgeContent={5} max={9}>
           <ButtonBase onClick={CalendarClicked}>
-            <span className='mdi mdi-calendar-month-outline' />
+            <span className="mdi mdi-calendar-month-outline" />
           </ButtonBase>
         </Badge>
         <CollapseComponent
           isOpen={isOpenMenu.calendar}
           top={60}
           isAbsolute
-          classes='calendar-menu-collapse-wrapper'
+          classes="calendar-menu-collapse-wrapper"
           component={<CalendarmMenuComponent />}
         />
       </div>
-      <div className='header-action-item-wrapper' ref={MessagesRef}>
-        <Badge className='header-action-item' badgeContent={1} max={9}>
+      <div className="header-action-item-wrapper" ref={MessagesRef}>
+        <Badge className="header-action-item" badgeContent={1} max={9}>
           <ButtonBase onClick={MessagesClicked}>
-            <span className='mdi mdi-forum' />
+            <span className="mdi mdi-forum" />
           </ButtonBase>
         </Badge>
         <CollapseComponent
           isOpen={isOpenMenu.Messages}
           top={60}
           isAbsolute
-          classes='calendar-menu-collapse-wrapper'
+          classes="calendar-menu-collapse-wrapper"
           component={<MessagesMenuComponent />}
         />
       </div>
-      <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={0} max={9}>
+      <div className="header-action-item-wrapper">
+        <Badge className="header-action-item" badgeContent={0} max={9}>
           <ButtonBase>
-            <span className='mdi mdi-video' />
+            <span className="mdi mdi-video" />
           </ButtonBase>
         </Badge>
       </div>
-      <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={0} max={9}>
+      <div className="header-action-item-wrapper">
+        <Badge className="header-action-item" badgeContent={0} max={9}>
           <ButtonBase>
-            <span className='mdi mdi-email' />
+            <span className="mdi mdi-email" />
           </ButtonBase>
         </Badge>
       </div>
-      <div className='header-action-item-wrapper'>
-        <Badge className='header-action-item' badgeContent={5} max={9}>
+      <div className="header-action-item-wrapper">
+        <Badge className="header-action-item" badgeContent={5} max={9}>
           <ButtonBase onClick={NotificationsClicked}>
-            <span className='mdi mdi-bell' />
+            <span className="mdi mdi-bell" />
           </ButtonBase>
         </Badge>
         <CollapseComponent
           isOpen={isOpenMenu.notifications}
           top={60}
           isAbsolute
-          classes='notifications-menu-collapse-wrapper'
+          classes="notifications-menu-collapse-wrapper"
           component={<NotificationsMenuComponent />}
         />
       </div>
@@ -190,5 +187,8 @@ export const HeaderActionsComponent = ({ AllClose, CloseCollapse }) => {
 };
 HeaderActionsComponent.propTypes = {
   AllClose: PropTypes.func.isRequired,
-  CloseCollapse: PropTypes.bool.isRequired,
+  CloseCollapse: PropTypes.bool,
+};
+HeaderActionsComponent.defaultProps = {
+  CloseCollapse: undefined,
 };

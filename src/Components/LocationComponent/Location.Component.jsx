@@ -8,7 +8,7 @@ import { PropTypes } from 'prop-types';
 import CountriesAutocomplete from './Countries/CountriesAutocomplete';
 
 // eslint-disable-next-line react/prop-types
-export const LocationComponent = ({ onviewChanged }) => {
+export const LocationComponent = ({ onViewChanged }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const viewRef = useRef(null);
@@ -21,9 +21,9 @@ export const LocationComponent = ({ onviewChanged }) => {
   };
   // const ClickButtonviewOpation = useCallback((value) => {
   //   setview(value);
-  //   onviewChanged(value)
+  //   onViewChanged(value)
   //   setIsOpenMenu(false);
-  // }, [onviewChanged]);
+  // }, [onViewChanged]);
   return (
     <div className='DataView-view-wrapper' ref={viewRef}>
       <div className='view-item'>
@@ -54,5 +54,5 @@ export const LocationComponent = ({ onviewChanged }) => {
 };
 export default LocationComponent;
 LocationComponent.propTypes = {
-  onviewChanged: PropTypes.string,
+  onViewChanged: PropTypes.string,
 };

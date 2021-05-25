@@ -47,7 +47,8 @@
       "react-hooks",
       "flowtype",
       "import",
-      "jsx-a11y"
+      "jsx-a11y",
+      "testing-library"
     ],
     "settings": {
       "import/resolver": {
@@ -60,6 +61,9 @@
           ]
         }
       }
+    },
+    "rules": {
+      "react/require-default-props": 2
     }
   },
   "browserslist": {

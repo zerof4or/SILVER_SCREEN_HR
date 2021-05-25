@@ -48,13 +48,13 @@ export const LocationButtonComponent = ({
 };
 export default LocationButtonComponent;
 LocationButtonComponent.propTypes = {
-  onviewChanged: PropTypes.string,
+  onViewChanged: PropTypes.func,
   icon: PropTypes.string,
   iconClass: PropTypes.string,
   translationPath: PropTypes.string,
   parentTranslationPath: PropTypes.string,
   translationPathForData: PropTypes.string,
-  top: PropTypes.string,
+  top: PropTypes.number,
   CollapseComponentclasses: PropTypes.string,
   CollapseComponentView: PropTypes.oneOfType([
     PropTypes.elementType,
@@ -66,6 +66,8 @@ LocationButtonComponent.propTypes = {
 LocationButtonComponent.defaultProps = {
   translationPath: '',
   parentTranslationPath: '',
+  translationPathForData: undefined,
+  onViewChanged: undefined,
   icon: 'mdi mdi-map-marker-radius  ',
   iconClass: '',
   top: 40,

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef, memo } from 'react';
+import React, { useCallback, useState, useRef, memo, useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import './Tables.Style.scss';
 import TableBody from '@material-ui/core/TableBody';
@@ -22,6 +22,7 @@ import { useLocalStorage } from '../../Hooks';
 // import { PopoverComponent } from '../Popover/Popover.Component';
 import { TableFilterComponent } from './Sections';
 import CheckboxesComponent from '../Checkboxes/Checkboxes.Component';
+import { getDataFromObject } from '../../Helpers/Middleware.Helper';
 
 const Tables = memo(
   ({
@@ -36,17 +37,12 @@ const Tables = memo(
     itemsPerPage,
     headerData,
     footerData,
-    selectAllOptions,
     sortColumnClicked,
-    // defaultActions,
-    // actionsOptions,
     focusedRowChanged,
     isOriginalPagination,
     // onPageIndexChanged,
     // onPageSizeChanged,
     dateFormat,
-    // externalPopoverComponent,
-    isSellectAllDisabled,
     bodyRowId,
     tableFilterClassWrapper,
     filterValues,
@@ -55,11 +51,26 @@ const Tables = memo(
     textInputPlaceholder,
     isWithFilter,
     onHeaderColumnsReorder,
+    isSelectAllDisabled,
+    uniqueKeyInput,
+    isWithCheckAll,
+    isWithCheck,
+    onSelectAllCheckboxChanged,
+    onSelectCheckboxChanged,
+    getIsSelectedRow,
+    getIsDisabledRow,
+    isSelectAll,
+    isStickyCheckboxColumn,
+    leftCheckboxColumn,
+    rightCheckboxColumn,
+    selectedRows,
+    onSelectedRowsCountChanged,
   }) => {
     const { t } = useTranslation([parentTranslationPath, 'Shared']);
     const [reorderedHeader, setReorderedHeader] = useState(null);
     const [currentDragingColumn, setCurrentDragingColumn] = useState(null);
     const [currentDragOverIndex, setCurrentDragOverIndex] = useState(null);
+    const [localSelectedRows, setLocalSelectedRows] = useState([]);
     const [language] = useLocalStorage('localization', {
       currentLanguage: 'en',
       isRtl: false,
@@ -99,22 +110,49 @@ const Tables = memo(
       });
       return stabilizedThis.map((el) => el[0]);
     };
-    const getCurrentSelectedItem = useCallback(
-      (itemIndex) =>
-        selectAllOptions
-          ? (selectAllOptions.selectedRows &&
-              selectAllOptions.selectedRows.findIndex((item) => item === itemIndex + activePage) !==
-                -1) ||
-            selectAllOptions.isSelectAll
-          : false,
-      [activePage, selectAllOptions]
+    const getCurrentSelectedItemIndex = useCallback(
+      (row) =>
+        localSelectedRows.findIndex(
+          (item) =>
+            getDataFromObject(row, uniqueKeyInput) === getDataFromObject(item, uniqueKeyInput)
+        ),
+      [localSelectedRows, uniqueKeyInput]
     );
-    const getCurrentDisabledItem = useCallback(
-      (itemIndex) =>
-        selectAllOptions
-          ? selectAllOptions.disabledRows.findIndex((item) => item === itemIndex + activePage)
-          : -1,
-      [activePage, selectAllOptions]
+    const onSelectAllCheckboxChangedHandler = useCallback(
+      (event) => {
+        const isChecked = event.target.checked;
+        console.log(isChecked);
+        if (!selectedRows) {
+          if (isChecked) setLocalSelectedRows([...data]);
+          else setLocalSelectedRows([]);
+        }
+        if (onSelectAllCheckboxChanged)
+          onSelectAllCheckboxChanged({ selectedRows: selectedRows || data, isChecked });
+      },
+      [data, onSelectAllCheckboxChanged, selectedRows]
+    );
+    const onSelectCheckboxChangedHandler = useCallback(
+      (row, rowIndex) => (event) => {
+        event.stopPropagation();
+        const isChecked = event.target.checked;
+        console.log(isChecked);
+        if (!selectedRows)
+          setLocalSelectedRows((items) => {
+            const localRowIndex = getCurrentSelectedItemIndex(row);
+            if (isChecked) items.push(row);
+            else if (localRowIndex !== -1) items.splice(localRowIndex, 1);
+
+            if (onSelectCheckboxChanged)
+              onSelectCheckboxChanged({
+                selectedRows: items,
+                selectedRow: row,
+                rowIndex,
+              });
+            return [...items];
+          });
+        else if (onSelectCheckboxChanged) onSelectCheckboxChanged({ selectedRow: row, rowIndex });
+      },
+      [getCurrentSelectedItemIndex, onSelectCheckboxChanged, selectedRows]
     );
     const bodyRowClicked = useCallback(
       (rowIndex, item) => {
@@ -190,18 +228,16 @@ const Tables = memo(
       },
       [currentDragingColumn, headerData, onHeaderColumnsReorder, reorderedHeader]
     );
-    const dataReturn = (dataItem, columnPath) => {
-      if (!columnPath) return (typeof dataItem !== 'object' && dataItem) || '';
-      if (!columnPath.includes('.')) return dataItem[columnPath];
-      let a = dataItem;
-      columnPath.split('.').map((item) => {
-        if (a) a = a[item];
-        return item;
-      });
-      return a;
-    };
+    useEffect(() => {
+      if ((selectedRows || localSelectedRows) && onSelectedRowsCountChanged)
+        onSelectedRowsCountChanged((selectedRows || localSelectedRows).length);
+    }, [localSelectedRows, onSelectedRowsCountChanged, selectedRows]);
+    useEffect(() => {
+      if (selectedRows) setLocalSelectedRows(selectedRows);
+    }, [selectedRows]);
     return (
       <div className="w-100 table-responsive" ref={tableRef}>
+        {console.log(localSelectedRows, totalItems)}
         <TableContainer>
           <Table
             className="table-wrapper"
@@ -211,35 +247,32 @@ const Tables = memo(
           >
             <TableHead>
               <TableRow>
-                {/* {isCollapsed && <TableCell></TableCell>} */}
-                {selectAllOptions && (
+                {isWithCheckAll && (
                   <TableCell
                     padding="checkbox"
                     style={
-                      (selectAllOptions.isSticky && getStickyStyle(selectAllOptions)) || undefined
+                      (isStickyCheckboxColumn &&
+                        getStickyStyle({ right: rightCheckboxColumn, left: leftCheckboxColumn })) ||
+                      undefined
                     }
                   >
-                    {!isSellectAllDisabled && (
-                      <>
-                        <CheckboxesComponent
-                          idRef="tableSelectAllRef"
-                          singleIndeterminate={
-                            selectAllOptions.selectedRows &&
-                            selectAllOptions.selectedRows.length > 0 &&
-                            selectAllOptions.selectedRows.length < totalItems &&
-                            !selectAllOptions.isSelectAll
-                          }
-                          singleChecked={
-                            (totalItems > 0 &&
-                              selectAllOptions.selectedRows &&
-                              selectAllOptions.selectedRows.length === totalItems) ||
-                            selectAllOptions.isSelectAll
-                          }
-                          isDisabled={selectAllOptions.isDisableAll}
-                          onSelectedCheckboxClicked={selectAllOptions.onSelectAllClicked}
-                        />
-                      </>
-                    )}
+                    <CheckboxesComponent
+                      idRef="tableSelectAllRef"
+                      singleIndeterminate={
+                        localSelectedRows &&
+                        localSelectedRows.length > 0 &&
+                        localSelectedRows.length < totalItems &&
+                        !isSelectAll
+                      }
+                      singleChecked={
+                        isSelectAll ||
+                        (totalItems > 0 &&
+                          localSelectedRows &&
+                          localSelectedRows.length === totalItems)
+                      }
+                      isDisabled={isSelectAllDisabled}
+                      onSelectedCheckboxChanged={onSelectAllCheckboxChangedHandler}
+                    />
                   </TableCell>
                 )}
                 {(reorderedHeader || headerData)
@@ -295,24 +328,17 @@ const Tables = memo(
                     : activePage * itemsPerPage + itemsPerPage
                 )
                 .map((row, rowIndex) => {
-                  const isItemSelected = getCurrentSelectedItem(rowIndex);
-                  const isItemDisabled = getCurrentDisabledItem(rowIndex) !== -1;
+                  const isItemSelected = getCurrentSelectedItemIndex(row) !== -1;
                   return (
                     <React.Fragment key={`bodyRow${rowIndex * (activePage + 1)}`}>
                       <TableRow
                         role="checkbox"
                         aria-checked={
-                          (selectAllOptions &&
-                            selectAllOptions.getIsSelected &&
-                            selectAllOptions.getIsSelected(row, rowIndex)) ||
-                          isItemSelected
+                          (getIsSelectedRow && getIsSelectedRow(row, rowIndex)) || isItemSelected
                         }
                         tabIndex={-1}
                         selected={
-                          (selectAllOptions &&
-                            selectAllOptions.getIsSelected &&
-                            selectAllOptions.getIsSelected(row, rowIndex)) ||
-                          isItemSelected
+                          (getIsSelectedRow && getIsSelectedRow(row, rowIndex)) || isItemSelected
                         }
                         id={`${bodyRowId}${rowIndex * (activePage + 1)}`}
                         onClick={(event) => {
@@ -321,33 +347,34 @@ const Tables = memo(
                         }}
                         className={rowIndex === focusedRow ? 'table-row-overlay' : ''}
                       >
-                        {selectAllOptions && (
+                        {(isWithCheck || getIsSelectedRow || selectedRows) && (
                           <TableCell
                             padding="checkbox"
                             style={
-                              (selectAllOptions.isSticky && getStickyStyle(selectAllOptions)) ||
+                              (isStickyCheckboxColumn &&
+                                getStickyStyle({
+                                  right: rightCheckboxColumn,
+                                  left: leftCheckboxColumn,
+                                })) ||
                               undefined
                             }
                           >
                             <CheckboxesComponent
                               idRef={`tableSelectRef${rowIndex + 1}`}
                               singleChecked={
-                                (selectAllOptions &&
-                                  selectAllOptions.getIsSelected &&
-                                  selectAllOptions.getIsSelected(row, rowIndex)) ||
+                                isSelectAll ||
+                                (getIsSelectedRow && getIsSelectedRow(row, rowIndex)) ||
                                 isItemSelected ||
                                 false
                               }
                               isDisabled={
-                                selectAllOptions.isDisableAll ||
-                                (selectAllOptions.getIsDisabled &&
-                                  selectAllOptions.getIsDisabled(row, rowIndex)) ||
-                                isItemDisabled
+                                isSelectAllDisabled ||
+                                (getIsDisabledRow && getIsDisabledRow(row, rowIndex))
                               }
-                              onSelectedCheckboxClicked={(event) => {
-                                event.stopPropagation();
-                                selectAllOptions.onSelectClicked(row, rowIndex);
-                              }}
+                              onSelectedCheckboxChanged={onSelectCheckboxChangedHandler(
+                                row,
+                                rowIndex
+                              )}
                             />
                             <div />
                           </TableCell>
@@ -362,14 +389,14 @@ const Tables = memo(
                                 style={(column.isSticky && getStickyStyle(column)) || undefined}
                               >
                                 {(column.isDate &&
-                                  ((dataReturn(row, column.input) &&
-                                    moment(dataReturn(row, column.input)).format(
+                                  ((getDataFromObject(row, column.input) &&
+                                    moment(getDataFromObject(row, column.input)).format(
                                       column.dateFormat || tableOptions.dateFormat || dateFormat
                                     )) ||
                                     '')) ||
                                   (column.component &&
                                     column.component(row, rowIndex, column, columnIndex)) ||
-                                  dataReturn(row, column.input)}
+                                  getDataFromObject(row, column.input)}
                               </TableCell>
                             ))}
                       </TableRow>
@@ -422,7 +449,6 @@ const Tables = memo(
   }
 );
 Tables.propTypes = {
-  isSellectAllDisabled: PropTypes.bool,
   tableOptions: PropTypes.shape({
     itemsPerPageOptions: PropTypes.array,
     tableSize: PropTypes.string,
@@ -456,20 +482,22 @@ Tables.propTypes = {
   // }),
   activePage: PropTypes.number.isRequired,
   totalItems: PropTypes.number.isRequired,
-  selectAllOptions: PropTypes.shape({
-    selectedRows: PropTypes.arrayOf(PropTypes.number),
-    onSelectAllClicked: PropTypes.func,
-    onSelectClicked: PropTypes.func,
-    getIsSelected: PropTypes.func,
-    getIsDisabled: PropTypes.func,
-    isSelectAll: PropTypes.bool,
-    withCheckAll: PropTypes.bool,
-    isDisableAll: PropTypes.bool,
-    isSticky: PropTypes.bool,
-    left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    disabledRows: PropTypes.arrayOf(PropTypes.number),
-  }),
+  // checkboxes related features
+  isSelectAllDisabled: PropTypes.bool,
+  isWithCheckAll: PropTypes.bool,
+  isSelectAll: PropTypes.bool,
+  selectedRows: PropTypes.instanceOf(Array),
+  uniqueKeyInput: PropTypes.string,
+  onSelectAllCheckboxChanged: PropTypes.func,
+  onSelectCheckboxChanged: PropTypes.func,
+  onSelectedRowsCountChanged: PropTypes.func,
+  getIsSelectedRow: PropTypes.func, // function to return bool
+  getIsDisabledRow: PropTypes.func, // function to return bool
+  isWithCheck: PropTypes.bool,
+  isStickyCheckboxColumn: PropTypes.bool,
+  leftCheckboxColumn: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rightCheckboxColumn: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  // end checkboxes related features
   activePageChanged: PropTypes.func,
   itemsPerPageChanged: PropTypes.func,
   sortColumnClicked: PropTypes.func,
@@ -532,7 +560,23 @@ Tables.propTypes = {
 };
 Tables.displayName = 'Tables';
 Tables.defaultProps = {
-  isSellectAllDisabled: false,
+  // checkboxes related features
+  selectedRows: undefined,
+  uniqueKeyInput: undefined,
+  onSelectAllCheckboxChanged: undefined,
+  onSelectCheckboxChanged: undefined,
+  onSelectedRowsCountChanged: undefined,
+  getIsSelectedRow: undefined,
+  getIsDisabledRow: undefined,
+  isWithCheckAll: false,
+  isWithCheck: false,
+  isDisableCheckAll: false,
+  isSelectAll: false,
+  isStickyCheckboxColumn: false,
+  leftCheckboxColumn: undefined,
+  rightCheckboxColumn: undefined,
+  // end checkboxes related features
+  isSelectAllDisabled: false,
   dateFormat: 'YYYY-MM-DD',
   tableOptions: {
     itemsPerPageOptions: [10, 20, 25, 50, 100],
@@ -540,47 +584,12 @@ Tables.defaultProps = {
     dateFormat: null,
     sortFrom: 1, // 1:front,2:do nothing only send that it change
   },
-  translationPath: '',
   parentTranslationPath: '',
+  translationPath: '',
   isOriginalPagination: false,
   itemsPerPage: 10,
   activePageChanged: undefined,
   itemsPerPageChanged: undefined,
-  // defaultActions: [
-  //   {
-  //     enum: TableActions.openFile.key,
-  //     isDisabled: false,
-  //     externalComponent: null,
-  //   },
-  //   {
-  //     enum: TableActions.editText.key,
-  //     isDisabled: false,
-  //     externalComponent: null,
-  //   },
-  //   {
-  //     enum: TableActions.phoneSolid.key,
-  //     isDisabled: false,
-  //     externalComponent: null,
-  //   },
-  //   {
-  //     enum: TableActions.emailSolid.key,
-  //     isDisabled: false,
-  //     externalComponent: null,
-  //   },
-  //   {
-  //     enum: TableActions.dotsHorizontal.key,
-  //     isDisabled: false,
-  //     externalComponent: null,
-  //   },
-  // ],
-  // actionsOptions: {
-  //   classes: '',
-  //   isDisabled: false,
-  //   isReverceDisabled: false,
-  //   onActionClicked: () => {},
-  //   actionsIsDisabledInput: null,
-  // },
-  selectAllOptions: null,
   sortColumnClicked: () => {},
   headerData: [],
   data: [],
@@ -589,7 +598,6 @@ Tables.defaultProps = {
   focusedRowChanged: () => {},
   // onPageIndexChanged: undefined,
   // onPageSizeChanged: undefined,
-  // externalPopoverComponent: undefined,
   bodyRowId: 'bodyRowRef',
   // filter
   tableFilterClassWrapper: '',

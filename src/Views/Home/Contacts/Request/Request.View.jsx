@@ -72,6 +72,7 @@ export const RequestView = () => {
           </div>
           <div className="search-text">
             <Inputs
+              idRef="searchRequestRef"
               onInputChanged={() => {}}
               endAdornment={<span className="mdi mdi-magnify px-2" />}
               wrapperClasses="theme-primary"
