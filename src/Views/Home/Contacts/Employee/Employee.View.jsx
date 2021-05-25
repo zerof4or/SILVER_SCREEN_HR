@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase } from '@material-ui/core';
 import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
@@ -20,7 +20,7 @@ const translationPath = '';
 export const EmployeeView = () => {
   const { t } = useTranslation(parentTranslationPath);
   const [selectedEmployeesCount, setSelectedEmployeesCount] = useState(0);
-  const [CehckIt] = useState(false);
+  const [disabledOpations, setdisabledOpations] = useState(0);
   const [ViewType, setViewType] = useState(1);
   const [employees, setEmployees] = useState(ContactsDummyData);
   const [open, setopen] = useState(false);
@@ -48,40 +48,47 @@ export const EmployeeView = () => {
       totalCount: result.length,
     });
   };
+  useEffect(() => {
+    if (selectedEmployeesCount > 0) {
+      setdisabledOpations(false);
+    } else {
+      setdisabledOpations(true);
+    }
+  }, [selectedEmployeesCount]);
   return (
-    <div className="EmployeeView w-100">
-      <div className="Sub-InnerHeader">
-        <div className="d-inline-flex">
-          <div className="dots-vertical mx-1 ">
+    <div className='EmployeeView w-100'>
+      <div className='Sub-InnerHeader'>
+        <div className='d-inline-flex'>
+          <div className='dots-vertical mx-1 '>
             <ButtonBase onClick={actionsPopoverClickedHandler}>
-              <span className="mdi mdi-dots-vertical" />
+              <span className='mdi mdi-dots-vertical' />
             </ButtonBase>
             <PopoverComponent
-              idRef="headerActionsPopoverRef"
+              idRef='headerActionsPopoverRef'
               attachedWith={ActionsPopover}
-              popoverClasses="header-actions-popover-wrapper"
+              popoverClasses='header-actions-popover-wrapper'
               handleClose={actionsPopoverCloseHandler}
               component={
-                <div className="menu-dots-wraper">
-                  <div className="mx-2 p-1">
+                <div className='menu-dots-wraper'>
+                  <div className='mx-2 p-1'>
                     <Button>Export filter results... </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button>Import Contacts </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button>Show on map </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button>Print </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button>Contact Sync </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button> Merge duplicates </Button>{' '}
                   </div>
-                  <div className="mx-2 p-1">
+                  <div className='mx-2 p-1'>
                     <Button>Export to MailChimp </Button>{' '}
                   </div>
                 </div>
@@ -89,89 +96,94 @@ export const EmployeeView = () => {
             />
           </div>
           <div>
-            <div className="mx-2">
+            <div className='mx-2'>
               <FilterButtonComponent CollapseComponentView={<div>Filter Component</div>} />
             </div>
           </div>
-          <div className="mx-2">
+          <div className='mx-2'>
             <LocationButtonComponent CollapseComponentView={<div>Location Component</div>} />
           </div>
-          <div className="mx-1">
+          <div className='mx-1'>
             <Sorterletters />
           </div>
         </div>
-        <div className="attendance-check-search">
-          <div className="search-text">
+        <div className='attendance-check-search'>
+          <div className='search-text'>
             <Inputs
-              idRef="searchEmployeesRef"
+              idRef='searchEmployeesRef'
               onInputChanged={(event) => FilterHandler(event)}
-              endAdornment={<span className="mdi mdi-magnify px-2" />}
-              wrapperClasses="theme-primary"
-              fieldClasses="inputs theme-primary ml-2"
+              endAdornment={<span className='mdi mdi-magnify px-2' />}
+              wrapperClasses='theme-primary'
+              fieldClasses='inputs theme-primary ml-2'
             />
           </div>
         </div>
       </div>
-      <div className="Employee-wraper">
-        <div className="action-contener  w-100">
-          <div className="action-tabel-wraper">
-            <div className="bbt-dark space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-account-plus " />
+      <div className='Employee-wraper'>
+        <div className='action-contener  w-100'>
+          <div className='action-tabel-wraper'>
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-account-plus ' />
                 &nbsp; Assign to Project
               </ButtonBase>
             </div>
-            <div className="bbt-dark space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-playlist-plus" />
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-playlist-plus' />
                 &nbsp;
               </ButtonBase>
             </div>
-            <div className="bbt-dark space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-email" />
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-email' />
               </ButtonBase>
             </div>
-            <div className="bbt-dark space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-forum" />
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-forum' />
               </ButtonBase>
             </div>
-            <div className="bbt-dark space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-video-plus" />
+            <div className='bbt-dark space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-video-plus' />
               </ButtonBase>
             </div>
-            <div className="bbt-gray space">
-              <ButtonBase disabled={CehckIt} onClick={() => setopen(true)}>
-                <span className="mdi mdi-delete" />
+            <div className='bbt-gray space'>
+              <ButtonBase disabled={disabledOpations} onClick={() => setopen(true)}>
+                <span className='mdi mdi-delete' />
               </ButtonBase>
             </div>
-            <div className="bbt-gray space">
-              <ButtonBase disabled={CehckIt}>
-                <span className="mdi mdi-archive" />
+            <div className='bbt-gray space'>
+              <ButtonBase disabled={disabledOpations}>
+                <span className='mdi mdi-archive' />
               </ButtonBase>
             </div>
-            <div className="total-title-wraper">
-              <span className="total-title">Total contacts:</span>
-              <span className="total-num px-1">{`${selectedEmployeesCount} From   (   ${ContactsDummyData.totalCount}  )`}</span>
+            <div className='total-title-wraper'>
+              <span className='total-title'>Total contacts:</span>
+              <span className='total-num px-1'>{`${selectedEmployeesCount} From   (   ${ContactsDummyData.totalCount}  )`}</span>
             </div>
           </div>
-          <div className="DataView-bbt">
+          <div className='DataView-bbt'>
             <DataView onViewChanged={(item) => setViewType(item.key)} />
           </div>
-          <div className="bbt-primary space">
+          <div className='bbt-primary space'>
             <ButtonBase>
-              <span className="mdi mdi-account-plus " />
+              <span className='mdi mdi-account-plus ' />
               &nbsp; Add new employee
             </ButtonBase>
           </div>
           <div></div>
         </div>
-        <div className="EmployeeTabelView-wraper">
+        <div className='EmployeeTabelView-wraper'>
           {(employees.totalCount === 0 && <NoSearchResultComponent />) ||
             (ViewType !== 1 ? (
-              <EmployeeCard />
+              <EmployeeCard
+                data={employees}
+                parentTranslationPath={parentTranslationPath}
+                translationPath={translationPath}
+                filter={filter}
+              />
             ) : (
               <EmployeeTabelView
                 data={employees}
@@ -186,15 +198,15 @@ export const EmployeeView = () => {
       <DialogComponent
         titleText={t('DeleteDialog.confirm-message')}
         saveText={t('DeleteDialog.Confirm')}
-        saveType="button"
-        maxWidth="md"
+        saveType='button'
+        maxWidth='md'
         dialogContent={
-          <div className="d-flex-column-center">
-            <span className="mdi mdi-close-octagon c-danger mdi-40px" />
+          <div className='d-flex-column-center'>
+            <span className='mdi mdi-close-octagon c-danger mdi-40px' />
             <span>{`${t('DeleteText')}  ${'name'}`}</span>
           </div>
         }
-        saveClasses="btns theme-solid bg-danger w-100 mx-2 mb-2"
+        saveClasses='btns theme-solid bg-danger w-100 mx-2 mb-2'
         isOpen={open}
         onSaveClicked={close}
         onCloseClicked={close}

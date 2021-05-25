@@ -8,7 +8,6 @@
     text-transform: capitalize;
   }
   .view-menu-collapse-wrapper {
-
     border-radius: 0.5rem;
     background-color: $c-white;
     box-shadow: $bs-secondary;
@@ -17,17 +16,17 @@
     height: auto;
     transition-duration: 300ms;
     min-width: 139px !important;
+    z-index: 3;
     .MuiButtonBase-root {
       height: 34px;
-      background-color: #ffffff !important;
-      color: #000000;
+      background-color: $c-white;!important;
+      color: $c-black;
       border-radius: 7px;
       height: 34px;
       font-weight: 500;
       font-size: 13px;
       width: 145px;
       justify-content: space-evenly;
- 
     }
     .MuiButtonBase-root:hover {
       background-color: #f4f4f4 !important;
@@ -39,7 +38,7 @@
       .MuiButtonBase-root {
         height: 34px;
         background-color: #e2e2e2 !important;
-        color: #000000;
+        color: $c-black;
         border-radius: 7px;
         height: 34px;
         width: 145px;

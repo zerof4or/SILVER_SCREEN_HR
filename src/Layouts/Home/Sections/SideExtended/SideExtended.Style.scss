@@ -1,12 +1,11 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 .side-extended-wrapper {
   @include d-inline-flex-column;
-  width: 2.8rem;
+  width: 3rem;
   //   overflow: hidden;
   z-index: 1;
   background-color: $c-gray-lighter;
   transition: width 0.3s linear;
-  padding-top: 3rem;
   .action-wrapper {
     @include d-inline-flex;
     align-items: center;

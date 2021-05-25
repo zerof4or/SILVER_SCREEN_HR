@@ -39,7 +39,7 @@
   .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
     box-shadow: 0px !important;
     color: #e2e2e2;
-    background-color:  #000000;
+    background-color:  $c-black;
     width: 40px !important;
     text-transform: capitalize;
     min-width: 40px;
@@ -69,7 +69,7 @@
   }
 
   .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:first-of-type) {
-    color: #000000;
+    color: $c-black;
     width: 40px;
     max-width: 40px;
     box-shadow: 0px !important;

@@ -16,8 +16,8 @@
   .button-wrapper {
     .MuiButtonBase-root {
       height: 34px;
-      background-color: #ffffff;
-      color: #000000;
+      background-color: $c-white;
+      color: $c-black;
       border-radius: 7px;
       height: 34px;
       width: 145px;
@@ -29,7 +29,7 @@
     .MuiButtonBase-root {
       height: 34px;
       background-color: #e2e2e2;
-      color: #000000;
+      color: $c-black;
       border-radius: 7px;
       height: 34px;
       width: 145px;

@@ -231,12 +231,12 @@
 
 .bbt-dark {
   .MuiButtonBase-root {
-    color: #ffffff;
+    color: $c-white;
     min-width: 2rem;
     height: 34px;
     padding-left: 9px;
     padding-right: 9px;
-    background-color: #000000;
+    background-color: $c-black;
     color: $c-white;
     border-radius: 7px;
     -webkit-border-radius: 7px;
@@ -245,7 +245,7 @@
     -o-border-radius: 7px;
   }
   .mdi {
-    color: rgb(255, 255, 255);
+    color: $c-white;
   }
   .css-10d1a0h-MuiButtonBase-root.Mui-disabled {
     cursor: not-allowed;
@@ -257,7 +257,7 @@
 }
 .bbt-gray {
   .MuiButtonBase-root {
-    color: #ffffff;
+    color: $c-white;
     min-width: 2rem;
     height: 2rem;
     padding-left: 9px;
@@ -276,7 +276,7 @@
 }
 .bbt-primary {
   .MuiButtonBase-root {
-    color: #ffffff;
+    color: $c-white;
     min-width: 5rem;
     width: 11rem;
     height: 2rem;
@@ -291,7 +291,7 @@
     -o-border-radius: 7px;
   }
   .mdi {
-    color: rgb(255, 255, 255);
+    color: $c-white;
   }
   .css-10d1a0h-MuiButtonBase-root.Mui-disabled {
     cursor: not-allowed;

@@ -85,7 +85,7 @@
           .MuiButtonBase-root {
             font-weight: bold;
             background-color: #e2e2e2;
-            color: #000000;
+            color: $c-black;
             font-size: 12px;
           }
         }
@@ -102,7 +102,7 @@
     border-radius: 23px;
     .dots-vertical {
       .MuiButtonBase-root {
-        background-color: #000000;
+        background-color: $c-black;
         color: $c-white;
         width: 2rem;
         height: 2rem;
@@ -113,7 +113,7 @@
         -o-border-radius: 7px;
       }
       .mdi {
-        color: rgb(255, 255, 255);
+        color: $c-white;
       }
     }
 
@@ -166,7 +166,7 @@
           .MuiButtonBase-root {
             font-weight: bold;
             background-color: #e2e2e2;
-            color: #000000;
+            color: $c-black;
             font-size: 12px;
           }
         }

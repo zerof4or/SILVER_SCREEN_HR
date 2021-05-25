@@ -14,10 +14,9 @@ export const EmployeeCard = ({ Data, parentTranslationPath, translationPath, fil
   );
 };
 EmployeeCard.propTypes = {
-  Data: PropTypes.instanceOf(Array),
+  Data: PropTypes.instanceOf(Array).isRequired,
   filter: PropTypes.string.isRequired,
-  translationPath: PropTypes.string,
-  parentTranslationPath: PropTypes.string,
-  translationPathForData: PropTypes.string,
+  translationPath: PropTypes.string.isRequired,
+  parentTranslationPath: PropTypes.string.isRequired,
 };
 // onClick={() => ClickButtonListOpation(item.key)}
