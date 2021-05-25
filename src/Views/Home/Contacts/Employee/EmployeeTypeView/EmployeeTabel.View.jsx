@@ -164,7 +164,6 @@ export const EmployeeTabelView = ({
 
   return (
     <div className="EmployeeTabelView w-100">
-      {console.log(data)}
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}

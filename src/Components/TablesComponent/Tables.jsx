@@ -121,7 +121,6 @@ const Tables = memo(
     const onSelectAllCheckboxChangedHandler = useCallback(
       (event) => {
         const isChecked = event.target.checked;
-        console.log(isChecked);
         if (!selectedRows) {
           if (isChecked) setLocalSelectedRows([...data]);
           else setLocalSelectedRows([]);
@@ -135,7 +134,6 @@ const Tables = memo(
       (row, rowIndex) => (event) => {
         event.stopPropagation();
         const isChecked = event.target.checked;
-        console.log(isChecked);
         if (!selectedRows)
           setLocalSelectedRows((items) => {
             const localRowIndex = getCurrentSelectedItemIndex(row);
@@ -197,6 +195,7 @@ const Tables = memo(
           : item.left || item.left === 0
           ? item.left
           : 'initial',
+        zIndex: 1,
       }),
       [language.isRtl]
     );
@@ -237,7 +236,6 @@ const Tables = memo(
     }, [selectedRows]);
     return (
       <div className="w-100 table-responsive" ref={tableRef}>
-        {console.log(localSelectedRows, totalItems)}
         <TableContainer>
           <Table
             className="table-wrapper"
@@ -350,14 +348,7 @@ const Tables = memo(
                         {(isWithCheck || getIsSelectedRow || selectedRows) && (
                           <TableCell
                             padding="checkbox"
-                            style={
-                              (isStickyCheckboxColumn &&
-                                getStickyStyle({
-                                  right: rightCheckboxColumn,
-                                  left: leftCheckboxColumn,
-                                })) ||
-                              undefined
-                            }
+                            style={(row.isSticky && getStickyStyle(row)) || undefined}
                           >
                             <CheckboxesComponent
                               idRef={`tableSelectRef${rowIndex + 1}`}

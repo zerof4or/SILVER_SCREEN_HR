@@ -13,14 +13,12 @@
   outline: 0 !important;
 }
 body {
-  min-height: 100vh;
   background-color: $c-white;
   font-size: $fz-default;
   font-family: $ff-default !important;
   color: $c-gray-primary;
   min-width: 320px;
   margin: 0;
-  overflow-y: scroll;
   font-weight: $fw-normal;
   &.rtl {
     text-align: right;
@@ -58,6 +56,10 @@ label {
   font-weight: 300;
 }
 
+#root {
+  overflow-y: auto;
+  min-height: 100vh;
+}
 // ========================================================= End Main Tags Override
 // ======================================================== Start Global Override
 .MuiTypography-body1,

@@ -2,7 +2,7 @@
 .container-wrapper {
   @include d-flex;
   width: 100%;
-  margin-top: 52.8px;
+  padding-top: 52.8px;
   .home-views-wrapper {
     @include d-inline-flex;
     width: 100%;

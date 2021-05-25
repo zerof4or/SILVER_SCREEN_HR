@@ -2,12 +2,11 @@
 .side-extended-wrapper {
   @include d-inline-flex-column;
   width: 2.8rem;
-  min-height: 100vh;
   //   overflow: hidden;
   z-index: 1;
   background-color: $c-gray-lighter;
   transition: width 0.3s linear;
-  margin-top: 3rem;
+  padding-top: 3rem;
   .action-wrapper {
     @include d-inline-flex;
     align-items: center;
