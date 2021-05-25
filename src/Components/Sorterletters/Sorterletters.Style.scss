@@ -1,3 +1,4 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 .Sorterletters {
   .MuiGrid-root .MuiGrid-item .MuiGrid-grid-xs-12 .css-6wbyuk-MuiGrid-root {
     box-shadow: 0px !important;
@@ -39,7 +40,7 @@
   .css-1o11vxz-MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
     box-shadow: 0px !important;
     color: #e2e2e2;
-    background-color:  $c-black;
+    background-color: $c-black;
     width: 40px !important;
     text-transform: capitalize;
     min-width: 40px;
