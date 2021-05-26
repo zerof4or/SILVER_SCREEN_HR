@@ -143,6 +143,24 @@
       "Earlydeparture": "0:00 ",
       "overtime": "01:20 ",
       "overtimeApproved": "01:00 "
+    },
+    {
+      "id": "03311",
+      "Employeename": "yy Kabalan",
+      "check": "P",
+      "shift": [
+        {
+          "Checkin": "9:00 am",
+          "Checkout": "5:00 pm"
+        }
+      ],
+      "Checkin": "9:00 am",
+      "Checkout": "5:00 pm",
+      "Workinghours": " 04 hours",
+      "LateArrival": "0:00 ",
+      "Earlydeparture": "0:00 ",
+      "overtime": "01:20 ",
+      "overtimeApproved": "01:00 "
     }
   ],
   "totalCount": 8

@@ -2,16 +2,17 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
-import { Inputs, Tables } from '../../../../../../../Components';
+import { Inputs, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
-import PopoverComponent from '../../../../../../../Components/Popover/Popover.Component';
-import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../Enums';
-export const EmployeeAttendanceTabel = ({
+import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
+import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
+export const MyAttendanceTabel = ({
   data,
   parentTranslationPath,
   translationPath,
   filter,
-}) => {  
+  onSelectedRowsCountChanged,
+}) => {
   const { t } = useTranslation(parentTranslationPath);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ColumnsPopover, setColumnsPopover] = useState(null);
@@ -81,12 +82,16 @@ export const EmployeeAttendanceTabel = ({
       id: 2,
       isSortable: true,
       label: t(`${translationPath}check`),
-      component: (item) => <div className={
-        (item.check==="A"&& 'Attendance-Status-A')||
-        (item.check==="P"&& 'Attendance-Status-P')||
-        (item.check==="L"&& 'Attendance-Status-L')
-      }
-      >{(item && item.check) || 'N/A'}</div>,
+      component: (item) => (
+        <div
+          className={
+            (item.check === 'A' && 'Attendance-Status-A') ||
+            (item.check === 'P' && 'Attendance-Status-P') ||
+            (item.check === 'L' && 'Attendance-Status-L')
+          }>
+          {(item && item.check) || 'N/A'}
+        </div>
+      ),
       isDraggable: true,
     },
     {
@@ -95,7 +100,7 @@ export const EmployeeAttendanceTabel = ({
       label: t(`${translationPath}shift`),
       component: (item) => (
         <span>
-          {(item && 
+          {(item &&
             item.shift &&
             item.shift.map((item, index) => (
               <span key={`TableColumnshiftKey${index + 1}`}>
@@ -183,7 +188,7 @@ export const EmployeeAttendanceTabel = ({
   ];
 
   return (
-    <div className='AttendanceView w-100'>
+    <div className='EmployeeTabelView w-100'>
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}
@@ -195,6 +200,7 @@ export const EmployeeAttendanceTabel = ({
         translationPath={translationPath}
         totalItems={(data && data.totalCount) || 0}
         itemsPerPage={filter.pageSize}
+        activePage={filter.pageIndex}
         uniqueKeyInput='id'
       />
       <PopoverComponent
@@ -285,7 +291,7 @@ export const EmployeeAttendanceTabel = ({
     </div>
   );
 };
-EmployeeAttendanceTabel.propTypes = {
+MyAttendanceTabel.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -293,7 +299,7 @@ EmployeeAttendanceTabel.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-EmployeeAttendanceTabel.defaultProps = {
+MyAttendanceTabel.defaultProps = {
   data: {
     result: [],
     totalCount: 0,

@@ -2,11 +2,17 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
-import { Inputs, Tables } from '../../../../../../../Components';
+import { Inputs, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
-import PopoverComponent from '../../../../../../../Components/Popover/Popover.Component';
-import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../Enums';
-export const MyAttendanceTabelView = ({ data, parentTranslationPath, translationPath, filter }) => {
+import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
+import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
+export const EmployeeTabelView = ({
+  data,
+  parentTranslationPath,
+  translationPath,
+  filter,
+  onSelectedRowsCountChanged,
+}) => {
   const { t } = useTranslation(parentTranslationPath);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ColumnsPopover, setColumnsPopover] = useState(null);
@@ -23,6 +29,7 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
   const actionsPopoverClickedHandler = (event) => {
     setActionsPopover(event.currentTarget);
   };
+ 
 
   const viewColumnsPopoverClickedHandler = (event) => {
     setColumnsPopover(event.currentTarget);
@@ -76,7 +83,12 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
       id: 2,
       isSortable: true,
       label: t(`${translationPath}check`),
-      component: (item) => <div className='Attendance-Status-P'>{(item && item.check) || 'N/A'}</div>,
+      component: (item) => <div className={
+        (item.check==="A"&& 'Attendance-Status-A')||
+        (item.check==="P"&& 'Attendance-Status-P')||
+        (item.check==="L"&& 'Attendance-Status-L')
+      }
+      >{(item && item.check) || 'N/A'}</div>,
       isDraggable: true,
     },
     {
@@ -85,7 +97,7 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
       label: t(`${translationPath}shift`),
       component: (item) => (
         <span>
-          {(item &&
+          {(item && 
             item.shift &&
             item.shift.map((item, index) => (
               <span key={`TableColumnshiftKey${index + 1}`}>
@@ -171,9 +183,9 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
       ),
     },
   ];
-
+  
   return (
-    <div className='AttendanceView w-100'>
+    <div className="EmployeeTabelView w-100">
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}
@@ -185,21 +197,23 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
         translationPath={translationPath}
         totalItems={(data && data.totalCount) || 0}
         itemsPerPage={filter.pageSize}
+        activePage={filter.pageIndex}
         uniqueKeyInput='id'
       />
       <PopoverComponent
-        idRef='headerActionsPopovercogRef'
+        idRef="headerActionsPopovercogRef"
         attachedWith={ActionsPopover}
-        popoverClasses=''
+        popoverClasses=""
         header-actions-popover-wrapper
         handleClose={actionsPopoverCloseHandler}
         component={
-          <div className='Popap-Option'>
+          <div className="Popap-Option">
             {TableListOpationActions.map((item, index) => (
               <ButtonBase
-                className='Option'
+                className="Option"
                 key={`OptionKey${index + 1}`}
-                onClick={() => ClickButtonListOpation(item.key)}>
+                onClick={() => ClickButtonListOpation(item.key)}
+              >
                 <div className={item.icon} />
                 <div>{item.value}</div>
               </ButtonBase>
@@ -208,22 +222,22 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
         }
       />
       <PopoverComponent
-        idRef='ColumnPopoverRef'
+        idRef="ColumnPopoverRef"
         attachedWith={ColumnsPopover}
-        popoverClasses=''
+        popoverClasses=""
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className='Popap-Option-menu'>
-            <div className='p-2'> Choose columns </div>
-            <div className='fiter-title'>Visible columns </div>
+          <div className="Popap-Option-menu">
+            <div className="p-2"> Choose columns </div>
+            <div className="fiter-title">Visible columns </div>
             {DataTable.map((item, index) =>
               index !== 5 ? (
-                <div className='Column-Checkbox' key={`ColumnKey${index + 1}`}>
+                <div className="Column-Checkbox" key={`ColumnKey${index + 1}`}>
                   <div>
                     <Checkbox
                       defaultChecked
-                      color='primary'
+                      color="primary"
                       inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                     {item && item.label}
@@ -233,21 +247,21 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
                 ''
               )
             )}
-            <div className='fiter-title'>Hidden columns</div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="fiter-title">Hidden columns</div>
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Jop
             </div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Organization
             </div>
-            <div className='Column-Checkbox'>
-              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className="Column-Checkbox">
+              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Address
             </div>
-            <div className='d-inline-flex-column-center-v w-100'>
-              <Button variant='contained' color='primary' onClick={viewColumnsPopoverCloseHandler}>
+            <div className="d-inline-flex-column-center-v w-100">
+              <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
                 Save
               </Button>
             </div>
@@ -255,15 +269,15 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
         }
       />
       <PopoverComponent
-        idRef='EditPopoverRef'
+        idRef="EditPopoverRef"
         attachedWith={EditPopover}
-        popoverClasses='Edit-actions-popover-wrapper'
+        popoverClasses="Edit-actions-popover-wrapper"
         handleClose={EditPopoverCloseHandler}
         component={
           <div>
             <Inputs
-              idRef='EditInputsRef'
-              wrapperClasses='theme-underline'
+              idRef="EditInputsRef"
+              wrapperClasses="theme-underline"
               label={t(`${translationPath}Designation`)}
               inputPlaceholder={t(`${translationPath}Enter value`)}
               value={EditValue}
@@ -275,7 +289,7 @@ export const MyAttendanceTabelView = ({ data, parentTranslationPath, translation
     </div>
   );
 };
-MyAttendanceTabelView.propTypes = {
+EmployeeTabelView.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -283,7 +297,7 @@ MyAttendanceTabelView.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-MyAttendanceTabelView.defaultProps = {
+EmployeeTabelView.defaultProps = {
   data: {
     result: [],
     totalCount: 0,
