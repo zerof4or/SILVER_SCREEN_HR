@@ -1,5 +1,7 @@
 import { UnderConstructionandDevelopmentComponent } from '../../../../../../../../../Components';
+import { AttendanceCheckInView } from '../../../../../../../../../Views/Home/Contacts/AttendanceCheckInView/AttendanceCheckInView';
 import { CoursesView } from '../../../../../../../../../Views/Home/Contacts/Courses/Courses.View';
+import { DepartmentView } from '../../../../../../../../../Views/Home/Contacts/DepartmentView';
 import { RefferralView } from '../../../../../../../../../Views/Home/Contacts/Refferral/Refferral.View';
 import { RequestView } from '../../../../../../../../../Views/Home/Contacts/Request/Request.View';
 import { ShiftView } from '../../../../../../../../../Views/Home/Contacts/Shift/Shift.View';
@@ -81,6 +83,26 @@ export const HumanResourcesModuleRoutes = [
     path: '/human-resources/TeamView',
     name: 'Shared:human-q',
     component: TeamView,
+    layout: '/home/corporate/company',
+    default: true,
+    isRoute: true,
+    authorize: true,
+    isExact: true,
+  },
+  {
+    path: '/human-resources/DepartmentView',
+    name: 'Shared:human-q',
+    component: DepartmentView,
+    layout: '/home/corporate/company',
+    default: true,
+    isRoute: true,
+    authorize: true,
+    isExact: true,
+  },
+  {
+    path: '/human-resources/AttendanceCheckInView',
+    name: 'Shared:human-q',
+    component: AttendanceCheckInView,
     layout: '/home/corporate/company',
     default: true,
     isRoute: true,

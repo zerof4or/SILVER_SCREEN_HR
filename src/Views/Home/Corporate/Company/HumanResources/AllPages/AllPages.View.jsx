@@ -35,6 +35,16 @@ export const AllPagesView = () => {
       value: 'Team  View',
       path: '/home/corporate/company/human-resources/TeamView',
     },
+    {
+      key: 6,
+      value: 'Department  View',
+      path: '/home/corporate/company/human-resources/DepartmentView',
+    },
+    {
+      key: 7,
+      value: 'Department  View',
+      path: '/home/corporate/company/human-resources/AttendanceCheckInView',
+    },
   ]);
 
   const activeSideButtonChange = useCallback((value) => {
