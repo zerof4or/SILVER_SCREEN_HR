@@ -62,7 +62,7 @@ export const AttendanceView = () => {
           </>
         }
       />
-      {(Tabview === 1 && <MyAttendanceView />) || <EmployeeAttendanceTabel />}
+      {(Tabview === 1 && <MyAttendanceView />) || (Tabview === 2 && <EmployeeAttendanceTabel />) ||''}
     </div>
   );
 };

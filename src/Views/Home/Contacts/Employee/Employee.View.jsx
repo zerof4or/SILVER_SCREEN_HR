@@ -10,6 +10,7 @@ import {
   FilterButtonComponent,
   Inputs,
   LocationButtonComponent,
+  Spinner,
 } from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
@@ -24,6 +25,7 @@ export const EmployeeView = () => {
   const [selectedEmployeesCount, setSelectedEmployeesCount] = useState(0);
   const [disabledOpations, setdisabledOpations] = useState(0);
   const [ViewType, setViewType] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [employees, setEmployees] = useState(ContactsDummyData);
   const [open, setopen] = useState(false);
   const [ActionsPopover, setActionsPopover] = useState(null);
@@ -62,8 +64,14 @@ export const EmployeeView = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
   return (
     <div className='EmployeeView w-100'>
+      <Spinner isActive={isLoading} isAbsolute />
       <div className='Sub-InnerHeader'>
         <div className='d-inline-flex'>
           <div className='dots-vertical mx-1 '>
