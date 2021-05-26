@@ -1,7 +1,7 @@
 export const HumanResourcesMenu = [
   {
-    path: '/home/corporate/company/human-resources/test',
-    name: 'Shared:human-resources',
+    path: '/home/corporate/company/human-resources/employee',
+    name: 'Shared:employee',
     icon: 'mdi mdi-account-tie',
     order: 1,
     isExact: true,
@@ -9,7 +9,7 @@ export const HumanResourcesMenu = [
     childrens: [],
   },
   {
-    path: '/home/corporate/company/human-resources/2',
+    path: '/home/corporate/company/human-resources/leave',
     name: 'Shared:Leave',
     icon: 'mdi mdi-account-group',
     order: 2,
@@ -27,8 +27,8 @@ export const HumanResourcesMenu = [
     childrens: [],
   },
   {
-    path: '/home/corporate/company/human-resources/4',
-    name: 'Shared:human-resources',
+    path: '/home/corporate/company/human-resources/shift',
+    name: 'Shared:shift',
     icon: 'mdi mdi-license',
     order: 4,
     isExact: true,
@@ -37,7 +37,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/5',
-    name: 'Shared:human-resources',
+    name: 'Shared: ? ',
     icon: 'mdi mdi-human-capacity-increase',
     order: 5,
     isExact: true,
@@ -46,7 +46,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/6',
-    name: 'Shared:human-resources',
+    name: 'Shared: ? ',
     icon: 'mdi mdi-mdi mdi-finance',
     order: 6,
     isExact: true,
@@ -55,7 +55,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/7',
-    name: 'Shared:human-resources',
+    name: 'Shared: ? ',
     icon: 'mdi mdi-account-search',
     order: 7,
     isExact: true,
@@ -73,7 +73,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/9',
-    name: 'Shared:human-resources',
+    name: 'Shared: ? ',
     icon: 'mdi mdi-mdi mdi-scale-balance',
     order: 9,
     isExact: true,

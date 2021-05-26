@@ -15,6 +15,8 @@
   "Attendance": "Attendance",
   "payroll": "Payroll",
   "Leave": "Leave",
+  "shift": "Shift",
+  "employee": "Employee",
   "finance": "Finance",
   "customer-support": "Customer Support",
   "procurement": "Procurement",
