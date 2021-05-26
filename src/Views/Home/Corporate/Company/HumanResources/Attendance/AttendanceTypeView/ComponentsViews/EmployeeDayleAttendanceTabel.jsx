@@ -6,7 +6,7 @@ import { Inputs, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
-export const EmployeeTabelView = ({
+export const EmployeeDayleAttendanceTabel = ({
   data,
   parentTranslationPath,
   translationPath,
@@ -29,7 +29,6 @@ export const EmployeeTabelView = ({
   const actionsPopoverClickedHandler = (event) => {
     setActionsPopover(event.currentTarget);
   };
- 
 
   const viewColumnsPopoverClickedHandler = (event) => {
     setColumnsPopover(event.currentTarget);
@@ -83,12 +82,16 @@ export const EmployeeTabelView = ({
       id: 2,
       isSortable: true,
       label: t(`${translationPath}check`),
-      component: (item) => <div className={
-        (item.check==="A"&& 'Attendance-Status-A')||
-        (item.check==="P"&& 'Attendance-Status-P')||
-        (item.check==="L"&& 'Attendance-Status-L')
-      }
-      >{(item && item.check) || 'N/A'}</div>,
+      component: (item) => (
+        <div
+          className={
+            (item.check === 'A' && 'Attendance-Status-A') ||
+            (item.check === 'P' && 'Attendance-Status-P') ||
+            (item.check === 'L' && 'Attendance-Status-L')
+          }>
+          {(item && item.check) || 'N/A'}
+        </div>
+      ),
       isDraggable: true,
     },
     {
@@ -97,7 +100,7 @@ export const EmployeeTabelView = ({
       label: t(`${translationPath}shift`),
       component: (item) => (
         <span>
-          {(item && 
+          {(item &&
             item.shift &&
             item.shift.map((item, index) => (
               <span key={`TableColumnshiftKey${index + 1}`}>
@@ -183,9 +186,9 @@ export const EmployeeTabelView = ({
       ),
     },
   ];
-  
+
   return (
-    <div className="EmployeeTabelView w-100">
+    <div className='EmployeeTabelView w-100'>
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}
@@ -201,19 +204,18 @@ export const EmployeeTabelView = ({
         uniqueKeyInput='id'
       />
       <PopoverComponent
-        idRef="headerActionsPopovercogRef"
+        idRef='headerActionsPopovercogRef'
         attachedWith={ActionsPopover}
-        popoverClasses=""
+        popoverClasses=''
         header-actions-popover-wrapper
         handleClose={actionsPopoverCloseHandler}
         component={
-          <div className="Popap-Option">
+          <div className='Popap-Option'>
             {TableListOpationActions.map((item, index) => (
               <ButtonBase
-                className="Option"
+                className='Option'
                 key={`OptionKey${index + 1}`}
-                onClick={() => ClickButtonListOpation(item.key)}
-              >
+                onClick={() => ClickButtonListOpation(item.key)}>
                 <div className={item.icon} />
                 <div>{item.value}</div>
               </ButtonBase>
@@ -222,22 +224,22 @@ export const EmployeeTabelView = ({
         }
       />
       <PopoverComponent
-        idRef="ColumnPopoverRef"
+        idRef='ColumnPopoverRef'
         attachedWith={ColumnsPopover}
-        popoverClasses=""
+        popoverClasses=''
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className="Popap-Option-menu">
-            <div className="p-2"> Choose columns </div>
-            <div className="fiter-title">Visible columns </div>
+          <div className='Popap-Option-menu'>
+            <div className='p-2'> Choose columns </div>
+            <div className='fiter-title'>Visible columns </div>
             {DataTable.map((item, index) =>
               index !== 5 ? (
-                <div className="Column-Checkbox" key={`ColumnKey${index + 1}`}>
+                <div className='Column-Checkbox' key={`ColumnKey${index + 1}`}>
                   <div>
                     <Checkbox
                       defaultChecked
-                      color="primary"
+                      color='primary'
                       inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                     {item && item.label}
@@ -247,21 +249,21 @@ export const EmployeeTabelView = ({
                 ''
               )
             )}
-            <div className="fiter-title">Hidden columns</div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='fiter-title'>Hidden columns</div>
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Jop
             </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Organization
             </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Address
             </div>
-            <div className="d-inline-flex-column-center-v w-100">
-              <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
+            <div className='d-inline-flex-column-center-v w-100'>
+              <Button variant='contained' color='primary' onClick={viewColumnsPopoverCloseHandler}>
                 Save
               </Button>
             </div>
@@ -269,15 +271,15 @@ export const EmployeeTabelView = ({
         }
       />
       <PopoverComponent
-        idRef="EditPopoverRef"
+        idRef='EditPopoverRef'
         attachedWith={EditPopover}
-        popoverClasses="Edit-actions-popover-wrapper"
+        popoverClasses='Edit-actions-popover-wrapper'
         handleClose={EditPopoverCloseHandler}
         component={
           <div>
             <Inputs
-              idRef="EditInputsRef"
-              wrapperClasses="theme-underline"
+              idRef='EditInputsRef'
+              wrapperClasses='theme-underline'
               label={t(`${translationPath}Designation`)}
               inputPlaceholder={t(`${translationPath}Enter value`)}
               value={EditValue}
@@ -289,7 +291,7 @@ export const EmployeeTabelView = ({
     </div>
   );
 };
-EmployeeTabelView.propTypes = {
+EmployeeDayleAttendanceTabel.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -297,7 +299,7 @@ EmployeeTabelView.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-EmployeeTabelView.defaultProps = {
+EmployeeDayleAttendanceTabel.defaultProps = {
   data: {
     result: [],
     totalCount: 0,

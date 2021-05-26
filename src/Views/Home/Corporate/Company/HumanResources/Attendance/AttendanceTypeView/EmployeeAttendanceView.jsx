@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
 import EmployeeAttendance from '../../../../../../../StaticJOSN/EmployeeAttendance.json';
+import EmployeeMonthlyAttendance from '../../../../../../../StaticJOSN/EmployeeMonthlyAttendance.json';
 import './../Attendance.Style.scss';
 import { Sorterletters } from '../../../../../../../Components/Sorterletters/Sorterletters.Component';
 import {
   DialogComponent,
+  DubleButtonComponentComponent,
   FilterButtonComponent,
   Inputs,
   LocationButtonComponent,
@@ -14,7 +16,8 @@ import {
 import { NoSearchResultComponent } from '../../../../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import { AutocompleteComponent } from '../../../../../../../Components/AutocompleteComponent/AutocompleteComponent';
 import { COUNTRY_NAMES } from '../../../../../../../Enums/CountryNames';
-import { EmployeeTabelView } from './ComponentsViews/EmployeeAttendanceTabel';
+import { EmployeeDayleAttendanceTabel } from './ComponentsViews/EmployeeDayleAttendanceTabel';
+import { EmployeeMonthlyAttendanceTabel } from './ComponentsViews/EmployeeMonthlyAttendanceTabel';
 const parentTranslationPath = 'EmployeeAttendanceTabel';
 const translationPath = '';
 export const EmployeeAttendanceTabel = () => {
@@ -31,8 +34,18 @@ export const EmployeeAttendanceTabel = () => {
   const close = () => {
     setopen(false);
   };
-  const FilterHandler = (value) => {
+  const FilterHandlerMyAttendance = (value) => {
     const result = EmployeeAttendance.result.filter((item) =>
+      item.Employeename.toLowerCase().includes(value.target.value.toLowerCase())
+    );
+    console.log(result);
+    setEmployees({
+      result: result,
+      totalCount: result.length,
+    });
+  };
+  const FilterHandlerMonthlyAttendance = (value) => {
+    const result = EmployeeMonthlyAttendance.result.filter((item) =>
       item.Employeename.toLowerCase().includes(value.target.value.toLowerCase())
     );
     console.log(result);
@@ -47,6 +60,13 @@ export const EmployeeAttendanceTabel = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (ViewType === 1) {
+      setEmployees(EmployeeAttendance);
+    } else setEmployees(EmployeeMonthlyAttendance);
+  }, [ViewType]);
+
   return (
     <div className='AttendanceView w-100'>
       <div className='Sub-InnerHeader'>
@@ -124,6 +144,13 @@ export const EmployeeAttendanceTabel = () => {
                 </div>
               }
             />
+          </div>{' '}
+          <div className='mx-2'>
+            <DubleButtonComponentComponent
+              Titleone='dayle View'
+              Titletow='monthly View'
+              onViewChanged={(Type) => setViewType(Type)}
+            />
           </div>
           <div className='mx-1'>
             <Sorterletters />
@@ -140,7 +167,11 @@ export const EmployeeAttendanceTabel = () => {
           <div className='search-text'>
             <Inputs
               idRef='searchEmployeesRef'
-              onInputChanged={(event) => FilterHandler(event)}
+              onInputChanged={(event) =>
+                ViewType === 1
+                  ? FilterHandlerMyAttendance(event)
+                  : FilterHandlerMonthlyAttendance(event)
+              }
               endAdornment={<span className='mdi mdi-magnify px-2' />}
               wrapperClasses='theme-primary'
               fieldClasses='inputs theme-primary ml-2'
@@ -151,10 +182,15 @@ export const EmployeeAttendanceTabel = () => {
       <div className='Employee-wraper'>
         <div className='EmployeeTabelView-wraper'>
           {(employees.totalCount === 0 && <NoSearchResultComponent />) ||
-            (ViewType !== 1 ? (
-              <div>dd</div>
+            (ViewType === 1 ? (
+              <EmployeeDayleAttendanceTabel
+                data={employees}
+                parentTranslationPath={parentTranslationPath}
+                translationPath={translationPath}
+                filter={filter}
+              />
             ) : (
-              <EmployeeTabelView
+              <EmployeeMonthlyAttendanceTabel
                 data={employees}
                 parentTranslationPath={parentTranslationPath}
                 translationPath={translationPath}
