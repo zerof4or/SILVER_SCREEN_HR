@@ -1,0 +1,59 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.DubleButton-wrapper {
+  position: relative;
+  display: inline-flex;
+  .Button-root-1 {
+    .MuiButtonBase-root {
+      font-weight: 100;
+      background-color: $c-Basic;
+      color: $c-primary;
+      min-width: 6rem;
+      min-height: 2rem;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      @include rtl {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      text-transform: capitalize;
+      &.is-active {
+        background-color: $c-gray-primary;
+        color: #ffffff;
+      }
+    }
+  }
+  .Button-root-2 {
+    .MuiButtonBase-root {
+      font-weight: 100;
+      background-color: $c-Basic;
+      color: $c-primary;
+      min-width: 6rem;
+      min-height: 2rem;
+      border-radius: 0px;
+      text-transform: capitalize;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      @include rtl {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      &.is-active {
+        background-color: $c-gray-primary;
+        color: #ffffff;
+      }
+    }
+  }
+}

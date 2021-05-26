@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
-import { Inputs, Tables } from '../../../../../../../../Components';
+import { Inputs, Spinner, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
-export const MyAttendanceTabel = ({
+export const MyDayleAttendanceTabel = ({
   data,
   parentTranslationPath,
   translationPath,
@@ -16,13 +16,14 @@ export const MyAttendanceTabel = ({
   const { t } = useTranslation(parentTranslationPath);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ColumnsPopover, setColumnsPopover] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [isLoading, setisLoading] = useState(true);
   const [EditPopover, setEditPopover] = useState(null);
   const [EditValue, setEditValue] = useState('Photographer');
   const tableActionClicked = useCallback((actionEnum, item) => {
     // if (actionEnum === TableActions.delete.key) setActiveItem(item);         setFilter
     // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
   }, []);
-
   const EditPopoverCloseHandler = () => {
     setEditPopover(null);
   };
@@ -186,9 +187,14 @@ export const MyAttendanceTabel = ({
       ),
     },
   ];
-
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false);
+    }, 1500);
+  }, []);
   return (
     <div className='EmployeeTabelView w-100'>
+      <Spinner isActive={isLoading} isAbsolute />
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}
@@ -291,7 +297,7 @@ export const MyAttendanceTabel = ({
     </div>
   );
 };
-MyAttendanceTabel.propTypes = {
+MyDayleAttendanceTabel.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -299,7 +305,7 @@ MyAttendanceTabel.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-MyAttendanceTabel.defaultProps = {
+MyDayleAttendanceTabel.defaultProps = {
   data: {
     result: [],
     totalCount: 0,
