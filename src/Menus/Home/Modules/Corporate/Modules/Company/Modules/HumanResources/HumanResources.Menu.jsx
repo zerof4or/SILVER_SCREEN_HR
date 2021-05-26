@@ -10,7 +10,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/2',
-    name: 'Shared:human-resources',
+    name: 'Shared:Leave',
     icon: 'mdi mdi-account-group',
     order: 2,
     isExact: true,
@@ -19,7 +19,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/Attendance',
-    name: 'Shared:human-resources',
+    name: 'Shared:Attendance',
     icon: 'mdi mdi-domain',
     order: 3,
     isExact: true,
@@ -63,8 +63,8 @@ export const HumanResourcesMenu = [
     childrens: [],
   },
   {
-    path: '/home/corporate/company/human-resources/8',
-    name: 'Shared:human-resources',
+    path: '/home/corporate/company/human-resources/payroll',
+    name: 'Shared:payroll',
     icon: 'mdi mdi-account-convert',
     order: 8,
     isExact: true,
@@ -82,7 +82,7 @@ export const HumanResourcesMenu = [
   },
   {
     path: '/home/corporate/company/human-resources/all-Screen-Systems',
-    name: 'Shared:human-resources',
+    name: 'Shared:All Screen Systems',
     icon: 'mdi mdi-mdi mdi-desktop-mac-dashboard c-blue-dark',
     order: 10,
     isExact: true,

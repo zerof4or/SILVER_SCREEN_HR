@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { HomeMenu } from '../../../../Menus';
 import { useHistory } from 'react-router';
-import { ButtonBase } from '@material-ui/core';
+import { ButtonBase, Tooltip } from '@material-ui/core';
 import './SideMenu.Style.scss';
-
+import Zoom from '@material-ui/core/Zoom';
+import { useTranslation } from 'react-i18next';
 export const SideMenuComponent = ({ isOpenSideExtended, onChangeSideExtended }) => {
   const [sideMenuElements, setSideMenuElements] = useState([]);
+  const { t } = useTranslation(['Shared']);
   const history = useHistory();
   const getIsActiveMenuItem = useCallback(
     (item) =>
@@ -54,21 +56,24 @@ export const SideMenuComponent = ({ isOpenSideExtended, onChangeSideExtended }) 
   }, [getActiveGroupOfChildrens, history]);
 
   return (
-    <div className="side-menu-wrapper childs-wrapper">
+    <div className='side-menu-wrapper childs-wrapper'>
       <ButtonBase
         className={`btns-side-extended${(isOpenSideExtended && ' is-active') || ''}`}
-        onClick={onChangeSideExtended}
-      >
-        <span className="mdi mdi-filter" />
+        onClick={onChangeSideExtended}>
+        <span className='mdi mdi-filter' />
       </ButtonBase>
       {sideMenuElements.map((item, index) => (
-        <ButtonBase
-          className={`btns-side-menu-item${(getIsActiveMenuItem(item) && ' is-active') || ''}`}
-          key={`sideMenuItemKey${index}`}
-          onClick={navigationClickHandler(item)}
-        >
-          <span className={item.icon} />
-        </ButtonBase>
+        <Tooltip
+          title={t(item&&item.name)||''}
+          placement='right'
+          TransitionComponent={Zoom}
+          key={`sideMenuItemKey${index}`}>
+          <ButtonBase
+            className={`btns-side-menu-item${(getIsActiveMenuItem(item) && ' is-active') || ''}`}
+            onClick={navigationClickHandler(item)}>
+            <span className={item.icon} />
+          </ButtonBase>
+        </Tooltip>
       ))}
     </div>
   );
