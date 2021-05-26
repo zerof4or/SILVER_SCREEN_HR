@@ -1,0 +1,30 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+
+.AllPagesView {
+  display: flex;
+  padding-top: 7rem;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  .header-side-menu-button {
+    cursor: pointer;
+    margin-right: 2rem;
+    width: 11rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    background-color: #000000;
+    height: 5.9rem;
+    border-radius: 3.6rem;
+    font-size: 13px;
+    color: #ececec;
+    &.is-active {
+      background-color: #1e8fda;
+      color: white;
+    }
+    &:hover {
+      background-color: #ececec;
+      color: $c-gray-primary;
+    }
+  }
+}
