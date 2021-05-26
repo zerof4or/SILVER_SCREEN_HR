@@ -1,0 +1,59 @@
+{
+  "result": [
+    {
+      "id": "03451",
+      "Employeename": "MALEK Kabalan",
+      "check": "A",
+      "shift": [
+        {
+          "Checkin": "9:00 am",
+          "Checkout": "5:00 pm"
+        }
+      ],
+      "Checkin": "5:00 am",
+      "Checkout": "7:00 pm",
+      "Workinghours": " 04 hours",
+      "LateArrival": "0:00 ",
+      "Earlydeparture": "0:00 ",
+      "overtime": "05:20 ",
+      "overtimeApproved": "05:00 "
+    },
+    {
+      "id": "02311",
+      "Employeename": "Ahmad Ali",
+      "check": "L",
+      "shift": [
+        {
+          "Checkin": "5:00 am",
+          "Checkout": "1:00 pm"
+        }
+      ],
+      "Checkin": "9:00 am",
+      "Checkout": "5:00 pm",
+      "Workinghours": " 04 hours",
+      "LateArrival": "0:00 ",
+      "Earlydeparture": "0:00 ",
+      "overtime": "01:20 ",
+      "overtimeApproved": "01:00 "
+    },
+    {
+      "id": "03041",
+      "Employeename": "fwazy Kabalan",
+      "check": "P",
+      "shift": [
+        {
+          "Checkin": "9:00 am",
+          "Checkout": "5:00 pm"
+        }
+      ],
+      "Checkin": "5:00 am",
+      "Checkout": "7:00 pm",
+      "Workinghours": " 04 hours",
+      "LateArrival": "0:00 ",
+      "Earlydeparture": "0:00 ",
+      "overtime": "05:20 ",
+      "overtimeApproved": "05:00 "
+    }
+  ],
+  "totalCount": 3
+}

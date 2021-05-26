@@ -18,7 +18,7 @@ export const HumanResourcesMenu = [
     childrens: [],
   },
   {
-    path: '/home/corporate/company/human-resources/3',
+    path: '/home/corporate/company/human-resources/Attendance',
     name: 'Shared:human-resources',
     icon: 'mdi mdi-domain',
     order: 3,

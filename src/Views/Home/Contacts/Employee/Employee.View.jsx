@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonBase } from '@material-ui/core';
+import { Button, ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
 import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
@@ -15,6 +15,8 @@ import { NoSearchResultComponent } from '../../../../Components/NoSearchResultCo
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
+import { COUNTRY_NAMES } from '../../../../Enums/CountryNames';
+import { AutocompleteComponent } from '../../../../Components/AutocompleteComponent/AutocompleteComponent';
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
 export const EmployeeView = () => {
@@ -55,6 +57,11 @@ export const EmployeeView = () => {
       setdisabledOpations(true);
     }
   }, [selectedEmployeesCount]);
+  const [value, setValue] = React.useState(2);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <div className='EmployeeView w-100'>
       <div className='Sub-InnerHeader'>
@@ -97,11 +104,77 @@ export const EmployeeView = () => {
           </div>
           <div>
             <div className='mx-2'>
-              <FilterButtonComponent CollapseComponentView={<div>Filter Component</div>} />
+              <FilterButtonComponent
+                CollapseComponentclasses='TabsFilter'
+                CollapseComponentView={
+                  <div className='CollapseComponentView-wraper'>
+                    <Paper square>
+                      <Tabs
+                        value={value}
+                        indicatorColor='primary'
+                        textColor='primary'
+                        className='tab-filter'
+                        onChange={handleChange}
+                        aria-label='disabled tabs example'>
+                        <Tab
+                          label={
+                            <div>
+                              <div>
+                                <span className='mdi mdi-star' />{' '}
+                              </div>
+                              <div> Favorite </div>
+                            </div>
+                          }
+                        />
+                        <Tab
+                          label={
+                            <div>
+                              <div>
+                                <span className='mdi mdi-account-tie' />
+                              </div>
+                              <div> Owners </div>
+                            </div>
+                          }
+                        />
+                        <Tab
+                          label={
+                            <div>
+                              <div>
+                                <span className='mdi mdi-account-search' />
+                              </div>
+                              <div> Advanced Filte</div>
+                            </div>
+                          }
+                        />
+                      </Tabs>
+                    </Paper>
+                  </div>
+                }
+              />
             </div>
           </div>
           <div className='mx-2'>
-            <LocationButtonComponent CollapseComponentView={<div>Location Component</div>} />
+            <LocationButtonComponent
+              CollapseComponentclasses='Location-menu-emp'
+              CollapseComponentView={
+                <div className='Location-auto-wraper'>
+                  <AutocompleteComponent
+                    idRef='paymentTypeIdRef'
+                    labelValue='payment-type'
+                    multiple={false}
+                    data={COUNTRY_NAMES || []}
+                    displayLabel={(option) => option.label || ''}
+                    withoutSearchButton
+                    isWithError
+                    parentTranslationPath={parentTranslationPath}
+                    translationPath={translationPath}
+                    onChange={(event, newValue) => {
+                      console.log(newValue);
+                    }}
+                  />
+                </div>
+              }
+            />
           </div>
           <div className='mx-1'>
             <Sorterletters />

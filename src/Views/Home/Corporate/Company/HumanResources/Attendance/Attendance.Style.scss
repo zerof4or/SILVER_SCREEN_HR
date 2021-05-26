@@ -1,6 +1,6 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
-.EmployeeView {
+.AttendanceView {
   .DataView-bbt {
     padding-right: 10px;
     @include rtl {
@@ -85,7 +85,7 @@
     background-color: #f4f4f4;
     padding-left: 1rem;
     padding-right: 1rem;
-    // padding-top: 3.7rem;
+    padding-top: 3.7rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -151,9 +151,9 @@
     }
   }
 
-  .EmployeeTabelView {
+  .AttendanceView {
     .css-rorn0c-MuiTableContainer-root {
-    height: 44rem; 
+      height: 44rem;
     }
     .Option-wraper {
       .css-10d1a0h-MuiButtonBase-root {
@@ -167,7 +167,7 @@
     }
   }
 }
-.Employee-wraper {
+.AttendanceView-wraper {
 }
 .Popap-Option {
   display: inline-block;
@@ -268,4 +268,37 @@
   .css-jpln7h-MuiTabs-scroller {
     border-radius: 12px;
   }
+}
+.Attendance-Status-P {
+  background-color: #deffec;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #21c765;
+  color: #24c868;
+}
+.Attendance-Status-A {
+  background-color: #ffdedd;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #fa0001;
+  color: #fa0001;
+}
+.Attendance-Status-L {
+  background-color: #ffedb2;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #ffa800;
+  color: #ffa800;
 }

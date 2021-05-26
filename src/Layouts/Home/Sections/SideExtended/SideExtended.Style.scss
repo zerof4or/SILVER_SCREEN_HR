@@ -6,6 +6,7 @@
   z-index: 1;
   background-color: $c-gray-lighter;
   transition: width 0.3s linear;
+  padding-top: 3rem;
   .action-wrapper {
     @include d-inline-flex;
     align-items: center;
