@@ -140,7 +140,7 @@ export const EmployeeTabelView = ({
       id: 13,
       isSticky: true,
       right: 0,
-      cellClasses: 'table-cellOpation',
+      cellClasses: 'table-cellOpation is-with-line',
       headerComponent: (item) => (
         <>
           <div>

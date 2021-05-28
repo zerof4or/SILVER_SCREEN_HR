@@ -1,0 +1,29 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "levavepolicyname": "vacations",
+      "yerlybalance": "60 Days",
+      "maximumcarryover": "60 Days",
+      "actualtype": "monthly",
+      "actualstartdate": "15 November , 2020"
+    },
+    {
+      "id": 2,
+      "levavepolicyname": "vacations",
+      "yerlybalance": "60 Days",
+      "maximumcarryover": "60 Days",
+      "actualtype": "monthly",
+      "actualstartdate": "15 November , 2020"
+    },
+    {
+      "id": 3,
+      "levavepolicyname": "vacations",
+      "yerlybalance": "60 Days",
+      "maximumcarryover": "60 Days",
+      "actualtype": "monthly",
+      "actualstartdate": "15 November , 2020"
+    }
+  ],
+  "totalCount": 3
+}

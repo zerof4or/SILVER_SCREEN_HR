@@ -5,15 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
 import MyAttendance from '../../../../../../StaticJOSN/MyAttendance.json';
 import EmployeeAttendance from '../../../../../../StaticJOSN/EmployeeAttendance.json';
-import './Attendance.Style.scss';
+import './Leaves.Style.scss';
 import { InnerHeaderComponent } from '../../../../../../Components';
-import { EmployeeAttendanceTabel } from './AttendanceTypeView/EmployeeAttendanceView';
-import { MyAttendanceView } from './AttendanceTypeView/MyAttendance.View';
-import { DepartmentView } from './AttendanceTypeView/DepartmentView';
+import { LeavePoliceView } from './LeavesView/LeavePolice.View';
+import { LeavesBlanceView } from './LeavesView/LeavesBlance.View';
 
-const parentTranslationPath = 'AttendanceView';
+const parentTranslationPath = 'LeavesView';
 // const translationPath = '';
-export const AttendanceView = () => {
+export const LeavesView = () => {
   const { t } = useTranslation(parentTranslationPath);
   const [employees, setEmployees] = useState(MyAttendance);
   const [Tabview, setTabview] = useState(1);
@@ -31,19 +30,15 @@ export const AttendanceView = () => {
   const [sideList] = useState([
     {
       key: 1,
-      value: t('AttendanceCheck-in-out'),
+      value: t('Timeoff/Leavepolice'),
     },
     {
       key: 2,
-      value: t('MyAttendance'),
+      value: t('Leaves Blance'),
     },
     {
       key: 3,
-      value: t('EmpolyeeAttendance'),
-    },
-    {
-      key: 4,
-      value: t('AttendanceSettings'),
+      value: t('MyLeaves'),
     },
   ]);
 
@@ -67,10 +62,7 @@ export const AttendanceView = () => {
           </>
         }
       />
-      {(Tabview === 1 && <DepartmentView />) ||
-        (Tabview === 2 && <MyAttendanceView />) ||
-        (Tabview === 3 && <EmployeeAttendanceTabel />) ||
-        ''}
+      {(Tabview === 1 && <LeavePoliceView />) || (Tabview === 2 && <LeavesBlanceView />) || ''}
     </div>
   );
 };

@@ -3,9 +3,9 @@ import { ButtonBase } from '@material-ui/core';
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { InnerHeaderComponent, Inputs } from '../../../../Components';
-import { ContactTypeEnum } from '../../../../Enums';
-import { GlobalHistory } from '../../../../Helpers';
+import { InnerHeaderComponent, Inputs } from '../../../../../../../../Components';
+import { ContactTypeEnum } from '../../../../../../../../Enums';
+import { GlobalHistory } from '../../../../../../../../Helpers';
 import './Styles/Department.Style.scss';
 const parentTranslationPath = 'ContactsView';
 const translationPath = '';
@@ -66,22 +66,6 @@ export const DepartmentView = () => {
   }, []);
   return (
     <div className='view-wrapper'>
-      <InnerHeaderComponent
-        component={
-          <>
-            {sideList.map((item, index) => (
-              <ButtonBase
-                className={`header-side-menu-button ${
-                  item.key === activeSideButton ? 'is-active' : ''
-                }`}
-                key={`headerSideMenuBtnKey${index + 1}`}
-                onClick={() => activeSideButtonChange(item.key)}>
-                {item.value}
-              </ButtonBase>
-            ))}
-          </>
-        }
-      />
       <div className='attendance-check-header'>
         <div className='attendance-check-filter'>
           <div className='dots-vertical'>

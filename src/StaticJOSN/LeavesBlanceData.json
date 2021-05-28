@@ -1,0 +1,36 @@
+
+{
+  "result": [
+    {
+      "id": 1,
+      "Employeename": "MALEK hamad",
+      "annualleaveentitlement": "60 Days",
+      "usedleavesthisyear": "0 Days",
+      "yearendbalance": "50",
+      "uptodatebalance": "32",
+      "unpaid": "01",
+      "sick": "00 "
+    },
+    {
+      "id": 2,
+      "Employeename": "ahmad hamad",
+      "annualleaveentitlement": "60 Days",
+      "usedleavesthisyear": "0 Days",
+      "yearendbalance": "50",
+      "uptodatebalance": "32",
+      "unpaid": "01",
+      "sick": "00 "
+    },
+    {
+      "id": 3,
+      "Employeename": "MALEK hamad",
+      "annualleaveentitlement": "60 Days",
+      "usedleavesthisyear": "0 Days",
+      "yearendbalance": "50",
+      "uptodatebalance": "32",
+      "unpaid": "01",
+      "sick": "00 "
+    }
+  ],
+  "totalCount": 3
+}

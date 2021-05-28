@@ -2,6 +2,7 @@
 import { ButtonBase } from '@material-ui/core';
 // eslint-disable-next-line no-unused-vars
 import React, { useCallback, useEffect, useState } from 'react';
+import { GlobalHistory } from '../../../../../../Helpers';
 import './AllPages.Style.scss';
 export const AllPagesView = () => {
   // const [selectedEmployeesCount, setSelectedEmployeesCount] = useState(0);
@@ -36,20 +37,15 @@ export const AllPagesView = () => {
       path: '/home/corporate/company/human-resources/TeamView',
     },
     {
-      key: 6,
-      value: 'Department  View',
-      path: '/home/corporate/company/human-resources/DepartmentView',
-    },
-    {
       key: 7,
-      value: 'Department  View',
+      value: 'Attendance Check In View  ',
       path: '/home/corporate/company/human-resources/AttendanceCheckInView',
     },
   ]);
 
   const activeSideButtonChange = useCallback((value) => {
     try {
-      window.open(value.path);
+      GlobalHistory.push(value.path);
       // eslint-disable-next-line no-empty
     } catch (error) {}
 

@@ -274,6 +274,25 @@
     color: #878787;
   }
 }
+.bbt-gray-lite {
+  .MuiButtonBase-root {
+    min-width: 5rem;
+    min-height: 2rem;
+    font-weight: 900;
+    padding-left: 9px;
+    padding-right: 9px;
+    background-color: #e2e2e2;
+    color: #000000;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+  }
+  .mdi {
+    color: #878787;
+  }
+}
 .bbt-primary {
   .MuiButtonBase-root {
     color: $c-white;
@@ -282,7 +301,7 @@
     height: 2rem;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
-    background-color: $c-blue;
+    background-color: $c-blue-light;
     color: $c-white;
     border-radius: 7px;
     -webkit-border-radius: 7px;

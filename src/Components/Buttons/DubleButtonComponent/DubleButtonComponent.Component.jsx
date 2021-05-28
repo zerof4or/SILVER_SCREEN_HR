@@ -8,9 +8,11 @@ import { useTranslation } from 'react-i18next';
 export const DubleButtonComponentComponent = ({
   Titletow,
   Titleone,
+  Titletriple,
   translationPath,
   parentTranslationPath,
   onViewChanged,
+  triple,
 }) => {
   const { t } = useTranslation(parentTranslationPath);
   const [ActiveButton, setActiveButton] = useState(1);
@@ -20,21 +22,48 @@ export const DubleButtonComponentComponent = ({
   }, [ActiveButton]);
   return (
     <div className='DubleButton-wrapper'>
-      <div className='Button-root-1'>
-        <ButtonBase
-          className={`header-side-menu-button ${ActiveButton === 1 ? 'is-active' : ''}`}
-          onClick={() => setActiveButton(1)}>
-          {t(`${translationPath}${Titleone}`)}
-        </ButtonBase>
-      </div>
-      {}
-      <div className='Button-root-2'>
-        <ButtonBase
-          className={`header-side-menu-button ${ActiveButton === 2 ? 'is-active' : ''}`}
-          onClick={() => setActiveButton(2)}>
-          {t(`${translationPath}${Titletow}`)}
-        </ButtonBase>
-      </div>
+      {(!triple && (
+        <>
+          <div className='Button-root-1'>
+            <ButtonBase
+              className={`header-side-menu-button ${ActiveButton === 1 ? 'is-active' : ''}`}
+              onClick={() => setActiveButton(1)}>
+              {t(`${translationPath}${Titleone}`)}
+            </ButtonBase>
+          </div>
+          <div className='Button-root-2'>
+            <ButtonBase
+              className={`header-side-menu-button ${ActiveButton === 2 ? 'is-active' : ''}`}
+              onClick={() => setActiveButton(2)}>
+              {t(`${translationPath}${Titletow}`)}
+            </ButtonBase>
+          </div>
+        </>
+      )) || (
+        <>
+          <div className='Button-root-1'>
+            <ButtonBase
+              className={`header-side-menu-button ${ActiveButton === 1 ? 'is-active' : ''}`}
+              onClick={() => setActiveButton(1)}>
+              {t(`${translationPath}${Titleone}`)}
+            </ButtonBase>
+          </div>{' '}
+          <div className='Button-root-center'>
+            <ButtonBase
+              className={`header-side-menu-button ${ActiveButton === 2 ? 'is-active' : ''}`}
+              onClick={() => setActiveButton(2)}>
+              {t(`${translationPath}${Titletriple}`)}
+            </ButtonBase>
+          </div>
+          <div className='Button-root-2'>
+            <ButtonBase
+              className={`header-side-menu-button ${ActiveButton === 3 ? 'is-active' : ''}`}
+              onClick={() => setActiveButton(3)}>
+              {t(`${translationPath}${Titletow}`)}
+            </ButtonBase>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -45,7 +74,9 @@ DubleButtonComponentComponent.propTypes = {
   parentTranslationPath: PropTypes.string,
   translationPathForData: PropTypes.string,
   Titletow: PropTypes.string,
+  Titletriple: PropTypes.string,
   Titleone: PropTypes.string,
+  triple: PropTypes.bool,
 };
 DubleButtonComponentComponent.defaultProps = {
   translationPath: '',
@@ -54,4 +85,6 @@ DubleButtonComponentComponent.defaultProps = {
   onViewChanged: undefined,
   Titletow: 'One',
   Titleone: 'Tow',
+  Titletriple: 'triple',
+  triple: false,
 };

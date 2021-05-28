@@ -1,18 +1,19 @@
-import { UnderConstructionandDevelopmentComponent } from '../../../../../../../../../Components';
+
 import { AttendanceCheckInView } from '../../../../../../../../../Views/Home/Contacts/AttendanceCheckInView/AttendanceCheckInView';
 import { CoursesView } from '../../../../../../../../../Views/Home/Contacts/Courses/Courses.View';
-import { DepartmentView } from '../../../../../../../../../Views/Home/Contacts/DepartmentView';
 import { RefferralView } from '../../../../../../../../../Views/Home/Contacts/Refferral/Refferral.View';
 import { RequestView } from '../../../../../../../../../Views/Home/Contacts/Request/Request.View';
 import { ShiftView } from '../../../../../../../../../Views/Home/Contacts/Shift/Shift.View';
 import { TeamView } from '../../../../../../../../../Views/Home/Contacts/Team/Team.View';
 import { AllPagesView } from '../../../../../../../../../Views/Home/Corporate/Company/HumanResources/AllPages/AllPages.View';
 import { AttendanceView } from '../../../../../../../../../Views/Home/Corporate/Company/HumanResources/Attendance/Attendance.View';
+import { DepartmentView } from '../../../../../../../../../Views/Home/Corporate/Company/HumanResources/Attendance/AttendanceTypeView/DepartmentView';
+import { LeavesView } from '../../../../../../../../../Views/Home/Corporate/Company/HumanResources/Leaves';
 export const HumanResourcesModuleRoutes = [
   {
-    path: '/human-resources/test',
+    path: '/human-resources/leave',
     name: 'Shared:human-resources',
-    component: UnderConstructionandDevelopmentComponent,
+    component: LeavesView,
     layout: '/home/corporate/company',
     default: true,
     isRoute: true,

@@ -3,7 +3,7 @@
   &.is-absolute {
     position: absolute;
     right: 0;
-    z-index: 2;
+    z-index: 3;
 
     @include phones-max() {
       position: fixed;
