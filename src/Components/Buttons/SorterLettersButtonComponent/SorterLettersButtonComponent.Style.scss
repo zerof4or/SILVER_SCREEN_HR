@@ -64,6 +64,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
+
   .Option-Letter {
     min-width: 1rem;
     text-transform: capitalize;
@@ -76,7 +77,7 @@
   .text-item {
     background-color: $c-gray-lighter;
     width: 2rem;
-    border-radius: 50px;
+    border-radius: 10px;
     height: 2rem;
     display: flex;
     justify-content: center;
@@ -84,6 +85,6 @@
     &.is-selected {
       background-color: $c-primary;
       color: $c-gray-lighter;
-    }
+      }
   }
 }
