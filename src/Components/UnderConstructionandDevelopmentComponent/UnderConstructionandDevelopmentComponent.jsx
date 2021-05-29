@@ -1,7 +1,8 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import UnderDevelopment from '../../Assets/Images/Defaults/UnderConstructionandDevelopmentComponent.png';
+import UnderDevelopment from '../../Assets/Images/Defaults/UnderConstructionandDevelopmentComponent.gif';
+import UnderDevelopment2 from '../../Assets/Images/Defaults/UnderConstructionandDevelopmentComponent2.gif';
 import './UnderConstructionandDevelopmentComponent.scss';
 import InnerHeaderComponent from '../../Components/InnerHeader/InnerHeader.Component';
 export const UnderConstructionandDevelopmentComponent = () => {
@@ -26,7 +27,11 @@ export const UnderConstructionandDevelopmentComponent = () => {
               src={UnderDevelopment}
               alt={t(`${translationPath}UnderConstructionandDevelopment`)}
               className='no-search-img'
-            />
+            />  <img
+            src={UnderDevelopment2}
+            alt={t(`${translationPath}UnderConstructionandDevelopment`)}
+            className='no-search-img2'
+          />
           </Grid>
         </Grid>
       </div>

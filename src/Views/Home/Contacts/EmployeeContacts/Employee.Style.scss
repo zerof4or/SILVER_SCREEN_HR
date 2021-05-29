@@ -196,7 +196,7 @@
     font-weight: 900;
     text-decoration: underline;
     .mdi {
-      color: #65acfe;
+      color: $c-blue-light;
     }
   }
 }
@@ -257,7 +257,7 @@
     text-transform: capitalize;
   }
   .css-1f3wfo0-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    background-color: #000000;
+    background-color: $c-black;
     color: white;
     text-transform: capitalize;
   }

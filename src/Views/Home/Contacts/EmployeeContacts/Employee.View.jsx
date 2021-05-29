@@ -4,7 +4,6 @@ import { Button, ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
 import ContactsDummyData from '../../../../StaticJOSN/ContactsDummyData.json';
 import './Employee.Style.scss';
 import { EmployeeTabelView } from './EmployeeTypeView/EmployeeTabel.View';
-import { Sorterletters } from '../../../../Components/Sorterletters/Sorterletters.Component';
 import {
   DialogComponent,
   FilterButtonComponent,
@@ -18,6 +17,7 @@ import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 import { COUNTRY_NAMES } from '../../../../Enums/CountryNames';
 import { AutocompleteComponent } from '../../../../Components/AutocompleteComponent/AutocompleteComponent';
+import { SorterLettersButtonComponent } from '../../../../Components/Buttons/SorterLettersButtonComponent';
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
 export const EmployeeView = () => {
@@ -185,7 +185,7 @@ export const EmployeeView = () => {
             />
           </div>
           <div className='mx-1'>
-            <Sorterletters />
+            <SorterLettersButtonComponent onViewChanged={(items)=>console.log(items)} />
           </div>
         </div>
         <div className='attendance-check-search'>

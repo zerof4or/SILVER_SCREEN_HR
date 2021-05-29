@@ -41,7 +41,7 @@
       .fisrt {
         .button {
           .MuiButtonBase-root {
-            background-color: #65acfe;
+            background-color: $c-blue-light;
             color: $c-white;
             border-radius: 7px;
             width: 7rem;
@@ -90,7 +90,7 @@
             margin-right: 0px;
           }
           .MuiButtonBase-root {
-            background-color: #65acfe;
+            background-color: $c-blue-light;
             color: $c-white;
           }
         }
@@ -109,7 +109,7 @@
         padding: 1rem;
         border-radius: 24px;
         .mdi:before {
-          color: #65acfe;
+          color: $c-blue-light;
           font-size: 53px;
         }
       }
@@ -206,7 +206,7 @@
       margin-top: -0.4rem;
       .MuiButtonBase-root {
         border-radius: 0.4rem;
-        background-color: #65acfe;
+        background-color: $c-blue-light;
         color: $c-white;
         width: 11rem;
         height: 2rem;

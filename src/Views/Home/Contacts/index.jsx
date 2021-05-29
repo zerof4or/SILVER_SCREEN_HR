@@ -1,4 +1,4 @@
-export * from './Employee';
+export * from './EmployeeContacts';
 export * from './Courses';
 export * from './LeavePolicy';
 export * from './Refferral';

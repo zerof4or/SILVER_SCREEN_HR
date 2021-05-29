@@ -44,7 +44,7 @@
       .card-button {
         .MuiButtonBase-root {
           border-radius: 0.4rem;
-          background-color: #65acfe;
+          background-color: $c-blue-light;
           color: $c-white;
           width: 15rem;
           height: 2rem;
@@ -144,7 +144,7 @@
       margin-top: -0.4rem;
       .MuiButtonBase-root {
         border-radius: 0.4rem;
-        background-color: #65acfe;
+        background-color: $c-blue-light;
         color: $c-white;
         width: 7rem;
         height: 2rem;

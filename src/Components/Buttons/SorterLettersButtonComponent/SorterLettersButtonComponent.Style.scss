@@ -1,0 +1,86 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.SorterLettersButtonComponent-wrapper {
+  position: relative;
+  display: inline-flex;
+  .Button-root-1 {
+    .MuiButtonBase-root {
+      font-weight: 100;
+      background-color: $c-Basic;
+      color: $c-primary;
+      min-width: 3rem;
+      min-height: 2rem;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      @include rtl {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      text-transform: capitalize;
+      &.is-active {
+        background-color: $c-gray-primary;
+        color: #ffffff;
+        font-weight: 900;
+      }
+    }
+  }
+  .Button-root-2 {
+    .MuiButtonBase-root {
+      font-weight: 100;
+      background-color: $c-Basic;
+      color: $c-primary;
+      min-width: 3rem;
+      min-height: 2rem;
+      border-radius: 0px;
+      text-transform: capitalize;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      -ms-border-radius: 0px;
+      -o-border-radius: 0px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      @include rtl {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      &.is-active {
+        background-color: $c-gray-primary;
+        color: #ffffff;
+        font-weight: 900;
+      }
+    }
+  }
+}
+.SorterLetter-Popap-Option {
+  width: 25rem;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .Option-Letter {
+    min-width: 1rem;
+    text-transform: capitalize;
+    min-height: 2rem;
+    font-size: 1rem;
+    font-size: 1rem;
+    margin: 0.3rem;
+    border-radius: 50px;
+  }
+  .text-item {
+    background-color: #f4f4f4;
+    width: 2rem;
+    border-radius: 50px;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -4,7 +4,7 @@
   justify-content: center;
   .no-result-text {
     display: flow-root;
-    padding: 150px;
+    padding: 80px;
     padding-left: inherit;
     max-width: 532px;
   }
@@ -26,6 +26,13 @@
   .no-search-img {
     position: relative;
     bottom: 30px;
-    height: 350px;
+    width: 33rem;
+    height: 30rem;
+  }
+  .no-search-img2 {
+    position: relative;
+    bottom: 30px;
+    width: 25rem;
+    height: 16rem;
   }
 }

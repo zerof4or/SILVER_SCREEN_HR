@@ -42,7 +42,7 @@
         padding-left: 8px;
         padding-top: 6px;
         .MuiRating-root {
-          color: #65acfe;
+          color: $c-blue-light;
         }
       }
     }
@@ -124,7 +124,7 @@
       .fisrt {
         .button {
           .MuiButtonBase-root {
-            background-color: #65acfe;
+            background-color: $c-blue-light;
             color: $c-white;
             border-radius: 7px;
             font-weight: bold;
@@ -185,7 +185,7 @@
           -moz-border-radius: 7px;
           -ms-border-radius: 7px;
           -o-border-radius: 7px;
-          color: #65acfe;
+          color: $c-blue-light;
         }
       }
     }
@@ -205,10 +205,10 @@
         padding-top: 6px;
         border-radius: 21px;
         .MuiRating-root {
-          color: #65acfe;
+          color: $c-blue-light;
         }
         .mdi:before {
-          color: #65acfe;
+          color:$c-blue-light;
           font-size: 53px;
         }
       }
@@ -304,7 +304,7 @@
       margin-top: -0.4rem;
       .MuiButtonBase-root {
         border-radius: 0.4rem;
-        background-color: #65acfe;
+        background-color: $c-blue-light;
         color: $c-white;
         width: 11rem;
         height: 2rem;

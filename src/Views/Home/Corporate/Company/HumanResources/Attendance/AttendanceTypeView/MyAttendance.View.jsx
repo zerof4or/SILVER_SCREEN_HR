@@ -5,7 +5,6 @@ import { ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
 import MyAttendance from '../../../../../../../StaticJOSN/MyAttendance.json';
 import MonthlyAttendance from '../../../../../../../StaticJOSN/MyMonthlyAttendance.json';
 import './../Attendance.Style.scss';
-import { Sorterletters } from '../../../../../../../Components/Sorterletters/Sorterletters.Component';
 import {
   DialogComponent,
   FilterButtonComponent,
@@ -18,6 +17,7 @@ import { COUNTRY_NAMES } from '../../../../../../../Enums/CountryNames';
 import { DubleButtonComponentComponent } from '../../../../../../../Components/Buttons/DubleButtonComponent';
 import { MyDayleAttendanceTabel } from './ComponentsViews/MyDayleAttendanceTabel';
 import { MyMonthlyAttendanceTabel } from './ComponentsViews/MyMonthlyAttendanceTabel';
+import { SorterLettersButtonComponent } from '../../../../../../../Components/Buttons/SorterLettersButtonComponent';
 const parentTranslationPath = 'MyAttendance';
 const translationPath = '';
 export const MyAttendanceView = () => {
@@ -151,7 +151,7 @@ export const MyAttendanceView = () => {
             />
           </div>
           <div className='mx-1'>
-            <Sorterletters />
+            <SorterLettersButtonComponent onViewChanged={(items) => console.log(items)} />
           </div>
         </div>
 

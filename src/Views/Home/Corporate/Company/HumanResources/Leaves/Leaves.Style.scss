@@ -8,7 +8,6 @@
       padding-left: 10px;
     }
   }
-
   .contact-img-with-text-wraper {
     display: flex;
     justify-content: flex-start;
@@ -82,7 +81,7 @@
     width: 100%;
     height: auto;
     min-height: 51px;
-    background-color: #f4f4f4;
+    background-color: $c-gray-lighter;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 3.3rem;
@@ -197,7 +196,7 @@
     font-weight: 900;
     text-decoration: underline;
     .mdi {
-      color: #65acfe;
+      color: $c-blue-light;
     }
   }
 }
@@ -258,7 +257,7 @@
     text-transform: capitalize;
   }
   .css-1f3wfo0-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    background-color: #000000;
+    background-color: $c-black;
     color: white;
     text-transform: capitalize;
   }

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { ButtonBase } from '@material-ui/core';
 import LeavePoliceData from '../../../../../../../StaticJOSN/LeavePoliceData.json';
 import '../Leaves.Style.scss';
-
 import { DialogComponent, Inputs } from '../../../../../../../Components';
 import { LeavePolice } from '../LeaveTabelView/LeavePoliceTabel';
 import { NoSearchResultComponent } from '../../../../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
