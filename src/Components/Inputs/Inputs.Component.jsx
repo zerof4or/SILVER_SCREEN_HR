@@ -152,7 +152,7 @@ export const Inputs = ({
               step,
               multiple,
               ...autoCompleteParams.inputProps,
-              autoComplete,
+              // autoComplete,
             }}
             InputProps={{
               ...autoCompleteParams.InputProps,

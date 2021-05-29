@@ -17,12 +17,13 @@ import { useTranslation } from 'react-i18next';
 import { TableFilterOperatorsEnum, TableFilterTypesEnum } from '../../Enums';
 // import { bottomBoxComponentUpdate } from '../../Helper';
 // import { useOnClickOutside } from '../../Hubs';
-import { useLocalStorage } from '../../Hooks';
+import { useEventListener, useLocalStorage } from '../../Hooks';
 // import { PaginationComponent } from '../PaginationComponent/PaginationComponent';
 // import { PopoverComponent } from '../Popover/Popover.Component';
 import { TableFilterComponent } from './Sections';
 import CheckboxesComponent from '../Checkboxes/Checkboxes.Component';
 import { getDataFromObject } from '../../Helpers/Middleware.Helper';
+import { ButtonBase } from '@material-ui/core';
 
 const Tables = memo(
   ({
@@ -43,7 +44,8 @@ const Tables = memo(
     // onPageIndexChanged,
     // onPageSizeChanged,
     dateFormat,
-    bodyRowId,
+    headerRowRef,
+    bodyRowRef,
     tableFilterClassWrapper,
     filterValues,
     onFilterValuesChanged,
@@ -65,11 +67,15 @@ const Tables = memo(
     rightCheckboxColumn,
     selectedRows,
     onSelectedRowsCountChanged,
+    isResizable,
+    isResizeCheckboxColumn,
   }) => {
     const { t } = useTranslation([parentTranslationPath, 'Shared']);
     const [reorderedHeader, setReorderedHeader] = useState(null);
     const [currentDragingColumn, setCurrentDragingColumn] = useState(null);
     const [currentDragOverIndex, setCurrentDragOverIndex] = useState(null);
+    const currentResizingColumnRef = useRef(null);
+    const startResizePointRef = useRef(null);
     const [localSelectedRows, setLocalSelectedRows] = useState([]);
     const [language] = useLocalStorage('localization', {
       currentLanguage: 'en',
@@ -227,6 +233,26 @@ const Tables = memo(
       },
       [currentDragingColumn, headerData, onHeaderColumnsReorder, reorderedHeader]
     );
+    const onResizeDownHandler = useCallback(
+      (idRef) => (event) => {
+        event.preventDefault();
+        if (!idRef) return;
+        currentResizingColumnRef.current = document.querySelector(idRef);
+        startResizePointRef.current = currentResizingColumnRef.current.offsetWidth - event.pageX;
+      },
+      []
+    );
+    const onResizeMoveHandler = useCallback((event) => {
+      if (!currentResizingColumnRef.current || startResizePointRef.current === null) return;
+      currentResizingColumnRef.current.style.width =
+        startResizePointRef.current + event.pageX + 'px';
+    }, []);
+    const onResizeUpHandler = useCallback(() => {
+      currentResizingColumnRef.current = null;
+      currentResizingColumnRef.current = null;
+    }, []);
+    useEventListener('mousemove', onResizeMoveHandler);
+    useEventListener('mouseup', onResizeUpHandler);
     useEffect(() => {
       if ((selectedRows || localSelectedRows) && onSelectedRowsCountChanged)
         onSelectedRowsCountChanged((selectedRows || localSelectedRows).length);
@@ -253,9 +279,10 @@ const Tables = memo(
                         getStickyStyle({ right: rightCheckboxColumn, left: leftCheckboxColumn })) ||
                       undefined
                     }
+                    id={`${headerRowRef}checkAllColumnId`}
                   >
                     <CheckboxesComponent
-                      idRef="tableSelectAllRef"
+                      idRef={`${headerRowRef}tableSelectAllRef`}
                       singleIndeterminate={
                         localSelectedRows &&
                         localSelectedRows.length > 0 &&
@@ -271,13 +298,21 @@ const Tables = memo(
                       isDisabled={isSelectAllDisabled}
                       onSelectedCheckboxChanged={onSelectAllCheckboxChangedHandler}
                     />
+                    {(isResizeCheckboxColumn || isResizable) && (
+                      <ButtonBase
+                        className="resize-btn"
+                        onMouseDown={onResizeDownHandler(`#${headerRowRef}checkAllColumnId`)}
+                      >
+                        <span />
+                      </ButtonBase>
+                    )}
                   </TableCell>
                 )}
                 {(reorderedHeader || headerData)
                   .filter((column) => !column.isHidden)
                   .map((item, index) => (
                     <TableCell
-                      key={`headerCell${index + 1}`}
+                      key={`${headerRowRef}${index + 1}`}
                       sortDirection={
                         item.isSortable && currentOrderById === item.id
                           ? currentOrderDirection
@@ -289,6 +324,7 @@ const Tables = memo(
                       onDragEnd={onDragEndColumnHandler}
                       onDrag={onDragColumnHandler(index)}
                       onDrop={onDropColumnHandler(index)}
+                      id={`${headerRowRef}${index + 1}`}
                       style={(item.isSticky && getStickyStyle(item)) || undefined}
                     >
                       {item.isSortable ? (
@@ -303,6 +339,14 @@ const Tables = memo(
                       ) : (
                         (item.headerComponent && item.headerComponent(item, index)) ||
                         t(`${translationPath}${item.label}`)
+                      )}
+                      {(item.isResize || isResizable) && (
+                        <ButtonBase
+                          className="resize-btn"
+                          onMouseDown={onResizeDownHandler(`#${headerRowRef}${index + 1}`)}
+                        >
+                          <span />
+                        </ButtonBase>
                       )}
                     </TableCell>
                   ))}
@@ -338,7 +382,7 @@ const Tables = memo(
                         selected={
                           (getIsSelectedRow && getIsSelectedRow(row, rowIndex)) || isItemSelected
                         }
-                        id={`${bodyRowId}${rowIndex * (activePage + 1)}`}
+                        id={`${bodyRowRef}${rowIndex * (activePage + 1)}`}
                         onClick={(event) => {
                           event.stopPropagation();
                           bodyRowClicked(rowIndex, row);
@@ -449,6 +493,7 @@ Tables.propTypes = {
   translationPath: PropTypes.string,
   parentTranslationPath: PropTypes.string,
   dateFormat: PropTypes.string,
+  isResizable: PropTypes.bool,
   itemsPerPage: PropTypes.number,
   isOriginalPagination: PropTypes.bool,
   // defaultActions: PropTypes.arrayOf(
@@ -485,6 +530,7 @@ Tables.propTypes = {
   getIsSelectedRow: PropTypes.func, // function to return bool
   getIsDisabledRow: PropTypes.func, // function to return bool
   isWithCheck: PropTypes.bool,
+  isResizeCheckboxColumn: PropTypes.bool,
   isStickyCheckboxColumn: PropTypes.bool,
   leftCheckboxColumn: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   rightCheckboxColumn: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -504,6 +550,7 @@ Tables.propTypes = {
       isSticky: PropTypes.bool,
       left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      isResizable: PropTypes.bool,
       headerComponent: PropTypes.oneOfType([PropTypes.elementType, PropTypes.func, PropTypes.node]),
     })
   ),
@@ -525,7 +572,8 @@ Tables.propTypes = {
   // onPageIndexChanged: PropTypes.func,
   // onPageSizeChanged: PropTypes.func,
   // externalPopoverComponent: PropTypes.func,
-  bodyRowId: PropTypes.string,
+  headerRowRef: PropTypes.string,
+  bodyRowRef: PropTypes.string,
   // filter
   tableFilterClassWrapper: PropTypes.string,
   filterValues: PropTypes.instanceOf(Object),
@@ -559,10 +607,12 @@ Tables.defaultProps = {
   onSelectedRowsCountChanged: undefined,
   getIsSelectedRow: undefined,
   getIsDisabledRow: undefined,
+  isResizable: false,
   isWithCheckAll: false,
   isWithCheck: false,
   isDisableCheckAll: false,
   isSelectAll: false,
+  isResizeCheckboxColumn: false,
   isStickyCheckboxColumn: false,
   leftCheckboxColumn: undefined,
   rightCheckboxColumn: undefined,
@@ -589,7 +639,8 @@ Tables.defaultProps = {
   focusedRowChanged: () => {},
   // onPageIndexChanged: undefined,
   // onPageSizeChanged: undefined,
-  bodyRowId: 'bodyRowRef',
+  headerRowRef: 'headerRowRef',
+  bodyRowRef: 'bodyRowRef',
   // filter
   tableFilterClassWrapper: '',
   filterData: undefined,

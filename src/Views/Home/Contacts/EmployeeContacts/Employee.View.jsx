@@ -10,20 +10,20 @@ import {
   Inputs,
   LocationButtonComponent,
   Spinner,
+  AutocompleteComponent
 } from '../../../../Components';
 import { NoSearchResultComponent } from '../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import DataView from '../../../../Components/DataView/DataView.Component';
 import { EmployeeCard } from './EmployeeTypeView/EmployeeCard.View';
 import PopoverComponent from '../../../../Components/Popover/Popover.Component';
 import { COUNTRY_NAMES } from '../../../../Enums/CountryNames';
-import { AutocompleteComponent } from '../../../../Components/AutocompleteComponent/AutocompleteComponent';
 import { SorterLettersButtonComponent } from '../../../../Components/Buttons/SorterLettersButtonComponent';
 const parentTranslationPath = 'EmployeeView';
 const translationPath = '';
 export const EmployeeView = () => {
   const { t } = useTranslation(parentTranslationPath);
   const [selectedEmployeesCount, setSelectedEmployeesCount] = useState(0);
-  const [disabledOpations, setdisabledOpations] = useState(0);
+  const [disabledOpations, setdisabledOpations] = useState(true);
   const [ViewType, setViewType] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [employees, setEmployees] = useState(ContactsDummyData);

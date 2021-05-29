@@ -179,6 +179,7 @@ export const EmployeeTabelView = ({
         isWithCheckAll
         isWithCheck
         uniqueKeyInput='id'
+        isResizable
         onSelectedRowsCountChanged={onSelectedRowsCountChanged}
       />
       <PopoverComponent

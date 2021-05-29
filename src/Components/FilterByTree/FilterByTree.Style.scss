@@ -1,0 +1,36 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.filter-by-tree-wrapper {
+  @include d-flex-column;
+  .filter-by-tree-item-wrapper {
+    @include d-flex-column;
+    margin-bottom: 0.25rem;
+    .filter-by-tree-btn {
+      @include d-flex-v-center-h-between;
+      white-space: nowrap;
+      padding: 0.25rem;
+      min-height: 32px;
+      .childrens-count-wrapper {
+        @include d-inline-flex-center;
+        color: $c-white;
+        background-color: $c-blue-light;
+        border-radius: 100%;
+        min-height: 24px;
+        min-width: 24px;
+        width: 24px;
+        height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .toggle-icon {
+        @include d-inline-flex-center;
+        padding: 0 0.25rem;
+        &::before {
+          transition: transform 0.25s linear;
+        }
+      }
+    }
+    .filter-by-tree-childrens-collapse-wrapper {
+      padding: 0 0.5rem;
+    }
+  }
+}

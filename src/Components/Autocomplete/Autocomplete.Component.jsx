@@ -1,11 +1,12 @@
 import React from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/core/Autocomplete';
 import Chip from '@material-ui/core/Chip';
 import { Button } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
-import { Inputs } from '../';
+import { Inputs } from '..';
+import './Autocomplete.Style.scss';
 
-function AutocompleteComponent({
+export const AutocompleteComponent = ({
   onChange,
   data,
   displayLabel,
@@ -61,7 +62,7 @@ function AutocompleteComponent({
   filterOptions,
   groupBy,
   inputEndAdornment,
-}) {
+}) => {
   return (
     <div
       className={`autocomplete-wrapper ${wrapperClasses} ${
@@ -69,14 +70,14 @@ function AutocompleteComponent({
       }${(multiple && ' is-multiple') || ''}`}
     >
       {!withoutSearchButton && (
-        <Button className='btns-icon theme-transparent mx-2' onClick={searchClicked}>
-          <span className='mdi mdi-magnify' />
+        <Button className="btns-icon theme-transparent mx-2" onClick={searchClicked}>
+          <span className="mdi mdi-magnify" />
         </Button>
       )}
       <Autocomplete
         multiple={multiple}
         disableClearable={disableClearable}
-        autoComplete='new-password'
+        // autoComplete='new-password'
         id={idRef}
         className={`autocomplete ${autocompleteClasses}`}
         options={data}
@@ -99,18 +100,18 @@ function AutocompleteComponent({
         getOptionDisabled={disabledOptions}
         disabled={isDisabled}
         filterOptions={filterOptions}
-        closeIcon={<span className={`${dropdownCloseIcon} dropdown-close-icon-wrapper`} />}
+        clearIcon={<span className={`${dropdownCloseIcon} dropdown-close-icon-wrapper`} />}
         popupIcon={<span className={`${dropdownIcon} dropdown-icon-wrapper`} />}
         renderTags={
           renderTags ||
           ((tagValue, getTagProps) =>
             (tagValues || tagValue).map((option, index) => (
-              // eslint-disable-next-line react/jsx-key
               <Chip
-                className='autocomplete-chip'
+                className="autocomplete-chip"
                 label={chipsLabel && chipsLabel(option, index)}
                 {...getTagProps({ index })}
                 disabled={chipsDisabled(option, index)}
+                key={`autocompleteChipRef${index + 1}`}
               />
             )))
         }
@@ -146,7 +147,7 @@ function AutocompleteComponent({
       />
     </div>
   );
-}
+};
 AutocompleteComponent.propTypes = {
   onChange: PropTypes.func.isRequired,
   data: PropTypes.instanceOf(Array).isRequired,
@@ -270,4 +271,3 @@ AutocompleteComponent.defaultProps = {
   inputThemeClass: undefined,
   filterOptions: undefined,
 };
-export { AutocompleteComponent };

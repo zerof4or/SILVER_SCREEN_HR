@@ -10,9 +10,9 @@ import {
   FilterButtonComponent,
   Inputs,
   LocationButtonComponent,
+  AutocompleteComponent
 } from '../../../../../../../Components';
 import { NoSearchResultComponent } from '../../../../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
-import { AutocompleteComponent } from '../../../../../../../Components/AutocompleteComponent/AutocompleteComponent';
 import { COUNTRY_NAMES } from '../../../../../../../Enums/CountryNames';
 import { DubleButtonComponentComponent } from '../../../../../../../Components/Buttons/DubleButtonComponent';
 import { MyDayleAttendanceTabel } from './ComponentsViews/MyDayleAttendanceTabel';

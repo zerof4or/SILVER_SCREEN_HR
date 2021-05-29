@@ -37,6 +37,7 @@
   }
   .side-extended-body-wrapper {
     transition: opacity 0.3s linear;
+    overflow: hidden;
   }
   &.is-open-side-extended {
     width: 265px;

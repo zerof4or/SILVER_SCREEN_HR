@@ -11,8 +11,11 @@ const HomeLayout = () => {
   return (
     <>
       <HeaderComponent />
-      <div className="container-wrapper" style={{ minHeight: `calc(100vh - ${52.8}px)` }}>
-        <SideMenuComponent isOpenSideExtended={isOpenSideExtended} onChangeSideExtended={onChangeSideExtended} />
+      <div className="container-wrapper" style={{ minHeight: '100vh' }}>
+        <SideMenuComponent
+          isOpenSideExtended={isOpenSideExtended}
+          onChangeSideExtended={onChangeSideExtended}
+        />
         <SideExtendedComponent
           isOpenSideExtended={isOpenSideExtended}
           onChangeSideExtended={onChangeSideExtended}
