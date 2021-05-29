@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useCallback, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import './SorterLettersButtonComponent.Style.scss';
@@ -27,7 +26,6 @@ export const SorterLettersButtonComponent = ({
       setActiveButton(1);
     }
   };
-
   const actionsPopoverClickedHandler = (event) => {
     setActionsPopover(event.currentTarget);
   };
@@ -67,14 +65,18 @@ export const SorterLettersButtonComponent = ({
           handleClose={actionsPopoverCloseHandler}
           component={
             <div className='SorterLetter-Popap-Option'>
-              {letters.map((item, index) => (
-                <ButtonBase
-                  className='Option-Letter'
-                  key={`OptionKey${index + 1}`}
-                  onClick={() => ClickButtonListOpation(item)}>
-                  <div className='text-item'>{item}</div>
-                </ButtonBase>
-              ))}
+              {letters &&
+                letters.map((item, index) => (
+                  <ButtonBase
+                    className='Option-Letter'
+                    key={`OptionLetterKey${index + 1}`}
+                    onClick={() => ClickButtonListOpation(item)}>
+                    <div
+                      className={item && item !== Letters ? 'text-item' : 'text-item is-selected'}>
+                      {item && item}
+                    </div>
+                  </ButtonBase>
+                ))}
             </div>
           }
         />
@@ -89,18 +91,11 @@ SorterLettersButtonComponent.propTypes = {
   parentTranslationPath: PropTypes.string,
   translationPathForData: PropTypes.string,
   MainTitle: PropTypes.string,
-  Titletriple: PropTypes.string,
-  Titleone: PropTypes.string,
-  triple: PropTypes.bool,
 };
 SorterLettersButtonComponent.defaultProps = {
   translationPath: '',
-  parentTranslationPath: '',
+  parentTranslationPath: 'Shared',
   translationPathForData: undefined,
   onViewChanged: null,
   MainTitle: 'All',
-  Titleone: 'Tow',
-  Titletriple: 'triple',
-  triple: false,
 };
-//  {t(`${translationPath}${"Titletow"}`)}

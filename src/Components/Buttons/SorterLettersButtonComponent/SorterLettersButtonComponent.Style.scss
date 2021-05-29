@@ -25,7 +25,7 @@
       text-transform: capitalize;
       &.is-active {
         background-color: $c-gray-primary;
-        color: #ffffff;
+        color: $c-white;
         font-weight: 900;
       }
     }
@@ -53,7 +53,7 @@
       }
       &.is-active {
         background-color: $c-gray-primary;
-        color: #ffffff;
+        color: $c-white;
         font-weight: 900;
       }
     }
@@ -64,7 +64,6 @@
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-
   .Option-Letter {
     min-width: 1rem;
     text-transform: capitalize;
@@ -75,12 +74,16 @@
     border-radius: 50px;
   }
   .text-item {
-    background-color: #f4f4f4;
+    background-color: $c-gray-lighter;
     width: 2rem;
     border-radius: 50px;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    &.is-selected {
+      background-color: $c-primary;
+      color: $c-gray-lighter;
+    }
   }
 }
