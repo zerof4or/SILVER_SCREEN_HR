@@ -1,6 +1,6 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
-.EmployeeHumanResourcesView {
+.ShiftView {
   .DataView-bbt {
     padding-right: 10px;
     @include rtl {
@@ -9,11 +9,6 @@
     }
   }
 
-  .table-responsive .MuiTableContainer-root {
-    max-height: calc(100vh - 235px);
-    overflow-y: auto;
-    border-radius: 0.5rem 0.5rem 0 0;
-  }
   .contact-img-with-text-wraper {
     display: flex;
     justify-content: flex-start;
@@ -21,7 +16,7 @@
     align-items: center;
   }
   .img-contact-tabel {
-    background-color: $c-black;
+    background-color: black;
     min-width: 35px;
     height: 40px;
     width: 39px;
@@ -29,7 +24,6 @@
     border-radius: 10px;
     margin: 0px 10px 0px 10px;
     border: 1px solid #8ee58e;
-    
   }
   .action-contener {
     @include d-flex;
@@ -93,7 +87,8 @@
     background-color: #f4f4f4;
     padding-left: 1rem;
     padding-right: 1rem;
-    // padding-top: 3.7rem;
+    padding-top: 3.3rem;
+    padding-bottom: 0.5rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -159,7 +154,7 @@
     }
   }
 
-  .EmployeeTabelView {
+  .AttendanceView {
     .Option-wraper {
       .css-10d1a0h-MuiButtonBase-root {
         border-radius: 14px;
@@ -172,8 +167,18 @@
     }
   }
 }
-.Employee-wraper {
-}
+
+
+
+
+
+
+
+
+
+
+
+
 .Popap-Option {
   display: inline-block;
   width: 100%;
@@ -273,4 +278,37 @@
   .css-jpln7h-MuiTabs-scroller {
     border-radius: 12px;
   }
+}
+.Attendance-Status-P {
+  background-color: #deffec;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #21c765;
+  color: #24c868;
+}
+.Attendance-Status-A {
+  background-color: #ffdedd;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #fa0001;
+  color: #fa0001;
+}
+.Attendance-Status-L {
+  background-color: #ffedb2;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 1px solid #ffa800;
+  color: #ffa800;
 }

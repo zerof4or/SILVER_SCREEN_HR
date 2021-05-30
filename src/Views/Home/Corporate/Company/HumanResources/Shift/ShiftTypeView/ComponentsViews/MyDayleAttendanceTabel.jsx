@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
-import { Inputs, Tables } from '../../../../../../../../Components';
+import { Inputs, Spinner, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
-export const EmployeeTabelView = ({
+export const MyDayleAttendanceTabel = ({
   data,
   parentTranslationPath,
   translationPath,
@@ -16,21 +16,19 @@ export const EmployeeTabelView = ({
   const { t } = useTranslation(parentTranslationPath);
   const [ActionsPopover, setActionsPopover] = useState(null);
   const [ColumnsPopover, setColumnsPopover] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [isLoading, setisLoading] = useState(true);
   const [EditPopover, setEditPopover] = useState(null);
   const [EditValue, setEditValue] = useState('Photographer');
   const tableActionClicked = useCallback((actionEnum, item) => {
     // if (actionEnum === TableActions.delete.key) setActiveItem(item);         setFilter
     // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
   }, []);
-
   const EditPopoverCloseHandler = () => {
     setEditPopover(null);
   };
   const actionsPopoverClickedHandler = (event) => {
     setActionsPopover(event.currentTarget);
-  };
-  const EditPopoverClickedHandler = (event) => {
-    setEditPopover(event.currentTarget);
   };
 
   const viewColumnsPopoverClickedHandler = (event) => {
@@ -62,13 +60,20 @@ export const EmployeeTabelView = ({
   };
   const DataTable = [
     {
+      id: 0,
+      isSortable: true,
+      label: t(`${translationPath}id`),
+      input: 'id',
+      isDraggable: true,
+    },
+    {
       id: 1,
       isSortable: true,
-      label: t(`${translationPath}Name`),
+      label: t(`${translationPath}Employee Name`),
       component: (item) => (
-        <div className="contact-img-with-text-wraper">
-          <img src={pickRandom(AVATARS)} className="img-contact-tabel" alt={'d'} />
-          <div>{(item && item.name) || 'N/A'}</div>
+        <div className='contact-img-with-text-wraper'>
+          <img src={pickRandom(AVATARS)} className='img-contact-tabel' alt={'d'} />
+          <div>{(item && item.Employeename) || 'N/A'}</div>
         </div>
       ),
       isSticky: true,
@@ -77,33 +82,30 @@ export const EmployeeTabelView = ({
     {
       id: 2,
       isSortable: true,
-      label: t(`${translationPath}Designation`),
+      label: t(`${translationPath}check`),
       component: (item) => (
-        <span>
-          {(item && item.designation) || 'N/A'}
-          <ButtonBase
-            size="small"
-            aria-label="Edit"
-            className=""
-            onClick={EditPopoverClickedHandler}
-          >
-            <span className="mdi mdi-pencil-outline Edit" title={t('Edit')} />
-          </ButtonBase>
-        </span>
+        <div
+          className={
+            (item.check === 'A' && 'Attendance-Status-A') ||
+            (item.check === 'P' && 'Attendance-Status-P') ||
+            (item.check === 'L' && 'Attendance-Status-L')
+          }>
+          {(item && item.check) || 'N/A'}
+        </div>
       ),
       isDraggable: true,
     },
     {
       id: 3,
       isSortable: true,
-      label: t(`${translationPath}Email`),
+      label: t(`${translationPath}shift`),
       component: (item) => (
         <span>
           {(item &&
-            item.email &&
-            item.email.map((item, index) => (
-              <span key={`TableColumnEmailKey${index + 1}`}>
-                <div>{item.emailaddress1}</div> <div>{(item && item.emailaddress2) || ''}</div>
+            item.shift &&
+            item.shift.map((item, index) => (
+              <span key={`TableColumnshiftKey${index + 1}`}>
+                <div>{item.Checkin}</div> <div>{(item && item.Checkout) || ''}</div>
               </span>
             ))) ||
             'N/A'}
@@ -114,56 +116,85 @@ export const EmployeeTabelView = ({
     {
       id: 4,
       isSortable: true,
-      label: t(`${translationPath}Phone`),
+      label: t(`${translationPath}Checkin`),
+      input: 'Checkin',
       isDraggable: true,
-      component: (item) => (
-        <span>
-          {(item &&
-            item.Phone &&
-            item.Phone.map((item, index) => (
-              <span key={`TableColumnPhoneKey${index}`}>
-                <div>{item.Phoneno}</div> <div>{(item && item.Phoneno2) || ''}</div>
-              </span>
-            ))) ||
-            'N/A'}
-        </span>
-      ),
     },
     {
       id: 5,
       isSortable: true,
-      label: t(`${translationPath}Group`),
-      input: 'Group',
+      label: t(`${translationPath}Checkout`),
+      input: 'Checkout',
+      isDraggable: true,
+    },
+    {
+      id: 6,
+      isSortable: true,
+      label: t(`${translationPath}Workinghours`),
+      input: 'Workinghours',
+      isDraggable: true,
+    },
+    {
+      id: 7,
+      isSortable: true,
+      label: t(`${translationPath}LateArrival`),
+      input: 'LateArrival',
+      isDraggable: true,
+    },
+    {
+      id: 8,
+      isSortable: true,
+      label: t(`${translationPath}Earlydeparture`),
+      input: 'Earlydeparture',
+      isDraggable: true,
+    },
+    {
+      id: 9,
+      isSortable: true,
+      label: t(`${translationPath}overtime`),
+      input: 'overtime',
+      isDraggable: true,
+    },
+    {
+      id: 10,
+      isSortable: true,
+      label: t(`${translationPath}overtimeApproved`),
+      input: 'overtimeApproved',
       isDraggable: true,
     },
     {
       id: 13,
       isSticky: true,
       right: 0,
-      cellClasses: 'table-cellOpation is-with-line',
+      cellClasses: 'table-cellOpation',
       headerComponent: (item) => (
         <>
           <div>
             <ButtonBase onClick={viewColumnsPopoverClickedHandler}>
-              <span className="mdi mdi-cog  cog-icon" />,
+              <span className='mdi mdi-cog  cog-icon' />,
             </ButtonBase>
           </div>
         </>
       ),
       component: (item) => (
         <>
-          <div className="Option-wraper">
-            <ButtonBase onClick={actionsPopoverClickedHandler} className="dots-vertical">
-              <span className="mdi mdi-dots-vertical" />
+          <div className='Option-wraper'>
+            <ButtonBase onClick={actionsPopoverClickedHandler} className='dots-vertical'>
+              <span className='mdi mdi-dots-vertical' />
             </ButtonBase>
           </div>
         </>
       ),
     },
   ];
-
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false);
+    }, 1500);
+  }, []);
   return (
-    <div className="EmployeeHumanResourcesView w-100">
+    <div className='EmployeeTabelView w-100'>
+      <Spinner isActive={isLoading} isAbsolute />
       <Tables
         data={(data && data.result) || []}
         headerData={DataTable}
@@ -176,26 +207,22 @@ export const EmployeeTabelView = ({
         totalItems={(data && data.totalCount) || 0}
         itemsPerPage={filter.pageSize}
         activePage={filter.pageIndex}
-        isWithCheckAll
-        isWithCheck
         uniqueKeyInput='id'
         isResizable
-        onSelectedRowsCountChanged={onSelectedRowsCountChanged}
       />
       <PopoverComponent
-        idRef="headerActionsPopovercogRef"
+        idRef='headerActionsPopovercogRef'
         attachedWith={ActionsPopover}
-        popoverClasses=""
+        popoverClasses=''
         header-actions-popover-wrapper
         handleClose={actionsPopoverCloseHandler}
         component={
-          <div className="Popap-Option">
+          <div className='Popap-Option'>
             {TableListOpationActions.map((item, index) => (
               <ButtonBase
-                className="Option"
+                className='Option'
                 key={`OptionKey${index + 1}`}
-                onClick={() => ClickButtonListOpation(item.key)}
-              >
+                onClick={() => ClickButtonListOpation(item.key)}>
                 <div className={item.icon} />
                 <div>{item.value}</div>
               </ButtonBase>
@@ -204,22 +231,22 @@ export const EmployeeTabelView = ({
         }
       />
       <PopoverComponent
-        idRef="ColumnPopoverRef"
+        idRef='ColumnPopoverRef'
         attachedWith={ColumnsPopover}
-        popoverClasses=""
+        popoverClasses=''
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className="Popap-Option-menu">
-            <div className="p-2"> Choose columns </div>
-            <div className="fiter-title">Visible columns </div>
+          <div className='Popap-Option-menu'>
+            <div className='p-2'> Choose columns </div>
+            <div className='fiter-title'>Visible columns </div>
             {DataTable.map((item, index) =>
               index !== 5 ? (
-                <div className="Column-Checkbox" key={`ColumnKey${index + 1}`}>
+                <div className='Column-Checkbox' key={`ColumnKey${index + 1}`}>
                   <div>
                     <Checkbox
                       defaultChecked
-                      color="primary"
+                      color='primary'
                       inputProps={{ 'aria-label': 'secondary checkbox' }}
                     />
                     {item && item.label}
@@ -229,21 +256,21 @@ export const EmployeeTabelView = ({
                 ''
               )
             )}
-            <div className="fiter-title">Hidden columns</div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='fiter-title'>Hidden columns</div>
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Jop
             </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Organization
             </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+            <div className='Column-Checkbox'>
+              <Checkbox color='primary' inputProps={{ 'aria-label': 'secondary checkbox' }} />
               Address
             </div>
-            <div className="d-inline-flex-column-center-v w-100">
-              <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
+            <div className='d-inline-flex-column-center-v w-100'>
+              <Button variant='contained' color='primary' onClick={viewColumnsPopoverCloseHandler}>
                 Save
               </Button>
             </div>
@@ -251,15 +278,15 @@ export const EmployeeTabelView = ({
         }
       />
       <PopoverComponent
-        idRef="EditPopoverRef"
+        idRef='EditPopoverRef'
         attachedWith={EditPopover}
-        popoverClasses="Edit-actions-popover-wrapper"
+        popoverClasses='Edit-actions-popover-wrapper'
         handleClose={EditPopoverCloseHandler}
         component={
           <div>
             <Inputs
-              idRef="EditInputsRef"
-              wrapperClasses="theme-underline"
+              idRef='EditInputsRef'
+              wrapperClasses='theme-underline'
               label={t(`${translationPath}Designation`)}
               inputPlaceholder={t(`${translationPath}Enter value`)}
               value={EditValue}
@@ -271,7 +298,7 @@ export const EmployeeTabelView = ({
     </div>
   );
 };
-EmployeeTabelView.propTypes = {
+MyDayleAttendanceTabel.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -279,7 +306,7 @@ EmployeeTabelView.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-EmployeeTabelView.defaultProps = {
+MyDayleAttendanceTabel.defaultProps = {
   data: {
     result: [],
     totalCount: 0,

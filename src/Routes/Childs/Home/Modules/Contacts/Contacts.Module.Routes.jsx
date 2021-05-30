@@ -4,7 +4,6 @@ import {
   LeavePolicyView,
   RefferralView,
   RequestView,
-  ShiftView,
 } from '../../../../../Views';
 
 export const ContactsModuleRoutes = [
@@ -52,16 +51,6 @@ export const ContactsModuleRoutes = [
     path: '/request',
     name: 'RequestView:request',
     component: RequestView,
-    layout: '/home/contacts',
-    default: false,
-    isRoute: true,
-    authorize: true,
-    isExact: false,
-  },
-  {
-    path: '/shift',
-    name: 'ShiftView:shift',
-    component: ShiftView,
     layout: '/home/contacts',
     default: false,
     isRoute: true,

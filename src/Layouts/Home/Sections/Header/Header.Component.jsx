@@ -97,52 +97,50 @@ export const HeaderComponent = () => {
   }, [colorstates]);
 
   return (
-    <div className="header-wrapper">
-      <div className="section header-logo-wrapper">
-        <img src={LogoImg} alt={t(`${translationPath}silver-screen`)} className="img-logo" />
+    <div className='header-wrapper'>
+      <div className='section header-logo-wrapper'>
+        <img src={LogoImg} alt={t(`${translationPath}silver-screen`)} className='img-logo' />
         {/* <span role='img' aria-label={t('logo')} className='img-logo' /> */}
       </div>
-      <div className="section middle-section-wrapper">
+      <div className='section middle-section-wrapper'>
         <HeaderMenuComponent />
         <ButtonBase
-          className="btns-icon theme-transparent header-menu-open-btn"
-          onClick={menuPopoverClickedHandler}
-        >
-          <span className="mdi mdi-menu" />
+          className='btns-icon theme-transparent header-menu-open-btn'
+          onClick={menuPopoverClickedHandler}>
+          <span className='mdi mdi-menu' />
         </ButtonBase>
         <PopoverComponent
-          idRef="headerMenuPopoverRef"
+          idRef='headerMenuPopoverRef'
           attachedWith={headerMenuPopover}
-          popoverClasses="header-menu-popover-wrapper"
+          popoverClasses='header-menu-popover-wrapper'
           handleClose={menuPopoverCloseHandler}
           component={<HeaderMenuComponent />}
         />
-        <ButtonBase className="btns-icon theme-transparent search-btn">
-          <span className="mdi mdi-magnify" />
+        <ButtonBase className='btns-icon theme-transparent search-btn'>
+          <span className='mdi mdi-magnify' />
         </ButtonBase>
       </div>
 
-      <div className="section last-section-wrapper" ref={statesRef}>
+      <div className='section last-section-wrapper' ref={statesRef}>
         <HeaderActionsComponent AllClose={AllClose} CloseCollapse={isopenCollapse} />
         <ButtonBase
           className={`btns-icon theme-transparent btns-header-actions${
             (headerActionsPopover && ' is-active') || ''
           }`}
-          onClick={actionsPopoverClickedHandler}
-        >
-          <span className="mdi mdi-dots-vertical" />
+          onClick={actionsPopoverClickedHandler}>
+          <span className='mdi mdi-dots-vertical' />
         </ButtonBase>
         <PopoverComponent
-          idRef="headerActionsPopoverRef"
+          idRef='headerActionsPopoverRef'
           attachedWith={headerActionsPopover}
-          popoverClasses="header-actions-popover-wrapper"
+          popoverClasses='header-actions-popover-wrapper'
           handleClose={actionsPopoverCloseHandler}
           component={<HeaderActionsComponent AllClose={AllClose} />}
         />
-        <div className="p-relative" ref={userProfileRef}>
-          <div className="btns theme-transparent user-button-wrapper">
+        <div className='p-relative' ref={userProfileRef}>
+          <div className='btns theme-transparent user-button-wrapper'>
             {loginResponse && loginResponse.fullName && (!imageReq || !imageReq.profileImg) && (
-              <Avatar className="avatars-wrapper theme-small">
+              <Avatar className='avatars-wrapper theme-small'>
                 {loginResponse.fullName.match(FirstLettersExp).join('')}
               </Avatar>
             )}
@@ -152,14 +150,14 @@ export const HeaderComponent = () => {
                   src={employeeImg100} //{getDownloadableLink(imageReq.profileImg)}
                   alt={t('user-image')}
                   style={{ border: `2.3px solid ${statesmod || ' rgb(75, 214, 75'}` }}
-                  className="user-image"
+                  className='user-image'
                 />
               </ButtonBase>
             )}
             {
               //imageReq && imageReq.fullName && imageReq.fullName||
-              <div className="user-name-wrapper">
-                <span className="user-name-text">{'Abdel Azeez'} </span>
+              <div className='user-name-wrapper'>
+                <span className='user-name-text'>{'Abdel Azeez'} </span>
                 <ButtonBase
                   className={
                     isOpenMenu.userProfile === true
@@ -175,14 +173,14 @@ export const HeaderComponent = () => {
             isOpen={isOpenMenu.userProfile}
             top={60}
             isAbsolute
-            classes="user-menu-collapse-wrapper"
+            classes='user-menu-collapse-wrapper'
             component={<UserMenuComponent logout={logoutClicked} />}
           />
           <CollapseComponent
             isOpen={isOpenMenu.status}
             top={60}
             isAbsolute
-            classes="status-menu-collapse-wrapper"
+            classes='status-menu-collapse-wrapper'
             component={<StatusMenuComponent Clicked={StatusColorClicked} />}
           />
         </div>

@@ -62,7 +62,7 @@ export const TeamView = () => {
               <div className='card-container' key={`teamViewCardKey${index + 1}`}>
                 <div className='card-header'>
                   <div className='card-header-title'>
-                    <span className='text-title'>Team Team% (Team)</span>
+                    <span className='text-title'>Team (Team)</span>
                     <Fab size='small' aria-label='Edit' className='Edit'>
                       <span className='mdi mdi-square-edit-outline' />
                     </Fab>

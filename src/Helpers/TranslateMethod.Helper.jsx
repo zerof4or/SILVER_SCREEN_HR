@@ -28,8 +28,8 @@ import LeavePolicyViewEn from '../Views/Home/Contacts/LeavePolicy/I18n/en.json';
 import LeavePolicyViewAr from '../Views/Home/Contacts/LeavePolicy/I18n/ar.json';
 import RequestViewEn from '../Views/Home/Contacts/Request/I18n/en.json';
 import RequestViewAr from '../Views/Home/Contacts/Request/I18n/ar.json';
-import ShiftViewEn from '../Views/Home/Contacts/Shift/I18n/en.json';
-import ShiftViewAr from '../Views/Home/Contacts/Shift/I18n/ar.json';
+import ShiftViewEn from '../Views/Home/Corporate/Company/HumanResources/Shift/I18n/en.json';
+import ShiftViewAr from '../Views/Home/Corporate/Company/HumanResources/Shift/I18n/ar.json';
 // End Contacts Module Views
 // End Home Views
 
@@ -90,7 +90,7 @@ export const languageChange = (currentLanguage) => {
   const isRtl = currentLanguage === 'ar';
   const direction = currentLanguage === 'ar' ? 'rtl' : '';
   localStorage.setItem('localization', JSON.stringify({ currentLanguage, isRtl }));
-  document.body.classList.remove('rtl')
+  document.body.classList.remove('rtl');
   document.body.classList.add(direction);
   document.body.setAttribute('dir', direction);
   document.documentElement.lang = currentLanguage;
