@@ -1,6 +1,6 @@
 .btns.MuiButtonBase-root {
   border-radius: 30px;
-  min-height: 26px;
+  min-height: 34px;
   line-height: 100%;
   min-width: 100px;
   margin: 0 0.25rem;
@@ -24,6 +24,12 @@
         color: $c-black-dark;
       }
     }
+  }
+  &.theme-big {
+    color: $c-gray-primary;
+    min-height: 35px;
+    border-radius: 9px;
+    min-width: 130px;
   }
 
   &.theme-outline {

@@ -38,7 +38,7 @@ export const HeaderMenuComponent = () => {
     <div className='header-menu-wrapper'>
       {HomeMenu.map((item, index) => (
         <ButtonBase
-          className={`btns theme-transparent header-menu-btn${
+          className={`btns theme-transparent header-menu-btn theme-big${
             (getIsActiveMenuBtn(item) && ' is-active') || ''
           }`}
           key={`headerMenuBtnsKey${index}`}
