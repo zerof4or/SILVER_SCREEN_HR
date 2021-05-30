@@ -32,11 +32,6 @@ export const AllPagesView = () => {
       path: '/home/corporate/company/human-resources/RequestView',
     },
     {
-      key: 5,
-      value: 'Team  View',
-      path: '/home/corporate/company/human-resources/TeamView',
-    },
-    {
       key: 7,
       value: 'Attendance Check In View  ',
       path: '/home/corporate/company/human-resources/AttendanceCheckInView',

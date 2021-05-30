@@ -5,7 +5,6 @@ import {
   RefferralView,
   RequestView,
   ShiftView,
-  TeamView,
 } from '../../../../../Views';
 
 export const ContactsModuleRoutes = [
@@ -63,16 +62,6 @@ export const ContactsModuleRoutes = [
     path: '/shift',
     name: 'ShiftView:shift',
     component: ShiftView,
-    layout: '/home/contacts',
-    default: false,
-    isRoute: true,
-    authorize: true,
-    isExact: false,
-  },
-  {
-    path: '/team',
-    name: 'TeamView:team',
-    component: TeamView,
     layout: '/home/contacts',
     default: false,
     isRoute: true,

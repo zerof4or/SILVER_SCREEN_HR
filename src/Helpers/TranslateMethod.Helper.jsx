@@ -16,8 +16,8 @@ import HeaderViewAr from '../Layouts/Home/Sections/Header/I18n/ar.json';
 
 // Start Home Views
 // Start Contacts Module Views
-import TeamViewEn from '../Views/Home/Contacts/Team/I18n/en.json';
-import TeamViewAr from '../Views/Home/Contacts/Team/I18n/ar.json';
+import TeamViewEn from '../Views/Home/Corporate/Company/HumanResources/Employee/Team/I18n/en.json';
+import TeamViewAr from '../Views/Home/Corporate/Company/HumanResources/Employee/Team/I18n/ar.json';
 import EmployeeViewEn from '../Views/Home/Contacts/EmployeeContacts/I18n/en.json';
 import EmployeeViewAr from '../Views/Home/Contacts/EmployeeContacts/I18n/ar.json';
 import CoursesViewEn from '../Views/Home/Contacts/Courses/I18n/en.json';

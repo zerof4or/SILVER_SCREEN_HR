@@ -1,0 +1,271 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+
+.EmployeeView {
+  .DataView-bbt {
+    padding-right: 10px;
+    @include rtl {
+      padding-right: 0px;
+      padding-left: 10px;
+    }
+  }
+
+  .contact-img-with-text-wraper {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+  }
+  .img-contact-tabel {
+    background-color: $c-black;
+    min-width: 35px;
+    height: 40px;
+    width: 39px;
+    padding: 2px;
+    border-radius: 10px;
+    margin: 0px 10px 0px 10px;
+    border: 1px solid #8ee58e;
+    
+  }
+  .action-contener {
+    @include d-flex;
+    padding: 0.4rem;
+    border-bottom: 1px solid #c7c7cc;
+  }
+  .Location-auto-wraper {
+    width: 330px;
+  }
+  .total-title-wraper {
+    padding: 8px;
+    font-weight: 600;
+    margin-left: 6px;
+    @include rtl {
+      margin-left: 0px;
+      margin-right: 6px;
+    }
+    .total-title {
+    }
+
+    .total-num {
+    }
+  }
+  .cog-icon {
+    padding-left: 7px;
+    @include rtl {
+      padding-left: 0px;
+      padding-right: 7px;
+    }
+  }
+
+  .action-tabel-wraper {
+    .space {
+      padding-left: 4px;
+
+      @include rtl {
+        padding-left: 0px;
+        padding-right: 4px;
+      }
+    }
+
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    @include laptops-max {
+      justify-content: center;
+    }
+
+    @include phones-max {
+      justify-content: center;
+    }
+  }
+  .space-right {
+    padding-right: 10px;
+  }
+
+  .Sub-InnerHeader {
+    width: 100%;
+    height: auto;
+    min-height: 51px;
+    background-color: #f4f4f4;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    // padding-top: 3.7rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .attendance-check-search {
+      display: flex;
+      align-items: center;
+      .leave-button {
+        margin-top: -0.4rem;
+        .MuiButtonBase-root {
+          border-radius: 0.4rem;
+          background-color: $c-blue;
+          color: $c-white;
+          width: 10rem;
+          height: 2rem;
+        }
+      }
+    }
+    .attendance-check-filter {
+      display: flex;
+      align-items: center;
+      .MuiButtonBase-root {
+        margin-right: 1rem;
+        border-radius: 0.4rem;
+        font-weight: 900;
+        @include rtl {
+          margin-right: 0;
+          margin-left: 1rem;
+        }
+      }
+      .dots-vertical {
+        .MuiButtonBase-root {
+          background-color: $c-primary;
+          color: $c-white;
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+      .filter-button {
+        .MuiButtonBase-root {
+          background-color: $c-header-button;
+          color: $c-primary;
+          width: 7rem;
+          height: 2rem;
+        }
+        .mdi {
+          margin-left: -0.5rem;
+          margin-right: 0.5rem;
+          @include rtl {
+            margin-left: 0.5rem;
+            margin-right: -0.5rem;
+          }
+        }
+      }
+      .location-button {
+        .MuiButtonBase-root {
+          background-color: $c-header-button;
+          color: $c-primary;
+          width: 7rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+
+  .EmployeeTabelView {
+    .Option-wraper {
+      .css-10d1a0h-MuiButtonBase-root {
+        border-radius: 14px;
+        background-color: #d2d0d0;
+        width: 35px;
+        display: flex;
+        height: 35px;
+        justify-content: center;
+      }
+    }
+  }
+}
+.Employee-wraper {
+}
+.Popap-Option {
+  display: inline-block;
+  width: 100%;
+  max-width: 156px;
+  justify-content: center;
+  font-size: 15px;
+  padding: 0.3rem;
+  margin: 0px;
+  .Option {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 8px;
+    justify-content: space-between;
+  }
+
+  .Option:hover {
+    background-color: $c-Basic !important;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    font-weight: 900;
+    text-decoration: underline;
+    .mdi {
+      color: $c-blue-light;
+    }
+  }
+}
+.Popover-View {
+  .view-item {
+    display: flex;
+
+    .MuiButtonBase-root {
+      width: 100%;
+      color: rgb(0, 0, 0);
+      font-weight: 300;
+      text-transform: capitalize;
+      letter-spacing: 0px;
+    }
+    .item-wraper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
+.fiter-title {
+  background: #e2e2e2;
+  font-size: 12px;
+  font-weight: 600;
+}
+.Column-Checkbox {
+  font-size: 13px;
+}
+.dots-vertical {
+  .MuiButtonBase-root {
+    background-color: $c-primary;
+    color: $c-white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+  }
+}
+.filter-button {
+  .MuiButtonBase-root {
+    font-weight: 900;
+    background-color: $c-header-button;
+    color: $c-primary;
+    width: 7rem;
+    height: 2rem;
+    border-radius: 7px;
+  }
+}
+.menu-dots-wraper {
+  .css-d0ukip-MuiButtonBase-root-MuiButton-root {
+    color: black;
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+.tab-filter {
+  .MuiButtonBase-root {
+    text-transform: capitalize;
+  }
+  .css-1f3wfo0-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    background-color: $c-black;
+    color: white;
+    text-transform: capitalize;
+  }
+  .css-1f3wfo0-MuiButtonBase-root-MuiTab-root {
+    min-width: 160px;
+    background-color: #d2d0d0;
+  }
+  .css-jpln7h-MuiTabs-scroller {
+    border-radius: 12px;
+  }
+}
