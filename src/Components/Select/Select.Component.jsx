@@ -229,6 +229,7 @@ SelectComponent.propTypes = {
     'theme-default',
     'theme-solid',
     'theme-underline',
+    'theme-light',
     'theme-transparent',
     'theme-action-buttons',
   ]),

@@ -148,7 +148,7 @@ CheckboxesComponent.propTypes = {
   labelClasses: PropTypes.string,
   formControlLabelClasses: PropTypes.string,
   checkboxGroupClasses: PropTypes.string,
-  themeClass: PropTypes.oneOf(['theme-default', 'theme-secondary']),
+  themeClass: PropTypes.oneOf(['theme-default', 'theme-secondary', 'theme-secondary-light']),
   tabIndex: PropTypes.number,
   disableRipple: PropTypes.bool,
 };

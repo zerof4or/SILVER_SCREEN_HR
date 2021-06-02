@@ -60,9 +60,10 @@
           cursor: not-allowed;
           pointer-events: initial;
           color: $c-white !important;
+          -webkit-text-fill-color: initial;
           + input + .mdi {
             &::before {
-              color: $c-white !important;
+              color: $c-white;
             }
           }
         }
@@ -244,6 +245,7 @@
     }
 
     &.theme-underline {
+      background-color: transparent;
       border-radius: 0;
       width: 100%;
 
@@ -274,6 +276,46 @@
 
         &:hover {
           border-bottom-color: $c-gray-primary;
+        }
+      }
+    }
+    &.theme-underline-light {
+      background-color: transparent;
+      border-radius: 0;
+      width: 100%;
+
+      .selects {
+        .MuiSelect-select {
+          color: $c-white;
+        }
+        &:not(.Mui-disabled) {
+          .dropdown-icon-wrapper {
+            color: $c-white;
+          }
+        }
+
+        .MuiSelect-icon:not(.Mui-disabled) {
+          fill: $c-white;
+        }
+      }
+
+      &.select-filled {
+        .selects {
+          .MuiSelect-select {
+            color: $c-white;
+          }
+        }
+      }
+
+      .MuiInput-underline:not(.Mui-disabled)::before {
+        border-bottom-color: $c-white;
+
+        &.Mui-focused {
+          border-bottom-color: $c-blue-lighter;
+        }
+
+        &:hover {
+          border-bottom-color: $c-blue-light;
         }
       }
     }

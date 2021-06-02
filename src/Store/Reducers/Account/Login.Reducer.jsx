@@ -16,7 +16,8 @@ export const LoginReducers = (state = init, action) => {
     case loginState.LOGIN_FAIL:
       return { ...state, loginResponse: action.payload, error: null };
     case loginState.LOGOUT_FAIL:
-      return { ...state, error: action.payload };
+      console.log(action.payload);
+      return { ...state, loginResponse: {}, error: action.payload };
     default:
       return state;
   }

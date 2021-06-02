@@ -82,6 +82,24 @@
       }
     }
   }
+  &.theme-secondary-light {
+    .MuiTypography-root {
+      color: $c-white;
+    }
+    .checkbox-wrapper {
+      .MuiSvgIcon-root {
+        path {
+          fill: $c-blue-light;
+        }
+      }
+      &.Mui-checked,
+      &.MuiCheckbox-indeterminate {
+        .mdi {
+          background-color: $c-blue-light;
+        }
+      }
+    }
+  }
 
   &.theme-dark {
     .MuiFormControlLabel-label {

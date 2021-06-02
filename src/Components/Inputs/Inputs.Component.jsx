@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
- FormControl, TextField, CircularProgress, ButtonBase
-} from '@material-ui/core';
+import { FormControl, TextField, CircularProgress, ButtonBase } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorage } from '../../Hooks';
 import './Inputs.Style.scss';
@@ -90,12 +88,12 @@ export const Inputs = ({
           <span className={`before-icon-classes-wrapper ${beforeIconClasses}`} />
         )}
         {(overInputText || overInputIcon) && (
-          <span className='over-input-wrapper'>
+          <span className="over-input-wrapper">
             {overInputIcon && <span className={overInputIcon} />}
             {overInputText && t(`${translationPath}${overInputText}`)}
           </span>
         )}
-        <div className='text-field-wrapper'>
+        <div className="text-field-wrapper">
           <TextField
             {...autoCompleteParams}
             autoComplete={autoComplete}
@@ -158,7 +156,7 @@ export const Inputs = ({
               ...autoCompleteParams.InputProps,
               endAdornment:
                 (withLoader && isLoading && !endAdornment && (
-                  <CircularProgress color='inherit' size={20} />
+                  <CircularProgress color="inherit" size={20} />
                 )) ||
                 endAdornment ||
                 (autoCompleteParams.InputProps && autoCompleteParams.InputProps.endAdornment) ||
@@ -185,7 +183,7 @@ export const Inputs = ({
         {isWithCharactersCounter && (
           <div className={`characters-counter-wrapper ${charactersCounterClasses}`}>
             <span>{(value && value.length) || (defaultValue && defaultValue.length) || 0}</span>
-            <span className='px-1'>{t('Shared:charaters')}</span>
+            <span className="px-1">{t('Shared:charaters')}</span>
           </div>
         )}
       </div>
@@ -244,6 +242,7 @@ Inputs.propTypes = {
     'theme-solid',
     'theme-dark',
     'theme-underline',
+    'theme-underline-light',
     'theme-default-dark',
     'theme-transparent',
   ]),
@@ -279,7 +278,7 @@ Inputs.defaultProps = {
   overInputText: undefined,
   paddingReverse: undefined,
   overInputIcon: undefined,
-  themeClass: 'theme-default',
+  themeClass: 'theme-underline',
   multiple: false,
   refs: undefined,
   isRequired: false,
