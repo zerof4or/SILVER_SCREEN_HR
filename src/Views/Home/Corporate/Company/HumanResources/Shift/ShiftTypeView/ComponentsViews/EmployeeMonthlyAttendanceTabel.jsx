@@ -81,15 +81,11 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 2,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}1 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
@@ -97,15 +93,11 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 3,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}2 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
@@ -113,15 +105,11 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 4,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}3 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
@@ -129,15 +117,11 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 5,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}4 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
@@ -145,15 +129,10 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 6,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}5 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper-off '>
+          <div className='d-flex-column-center pt-2'>{item && item.dayoff}</div>
         </div>
       ),
       isDraggable: true,
@@ -161,159 +140,45 @@ export const EmployeeMonthlyAttendanceTabel = ({
     {
       id: 7,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}6 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper-off '>
+          <div className='d-flex-column-center pt-2'>{item && item.dayoff}</div>
         </div>
       ),
       isDraggable: true,
     },
     {
-      id: 8,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}7 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper-off '>
+          <div className='d-flex-column-center pt-2'>{item && item.dayoff}</div>
         </div>
       ),
       isDraggable: true,
     },
     {
-      id: 9,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}8 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
     },
     {
-      id: 10,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}9 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
-        </div>
-      ),
-      isDraggable: true,
-    },
-    {
-      id: 10,
-      isSortable: true,
-      label: t(`${translationPath}check`),
-      component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,

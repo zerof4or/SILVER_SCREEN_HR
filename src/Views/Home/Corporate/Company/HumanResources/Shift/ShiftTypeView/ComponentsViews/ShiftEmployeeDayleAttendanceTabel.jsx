@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Button, ButtonBase, Checkbox } from '@material-ui/core';
 import { Inputs, Tables } from '../../../../../../../../Components';
 import PropTypes from 'prop-types';
+import '../../Shift.Style.scss';
 import PopoverComponent from '../../../../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../../../../Enums';
-export const EmployeeDayleAttendanceTabel = ({
+export const ShiftEmployeeDayleAttendanceTabel = ({
   data,
   parentTranslationPath,
   translationPath,
@@ -23,6 +24,7 @@ export const EmployeeDayleAttendanceTabel = ({
     // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
   }, []);
 
+  console.log('  data: ', data);
   const EditPopoverCloseHandler = () => {
     setEditPopover(null);
   };
@@ -81,15 +83,11 @@ export const EmployeeDayleAttendanceTabel = ({
     {
       id: 2,
       isSortable: true,
-      label: t(`${translationPath}check`),
+      label: t(`${translationPath}1 Dec - Mon`),
       component: (item) => (
-        <div
-          className={
-            (item.check === 'A' && 'Attendance-Status-A') ||
-            (item.check === 'P' && 'Attendance-Status-P') ||
-            (item.check === 'L' && 'Attendance-Status-L')
-          }>
-          {(item && item.check) || 'N/A'}
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
         </div>
       ),
       isDraggable: true,
@@ -97,68 +95,97 @@ export const EmployeeDayleAttendanceTabel = ({
     {
       id: 3,
       isSortable: true,
-      label: t(`${translationPath}shift`),
+      label: t(`${translationPath}2 Dec - Mon`),
       component: (item) => (
-        <span>
-          {(item &&
-            item.shift &&
-            item.shift.map((item, index) => (
-              <span key={`TableColumnshiftKey${index + 1}`}>
-                <div>{item.Checkin}</div> <div>{(item && item.Checkout) || ''}</div>
-              </span>
-            ))) ||
-            'N/A'}
-        </span>
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
       ),
       isDraggable: true,
     },
     {
       id: 4,
       isSortable: true,
-      label: t(`${translationPath}Checkin`),
-      input: 'Checkin',
+      label: t(`${translationPath}3 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
       id: 5,
       isSortable: true,
-      label: t(`${translationPath}Checkout`),
-      input: 'Checkout',
+      label: t(`${translationPath}4 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
       id: 6,
       isSortable: true,
-      label: t(`${translationPath}Workinghours`),
-      input: 'Workinghours',
+      label: t(`${translationPath}5 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
       id: 7,
       isSortable: true,
-      label: t(`${translationPath}LateArrival`),
-      input: 'LateArrival',
+      label: t(`${translationPath}6 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper-off '> 
+          <div className='d-flex-column-center pt-2'>{item && item.dayoff}</div>
+      
+        </div>
+      ),
       isDraggable: true,
     },
     {
-      id: 8,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}Earlydeparture`),
-      input: 'Earlydeparture',
+      label: t(`${translationPath}7 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
-      id: 9,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}overtime`),
-      input: 'overtime',
+      label: t(`${translationPath}8 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
-      id: 10,
+      id: 7,
       isSortable: true,
-      label: t(`${translationPath}overtimeApproved`),
-      input: 'overtimeApproved',
+      label: t(`${translationPath}9 Dec - Mon`),
+      component: (item) => (
+        <div className='item-date-wraper'>
+          <div className='d-flex-column-center'>{item && item.date}</div>
+          <div className='d-flex-column pt-1'>{item && item.place}</div>
+        </div>
+      ),
       isDraggable: true,
     },
     {
@@ -292,7 +319,7 @@ export const EmployeeDayleAttendanceTabel = ({
     </div>
   );
 };
-EmployeeDayleAttendanceTabel.propTypes = {
+ShiftEmployeeDayleAttendanceTabel.propTypes = {
   data: PropTypes.shape({ result: PropTypes.instanceOf(Array), totalCount: PropTypes.number }),
   filter: PropTypes.instanceOf(Object).isRequired,
   onSelectedRowsCountChanged: PropTypes.func,
@@ -300,7 +327,7 @@ EmployeeDayleAttendanceTabel.propTypes = {
   parentTranslationPath: PropTypes.string.isRequired,
   translationPathForData: PropTypes.string,
 };
-EmployeeDayleAttendanceTabel.defaultProps = {
+ShiftEmployeeDayleAttendanceTabel.defaultProps = {
   data: {
     result: [],
     totalCount: 0,

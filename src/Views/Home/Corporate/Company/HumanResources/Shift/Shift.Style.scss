@@ -168,17 +168,6 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .Popap-Option {
   display: inline-block;
   width: 100%;
@@ -311,4 +300,36 @@
   border-radius: 7px;
   border: 1px solid #ffa800;
   color: #ffa800;
+}
+
+///////////////////////////@at-root
+.item-date-wraper {
+  font-size: 10px;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  width: 105px;
+  height: 52px;    padding: 10px;
+  border: 1px solid #eaf4ff;
+  background-color: #eaf4ff;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+}
+.item-date-wraper-off {
+  font-size: 10px;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  width: 105px;
+  height: 52px;    padding: 10px;
+  border: 1px solid #E2E2E2;
+  background-color: #E2E2E2;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
 }

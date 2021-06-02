@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonBase, Paper, Tab, Tabs } from '@material-ui/core';
-import EmployeeAttendance from '../../../../../../../StaticJOSN/EmployeeAttendance.json';
-import EmployeeMonthlyAttendance from '../../../../../../../StaticJOSN/EmployeeMonthlyAttendance.json';
+import ShiftEmployeeMonthlyAttendance from '../../../../../../../StaticJOSN/ShiftEmployeeMonthlyAttendance.json';
+import ShiftEmployeeDayleAttendance from '../../../../../../../StaticJOSN/ShiftEmployeeDayleAttendance.json';
 import '../Shift.Style.scss';
 import {
   DialogComponent,
@@ -15,7 +15,7 @@ import {
 } from '../../../../../../../Components';
 import { NoSearchResultComponent } from '../../../../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
 import { COUNTRY_NAMES } from '../../../../../../../Enums/CountryNames';
-import { EmployeeDayleAttendanceTabel } from './ComponentsViews/EmployeeDayleAttendanceTabel';
+import { ShiftEmployeeDayleAttendanceTabel } from './ComponentsViews/ShiftEmployeeDayleAttendanceTabel';
 import { EmployeeMonthlyAttendanceTabel } from './ComponentsViews/EmployeeMonthlyAttendanceTabel';
 const parentTranslationPath = 'EmployeeAttendanceTabel';
 const translationPath = '';
@@ -23,7 +23,7 @@ export const EmployeeAttendanceTabel = () => {
   const { t } = useTranslation(parentTranslationPath);
   // eslint-disable-next-line no-unused-vars
   const [ViewType, setViewType] = useState(1);
-  const [employees, setEmployees] = useState(EmployeeAttendance);
+  const [employees, setEmployees] = useState(ShiftEmployeeDayleAttendance);
   const [open, setopen] = useState(false);
   const [filter] = useState({
     pageIndex: 1,
@@ -34,7 +34,7 @@ export const EmployeeAttendanceTabel = () => {
     setopen(false);
   };
   const FilterHandlerMyAttendance = (value) => {
-    const result = EmployeeAttendance.result.filter((item) =>
+    const result = ShiftEmployeeDayleAttendance.result.filter((item) =>
       item.Employeename.toLowerCase().includes(value.target.value.toLowerCase())
     );
     console.log(result);
@@ -44,7 +44,7 @@ export const EmployeeAttendanceTabel = () => {
     });
   };
   const FilterHandlerMonthlyAttendance = (value) => {
-    const result = EmployeeMonthlyAttendance.result.filter((item) =>
+    const result = ShiftEmployeeDayleAttendance.result.filter((item) =>
       item.Employeename.toLowerCase().includes(value.target.value.toLowerCase())
     );
     console.log(result);
@@ -62,10 +62,11 @@ export const EmployeeAttendanceTabel = () => {
 
   useEffect(() => {
     if (ViewType === 1) {
-      setEmployees(EmployeeAttendance);
-    } else setEmployees(EmployeeMonthlyAttendance);
+      setEmployees(ShiftEmployeeDayleAttendance);
+    } else setEmployees(ShiftEmployeeMonthlyAttendance);
   }, [ViewType]);
-
+  
+  console.log('employees: ', employees);
   return (
     <div className='ShiftView w-100'>
       <div className='Sub-InnerHeader'>
@@ -159,7 +160,7 @@ export const EmployeeAttendanceTabel = () => {
           <div className='bbt-primary space'>
             <ButtonBase>
               <span className='mdi mdi-account-plus ' />
-              &nbsp; Add new employee
+              &nbsp; Add new New shift
             </ButtonBase>
           </div>
           <div className='search-text'>
@@ -181,7 +182,7 @@ export const EmployeeAttendanceTabel = () => {
         <div className='EmployeeTabelView-wraper'>
           {(employees.totalCount === 0 && <NoSearchResultComponent />) ||
             (ViewType === 1 ? (
-              <EmployeeDayleAttendanceTabel
+              <ShiftEmployeeDayleAttendanceTabel
                 data={employees}
                 parentTranslationPath={parentTranslationPath}
                 translationPath={translationPath}

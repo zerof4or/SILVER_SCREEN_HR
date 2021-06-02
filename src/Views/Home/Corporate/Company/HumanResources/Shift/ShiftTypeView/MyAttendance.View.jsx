@@ -68,7 +68,7 @@ export const MyAttendanceView = () => {
     <div className='ShiftView w-100'>
       <div className='Sub-InnerHeader'>
         <div className='d-inline-flex'>
-        <div className='mx-2'>
+          <div className='mx-2'>
             <LocationButtonComponent
               CollapseComponentclasses='Location-menu-emp'
               CollapseComponentView={
@@ -141,10 +141,8 @@ export const MyAttendanceView = () => {
                 }
               />
             </div>
-
           </div>
 
-               
           <div className='mx-2'>
             <DubleButtonComponentComponent
               Titleone='dayle View'
@@ -160,7 +158,7 @@ export const MyAttendanceView = () => {
           <div className='bbt-primary space'>
             <ButtonBase>
               <span className='mdi mdi-account-plus ' />
-              &nbsp; Add new employee
+              &nbsp; Add new New shift
             </ButtonBase>
           </div>
           <div className='search-text'>
