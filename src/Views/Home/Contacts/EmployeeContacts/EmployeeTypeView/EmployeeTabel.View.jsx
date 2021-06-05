@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonBase } from '@material-ui/core';
+import { ButtonBase } from '@material-ui/core';
 import { CheckboxesComponent, Inputs, Tables } from '../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../Components/Popover/Popover.Component';
@@ -264,10 +264,13 @@ export const EmployeeTabelView = ({
                   />
                 ))}
             </div>
-            <div className="d-flex-center-v w-100">
-              <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
+            <div className="d-flex-center w-100">
+              <ButtonBase
+                className="btns theme-solid mb-2 mx-0 bg-blue-light"
+                onClick={viewColumnsPopoverCloseHandler}
+              >
                 Save
-              </Button>
+              </ButtonBase>
             </div>
           </div>
         }
