@@ -9,6 +9,7 @@ let logoutAction = null;
 let setRerender = null;
 let renderVar = false;
 let setRenderVar = null;
+let setGlobalSideExtendedBodyComponent = null;
 
 export const SetGlobalRerender = (setRender, render) => {
   renderVar = render;
@@ -16,6 +17,13 @@ export const SetGlobalRerender = (setRender, render) => {
 };
 export const GlobalRerender = () => {
   setRenderVar(!renderVar);
+};
+export const InitSideExtendedBodyComponentSet = (setMethod) => {
+  setGlobalSideExtendedBodyComponent = setMethod;
+};
+export const SideExtendedBodyComponentUpdate = (component) => {
+  if (setGlobalSideExtendedBodyComponent);
+  setGlobalSideExtendedBodyComponent(component);
 };
 export const MiddlewareHelper = () => {
   GlobalTranslate = useTranslation();

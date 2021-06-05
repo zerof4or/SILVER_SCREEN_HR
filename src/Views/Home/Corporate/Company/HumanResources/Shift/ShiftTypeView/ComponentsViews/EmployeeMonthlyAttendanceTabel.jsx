@@ -253,7 +253,7 @@ export const EmployeeMonthlyAttendanceTabel = ({
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className='Popap-Option-menu'>
+          <div className='popover-columns-filter-wrapper'>
             <div className='p-2'> Choose columns </div>
             <div className='fiter-title'>Visible columns </div>
             {DataTable.map((item, index) =>

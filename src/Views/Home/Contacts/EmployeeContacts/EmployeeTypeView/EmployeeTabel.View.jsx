@@ -1,8 +1,8 @@
 /* eslint-disable react/display-name */
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonBase, Checkbox } from '@material-ui/core';
-import { Inputs, Tables } from '../../../../../Components';
+import { Button, ButtonBase } from '@material-ui/core';
+import { CheckboxesComponent, Inputs, Tables } from '../../../../../Components';
 import PropTypes from 'prop-types';
 import PopoverComponent from '../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum, TableListOpationActions } from '../../../../../Enums';
@@ -18,49 +18,13 @@ export const EmployeeTabelView = ({
   const [ColumnsPopover, setColumnsPopover] = useState(null);
   const [EditPopover, setEditPopover] = useState(null);
   const [EditValue, setEditValue] = useState('Photographer');
-  const tableActionClicked = useCallback((actionEnum, item) => {
-    // if (actionEnum === TableActions.delete.key) setActiveItem(item);         setFilter
-    // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
-  }, []);
-
-  const EditPopoverCloseHandler = () => {
-    setEditPopover(null);
-  };
-  const actionsPopoverClickedHandler = (event) => {
-    setActionsPopover(event.currentTarget);
-  };
-  const EditPopoverClickedHandler = (event) => {
-    setEditPopover(event.currentTarget);
-  };
-
-  const viewColumnsPopoverClickedHandler = (event) => {
-    setColumnsPopover(event.currentTarget);
-  };
-
-  const actionsPopoverCloseHandler = () => {
-    setActionsPopover(null);
-  };
-  const viewColumnsPopoverCloseHandler = () => {
-    setColumnsPopover(null);
-  };
-
-  const ClickButtonListOpation = useCallback((value) => {
-    console.log('value: ', value);
-  }, []);
-  const AVATARS = [
-    ContactTypeEnum.employee.defaultImg,
-    ContactTypeEnum.employee2.defaultImg,
-    ContactTypeEnum.employee3.defaultImg,
-    ContactTypeEnum.employee4.defaultImg,
-    ContactTypeEnum.employee5.defaultImg,
-    ContactTypeEnum.employee6.defaultImg,
-    ContactTypeEnum.employee7.defaultImg,
-  ];
+  const [checkedColumnsIds, setCheckedColumnsIds] = useState([1, 2, 3, 4, 5]);
+  const [beforeSaveCheckedColumnIds, setBeforeSaveCheckedColumnIds] = useState([1, 2, 3, 4, 5]);
   const pickRandom = (array) => {
     if (!Array.isArray(array)) return undefined;
     return array[Math.floor(Math.random() * array.length)];
   };
-  const DataTable = [
+  const [tableHeaderData] = useState(() => [
     {
       id: 1,
       isSortable: true,
@@ -137,10 +101,11 @@ export const EmployeeTabelView = ({
       isDraggable: true,
     },
     {
-      id: 13,
+      id: 6,
       isSticky: true,
       right: 0,
       cellClasses: 'table-cellOpation is-with-line',
+      isNotHidable: true,
       headerComponent: (item) => (
         <>
           <div>
@@ -160,13 +125,57 @@ export const EmployeeTabelView = ({
         </>
       ),
     },
+  ]);
+  const tableActionClicked = useCallback((actionEnum, item) => {
+    // if (actionEnum === TableActions.delete.key) setActiveItem(item);         setFilter
+    // else if (actionEnum === TableActions.edit.key) setActiveItem(item);
+  }, []);
+
+  const EditPopoverCloseHandler = () => {
+    setEditPopover(null);
+  };
+  const actionsPopoverClickedHandler = (event) => {
+    setActionsPopover(event.currentTarget);
+  };
+  const EditPopoverClickedHandler = (event) => {
+    setEditPopover(event.currentTarget);
+  };
+
+  const viewColumnsPopoverClickedHandler = (event) => {
+    setColumnsPopover(event.currentTarget);
+  };
+
+  const actionsPopoverCloseHandler = () => {
+    setActionsPopover(null);
+  };
+  const viewColumnsPopoverCloseHandler = () => {
+    setCheckedColumnsIds((items) => {
+      items = [...beforeSaveCheckedColumnIds];
+      return [...items];
+    });
+    setColumnsPopover(null);
+  };
+
+  const ClickButtonListOpation = useCallback((value) => {
+    console.log('value: ', value);
+  }, []);
+  const AVATARS = [
+    ContactTypeEnum.employee.defaultImg,
+    ContactTypeEnum.employee2.defaultImg,
+    ContactTypeEnum.employee3.defaultImg,
+    ContactTypeEnum.employee4.defaultImg,
+    ContactTypeEnum.employee5.defaultImg,
+    ContactTypeEnum.employee6.defaultImg,
+    ContactTypeEnum.employee7.defaultImg,
   ];
 
   return (
     <div className="EmployeeTabelView w-100">
       <Tables
         data={(data && data.result) || []}
-        headerData={DataTable}
+        headerData={(tableHeaderData || []).filter(
+          (item) => checkedColumnsIds.indexOf(item.id) !== -1 || item.isNotHidable
+        )}
         defaultActions={[]}
         actionsOptions={{
           onActionClicked: tableActionClicked,
@@ -178,7 +187,7 @@ export const EmployeeTabelView = ({
         activePage={filter.pageIndex}
         isWithCheckAll
         isWithCheck
-        uniqueKeyInput='id'
+        uniqueKeyInput="id"
         isResizable
         onSelectedRowsCountChanged={onSelectedRowsCountChanged}
       />
@@ -210,39 +219,52 @@ export const EmployeeTabelView = ({
         header-actions-popover-wrapper
         handleClose={viewColumnsPopoverCloseHandler}
         component={
-          <div className="Popap-Option-menu">
+          <div className="popover-columns-filter-wrapper">
             <div className="p-2"> Choose columns </div>
             <div className="fiter-title">Visible columns </div>
-            {DataTable.map((item, index) =>
-              index !== 5 ? (
-                <div className="Column-Checkbox" key={`ColumnKey${index + 1}`}>
-                  <div>
-                    <Checkbox
-                      defaultChecked
-                      color="primary"
-                      inputProps={{ 'aria-label': 'secondary checkbox' }}
-                    />
-                    {item && item.label}
-                  </div>
-                </div>
-              ) : (
-                ''
-              )
-            )}
+            <div className="visible-columns-wrapper">
+              {(tableHeaderData || [])
+                .filter(
+                  (item) => beforeSaveCheckedColumnIds.indexOf(item.id) !== -1 && !item.isNotHidable
+                )
+                .map((item, index) => (
+                  <CheckboxesComponent
+                    idRef={`ColumnRef${index + 1}`}
+                    key={`ColumnKey${index + 1}`}
+                    label={item.label}
+                    singleChecked
+                    onSelectedCheckboxChanged={() =>
+                      setBeforeSaveCheckedColumnIds((items) => {
+                        const itemIndex = items.indexOf(item.id);
+                        if (itemIndex !== -1) items.splice(itemIndex, 1);
+                        return [...items];
+                      })
+                    }
+                  />
+                ))}
+            </div>
             <div className="fiter-title">Hidden columns</div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
-              Jop
+            <div className="hidden-columns-wrapper">
+              {(tableHeaderData || [])
+                .filter(
+                  (item) => beforeSaveCheckedColumnIds.indexOf(item.id) === -1 && !item.isNotHidable
+                )
+                .map((item, index) => (
+                  <CheckboxesComponent
+                    idRef={`ColumnRef${index + 1}`}
+                    key={`ColumnKey${index + 1}`}
+                    label={item.label}
+                    singleChecked={false}
+                    onSelectedCheckboxChanged={() =>
+                      setBeforeSaveCheckedColumnIds((items) => {
+                        items.push(item.id);
+                        return [...items];
+                      })
+                    }
+                  />
+                ))}
             </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
-              Organization
-            </div>
-            <div className="Column-Checkbox">
-              <Checkbox color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
-              Address
-            </div>
-            <div className="d-inline-flex-column-center-v w-100">
+            <div className="d-flex-center-v w-100">
               <Button variant="contained" color="primary" onClick={viewColumnsPopoverCloseHandler}>
                 Save
               </Button>

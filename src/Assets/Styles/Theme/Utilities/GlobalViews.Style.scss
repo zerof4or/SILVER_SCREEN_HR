@@ -81,6 +81,21 @@
     margin-bottom: 1rem;
   }
 }
+.popover-columns-filter-wrapper {
+  @include d-flex-column-v-center;
+  .fiter-title {
+    width: 100%;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .visible-columns-wrapper,
+  .hidden-columns-wrapper {
+    @include d-flex-column;
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
 .filter-type-btn {
   position: absolute !important;
   right: 3.5rem;

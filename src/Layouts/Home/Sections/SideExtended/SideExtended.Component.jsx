@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './SideExtended.Style.scss';
 import { useTranslation } from 'react-i18next';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { FilterByTreeComponent } from '../../../../Components';
-import { treeListTest } from './FilterByTreeTempData';
+import { InitSideExtendedBodyComponentSet } from '../../../../Helpers';
 const parentTranslationPath = 'Shared';
-const translationPath = '';
 export const SideExtendedComponent = ({ isOpenSideExtended, onChangeSideExtended }) => {
+  const [sideExtendedBodyComponent, setSideExtendedBodyComponent] = useState(null);
+  InitSideExtendedBodyComponentSet(setSideExtendedBodyComponent);
   const { t } = useTranslation(parentTranslationPath);
   return (
     <div
@@ -24,13 +24,7 @@ export const SideExtendedComponent = ({ isOpenSideExtended, onChangeSideExtended
           <span className={`mdi mdi-chevron-${(isOpenSideExtended && 'left') || 'right'}`} />
         </ButtonBase>
       </div>
-      <div className="side-extended-body-wrapper">
-        <FilterByTreeComponent
-          treeList={treeListTest}
-          parentTranslationPath={parentTranslationPath}
-          translationPath={translationPath}
-        />
-      </div>
+      <div className="side-extended-body-wrapper">{sideExtendedBodyComponent}</div>
     </div>
   );
 };
