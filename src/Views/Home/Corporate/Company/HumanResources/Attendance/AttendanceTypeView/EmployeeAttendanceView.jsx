@@ -11,10 +11,9 @@ import {
   FilterButtonComponent,
   Inputs,
   LocationButtonComponent,
-  AutocompleteComponent
+
 } from '../../../../../../../Components';
 import { NoSearchResultComponent } from '../../../../../../../Components/NoSearchResultComponent/NoSearchResultComponent';
-import { COUNTRY_NAMES } from '../../../../../../../Enums/CountryNames';
 import { EmployeeDayleAttendanceTabel } from './ComponentsViews/EmployeeDayleAttendanceTabel';
 import { EmployeeMonthlyAttendanceTabel } from './ComponentsViews/EmployeeMonthlyAttendanceTabel';
 import { SorterLettersButtonComponent } from '../../../../../../../Components/Buttons/SorterLettersButtonComponent';
@@ -125,24 +124,6 @@ export const EmployeeAttendanceTabel = () => {
           <div className='mx-2'>
             <LocationButtonComponent
               CollapseComponentclasses='Location-menu-emp'
-              CollapseComponentView={
-                <div className='Location-auto-wraper'>
-                  <AutocompleteComponent
-                    idRef='paymentTypeIdRef'
-                    labelValue='payment-type'
-                    multiple={false}
-                    data={COUNTRY_NAMES || []}
-                    displayLabel={(option) => option.label || ''}
-                    withoutSearchButton
-                    isWithError
-                    parentTranslationPath={parentTranslationPath}
-                    translationPath={translationPath}
-                    onChange={(event, newValue) => {
-                      console.log(newValue);
-                    }}
-                  />
-                </div>
-              }
             />
           </div>{' '}
           <div className='mx-2'>

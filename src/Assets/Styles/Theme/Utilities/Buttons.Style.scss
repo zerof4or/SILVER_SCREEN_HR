@@ -144,7 +144,7 @@
     }
   }
 
-  &.theme-outline {
+  &.theme-outline {    
     border: 1px solid $c-primary;
     background-color: transparent;
     color: $c-primary;
@@ -314,7 +314,28 @@
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
+    
   }
+  &.small{
+    .MuiButtonBase-root {
+      border-radius: 30px;
+      width: auto;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem
+    }
+  }
+  
+  &.small-secondary{
+    .MuiButtonBase-root {
+      border-radius: 30px;
+      width: auto;
+      background-color: $c-header-button;
+      padding-left: 0.7rem;
+      padding-right: 0.7rem
+    }
+  }
+
+
   .mdi {
     color: $c-white;
   }
@@ -325,4 +346,5 @@
       color: #878787;
     }
   }
+
 }

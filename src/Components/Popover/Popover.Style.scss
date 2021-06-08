@@ -5,7 +5,6 @@
     border-radius: 12px;
     @include d-flex;
     flex-wrap: wrap;
-    border: 1px solid #5d5d5d;
   }
   &.with-backdrop {
     background-color: rgba(0, 0, 0, 0.3);

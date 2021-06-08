@@ -16,14 +16,14 @@
     align-items: center;
   }
   .img-contact-tabel {
-    background-color: black;
+    background-color: $c-black;
     min-width: 35px;
-    height: 40px;
-    width: 39px;
-    padding: 2px;
+    height: 48px;
+    width: 47px;
+    padding: 3px;
     border-radius: 10px;
     margin: 0px 10px 0px 10px;
-    border: 1px solid #8ee58e;
+    border: 4px solid #8ee58e;
   }
   .action-contener {
     @include d-flex;

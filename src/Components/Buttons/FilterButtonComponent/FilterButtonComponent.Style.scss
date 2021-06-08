@@ -38,8 +38,13 @@
 }
 .CollapseComponentView-wraper {
   background-color: $c-white !important;
-  padding: 0 2rem;
-  min-width: 34rem;
+  // padding: 0 2rem;
+  // min-width: 34rem;
+  border-bottom: 1px solid #5d5d5d;
+  border-right: 1px solid #5d5d5d;
+  border-left: 1px solid #5d5d5d;
+  min-height: 26rem;
+  border-radius: 1rem;
   .css-4z9bxz-MuiPaper-root {
     box-shadow: none !important;
   }

@@ -5,12 +5,16 @@
   left: 50%;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #ffffffad;
   font-size: 50px;
   color: white;
   transform: translate(-50%, -50%);
   &.is-absolute {
     position: absolute;
+  }
+  .img-spinner
+  {
+    width: 20rem;
   }
   .app-spinner {
     display: flex !important;

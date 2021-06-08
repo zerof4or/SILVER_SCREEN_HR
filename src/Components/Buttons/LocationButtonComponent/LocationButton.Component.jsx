@@ -5,6 +5,8 @@ import { ButtonBase } from '@material-ui/core';
 import CollapseComponent from '../../Collapse/Collapse.Component';
 import { useOnClickOutside } from '../../../Hubs';
 import { useTranslation } from 'react-i18next';
+import { AutocompleteComponent } from '../../Autocomplete/Autocomplete.Component';
+import { COUNTRY_NAMES } from '../../../Enums/CountryNames';
 
 export const LocationButtonComponent = ({
   defaultTitle,
@@ -26,17 +28,71 @@ export const LocationButtonComponent = ({
     setIsOpenMenu(!isOpenMenu);
   };
   return (
-    <div className='LocationButtonComponent-wrapper' 
-    //ref={LocationButtonRef}
+    <div
+      className='LocationButtonComponent-wrapper'
+      // ref={LocationButtonRef}
     >
-     <div className='Location-container'>
-      <CollapseComponent
-        isOpen={isOpenMenu}
-        top={top}
-        isAbsolute
-        classes={CollapseComponentclasses}
-        component={CollapseComponentView || undefined}
-      />
+      <div className='Location-container'>
+        <CollapseComponent
+          isOpen={isOpenMenu}
+          top={top}
+          isAbsolute
+          classes={CollapseComponentclasses}
+          component={
+            CollapseComponentView || (
+              <>
+                <div className='LocationButtonComponent-auto-wraper'>
+                  <div className='Location-inputs-wraper'>
+                    <div className='county-title'> Country/Region </div>
+                    <div className='county-entry'>
+                      <AutocompleteComponent
+                        idRef='paymentTypeIdRef'
+                        multiple={false}
+                        data={COUNTRY_NAMES || []}
+                        displayLabel={(option) => option.label || ''}
+                        withoutSearchButton
+                        isWithError
+                        parentTranslationPath={parentTranslationPath}
+                        translationPath={translationPath}
+                        onChange={(event, newValue) => {
+                          console.log(newValue);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className='Location-inputs-wraper'>
+                    <div className='county-title'> City </div>
+                    <div className='county-entry'>
+                      <AutocompleteComponent
+                        idRef='paymentTypeIdRef'
+                        multiple={false}
+                        data={COUNTRY_NAMES || []}
+                        displayLabel={(option) => option.label || ''}
+                        withoutSearchButton
+                        isWithError
+                        parentTranslationPath={parentTranslationPath}
+                        translationPath={translationPath}
+                        onChange={(event, newValue) => {
+                          console.log(newValue);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div  className='line w-100' />
+                  <div className='bbt-wrpaer-filter'>
+                    <div className='bbt-primary small-secondary px-2 '>
+                    <ButtonBase onClick={ViewCollaps}>Cancel</ButtonBase>
+                    </div>
+                    <div className='bbt-primary small '>
+                      <ButtonBase>Apply Filters</ButtonBase>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) ||
+            undefined
+          }
+        />
       </div>
       <div className='Button-root'>
         <ButtonBase onClick={ViewCollaps}>
