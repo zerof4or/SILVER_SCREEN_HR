@@ -1,6 +1,8 @@
-import { ButtonBase, Fab } from '@material-ui/core';
-import React from 'react';
+import { Button, ButtonBase, Fab } from '@material-ui/core';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FilterButtonComponent, Inputs} from '../../../../../../../Components';
+import PopoverComponent from '../../../../../../../Components/Popover/Popover.Component';
 import { ContactTypeEnum } from '../../../../../../../Enums';
 import './Team.Style.scss';
 
@@ -20,7 +22,7 @@ export const TeamView = () => {
     ContactTypeEnum.employee6.defaultImg,
     ContactTypeEnum.employee7.defaultImg,
   ];
-
+  const [ActionsPopover, setActionsPopover] = useState(null);
   const Names = [
     'Adam Alex',
     'Aaron Ben',
@@ -40,20 +42,72 @@ export const TeamView = () => {
     if (!Array.isArray(array)) return undefined;
     return array[Math.floor(Math.random() * array.length)];
   };
-
+  const actionsPopoverClickedHandler = (event) => {
+    setActionsPopover(event.currentTarget);
+  };
+  const actionsPopoverCloseHandler = () => {
+    setActionsPopover(null);
+  };
   return (
     <div className='view-wrapper'>
-      <div className='TeamView-check-header'>
-        <div className='attendance-check-filter'>
-          <div className='dots-vertical'>
-            <ButtonBase>
+            <div className='Sub-InnerHeader'>
+        <div className='d-inline-flex'>
+          <div className='dots-vertical mx-1 '>
+            <ButtonBase onClick={actionsPopoverClickedHandler}>
               <span className='mdi mdi-dots-vertical' />
             </ButtonBase>
+            <PopoverComponent
+              idRef='headerActionsPopoverRef'
+              attachedWith={ActionsPopover}
+              popoverClasses='header-actions-popover-wrapper'
+              handleClose={actionsPopoverCloseHandler}
+              component={
+                <div className='menu-dots-wraper'>
+                  <div className='mx-2 p-1'>
+                    <Button>Export filter results... </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Import Contacts </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Show on map </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Print </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Contact Sync </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button> Merge duplicates </Button>{' '}
+                  </div>
+                  <div className='mx-2 p-1'>
+                    <Button>Export to MailChimp </Button>{' '}
+                  </div>
+                </div>
+              }
+            />
           </div>
-          <div className='membar-button'>
-            <ButtonBase>Add Team Members</ButtonBase>
+          <div>
+            <div className='mx-2'>
+              <FilterButtonComponent
+                CollapseComponentclasses='TabsFilter'
+              />
+            </div>
           </div>
-        </div>{' '}
+
+        </div>
+        <div className='attendance-check-search'>
+          <div className='search-text'>
+            <Inputs
+              idRef='searchEmployeesRef'
+            //  onInputChanged={(event) => FilterHandler(event)}
+              endAdornment={<span className='mdi mdi-magnify px-2' />}
+              wrapperClasses='theme-primary'
+              fieldClasses='inputs theme-primary ml-2'
+            />
+          </div>
+        </div>
       </div>
       <div className='Team-View-wraperr'>
         <div className='card-container-parent'>

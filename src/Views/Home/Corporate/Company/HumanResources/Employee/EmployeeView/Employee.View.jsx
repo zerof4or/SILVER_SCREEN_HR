@@ -68,8 +68,7 @@ export const EmployeeView = () => {
     }, 1500);
   }, []);
   return (
-    <div className='EmployeeView w-100'>
-      <Spinner isActive={isLoading} isAbsolute />
+    <div className='EmployeeHumanResourcesView w-100'>
       <div className='Sub-InnerHeader'>
         <div className='d-inline-flex'>
           <div className='dots-vertical mx-1 '>
@@ -160,12 +159,10 @@ export const EmployeeView = () => {
             </div>
           </div>
           <div className='mx-2'>
-            <LocationButtonComponent
-              CollapseComponentclasses='Location-menu-emp'
-            />
+            <LocationButtonComponent CollapseComponentclasses='Location-menu-emp' />
           </div>
           <div className='mx-1'>
-            <SorterLettersButtonComponent onViewChanged={(items)=>console.log(items)} />
+            <SorterLettersButtonComponent onViewChanged={(items) => console.log(items)} />
           </div>
         </div>
         <div className='attendance-check-search'>
@@ -181,6 +178,7 @@ export const EmployeeView = () => {
         </div>
       </div>
       <div className='Employee-wraper'>
+        <Spinner isActive={isLoading} isAbsolute />
         <div className='action-contener  w-100'>
           <div className='action-tabel-wraper'>
             <div className='bbt-dark space'>
