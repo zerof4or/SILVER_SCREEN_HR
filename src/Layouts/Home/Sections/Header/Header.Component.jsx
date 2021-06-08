@@ -157,7 +157,7 @@ export const HeaderComponent = () => {
             {
               //imageReq && imageReq.fullName && imageReq.fullName||
               <div className='user-name-wrapper'>
-                <span className='user-name-text'>{'Abdel Azeez'} </span>
+                <span className='user-name-text' title={'Abdulaziz Kabalan'}>{'Abdulaziz Kabalan'} </span>
                 <ButtonBase
                   className={
                     isOpenMenu.userProfile === true
