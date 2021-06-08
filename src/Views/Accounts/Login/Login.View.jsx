@@ -69,68 +69,69 @@ const LoginView = () => {
     [setLoginDto, loginDto]
   );
   return (
-    <div className="login-wrapper" style={{ backgroundImage: `url(${loginBG})` }}>
-      <div className="login-content-wrapper">
-        <div className="text-section-wrapper">
-          <div className="text-section-content">
-            <img className="logo-img" src={Logo} alt={t(`${translationPath}logo`)} />
-            <span className="texts c-white mb-1 fz-22px">{t(`${translationPath}sign-up`)}</span>
-            <span className="texts c-white">{t(`${translationPath}login-desc`)}</span>
+    <div className='login-wrapper' style={{ backgroundImage: `url(${loginBG})` }}>
+      <div className='login-content-wrapper'>
+        <div className='text-section-wrapper'>
+          <div className='text-section-content'>
+            <img className='logo-img mb-5' src={Logo} alt={t(`${translationPath}logo`)} />
+            <span className='texts c-white mb-1 fz-30px'>{t(`${translationPath}sign-up`)}</span>
+            <span className='texts c-white mt-2'>{t(`${translationPath}login-desc`)}</span>
           </div>
         </div>
-        <div className="box-section-wrapper">
-          <div className="box-content">
-            <form noValidate className="form-wrapper" onSubmit={handleSubmit}>
+        <div className='box-section-wrapper'>
+          <div className='box-content'>
+            <form noValidate className='form-wrapper' onSubmit={handleSubmit}>
+              <div className='mb-5'>
+                <Inputs
+                  idRef='identityRef'
+                  themeClass='theme-underline-light'
+                  label={t(`${translationPath}identity`)}
+                  inputPlaceholder={t(`${translationPath}ex-desc`)}
+                  value={loginDto.identity}
+                  onInputChanged={controlsHandler('identity', 'value')}
+                />
+              </div>
               <Inputs
-                idRef="identityRef"
-                themeClass="theme-underline-light"
-                label={t(`${translationPath}identity`)}
-                inputPlaceholder={t(`${translationPath}ex-desc`)}
-                value={loginDto.identity}
-                onInputChanged={controlsHandler('identity', 'value')}
-              />
-              <Inputs
-                idRef="passwordRef"
-                themeClass="theme-underline-light"
-                type="password"
+                idRef='passwordRef'
+                themeClass='theme-underline-light'
+                type='password'
                 label={t(`${translationPath}password`)}
                 value={loginDto.password}
                 onInputChanged={controlsHandler('password', 'value')}
               />
-              <div className="d-flex-v-center-h-between mb-3">
+              <div className='d-flex-v-center-h-between mb-3'>
                 <CheckboxesComponent
-                  idRef="rememberMeRef"
+                  idRef='rememberMeRef'
                   parentTranslationPath={parentTranslationPath}
                   translationPath={translationPath}
-                  label="remember-me"
+                  label='remember-me'
                   singleChecked={loginDto.rememberMe}
-                  themeClass="theme-secondary-light"
+                  themeClass='theme-secondary-light'
                   onSelectedCheckboxClicked={() => {
                     setLoginDto((items) => ({ ...items, rememberMe: !items.rememberMe }));
                   }}
                 />
-                <Link className="links" to="/account/identity-verification">
+                <Link
+                  className='links fz-14px'
+                  to='/home' //to="/account/identity-verification"
+                >
                   {t(`${translationPath}forgot-password`)}
                 </Link>
-                <Link className="links" to="/home">
-                  {t(`${translationPath}Login Without Password`)}
-                </Link>
               </div>
-              <div className="d-flex-v-center-h-between">
+              <div className='d-flex-v-center-h-between'>
                 <div>
                   <SelectComponent
                     data={i18next.languages}
                     value={i18next.language}
                     onSelectChanged={languageChange}
-                    themeClass="theme-underline-light"
+                    themeClass='theme-underline-light'
                   />
                 </div>
                 <div>
                   <ButtonBase
-                    className="btns theme-solid bg-blue-light"
-                    type="submit"
-                    disabled={isclick || !loginDto.identity || !loginDto.password}
-                  >
+                    className='btns theme-solid bg-blue-light'
+                    type='submit'
+                    disabled={isclick || !loginDto.identity || !loginDto.password}>
                     <span>{t(`${translationPath}start`)}</span>
                   </ButtonBase>
                   {/* <span className="mdi mdi-chevron-double-right animated-icon" /> */}
