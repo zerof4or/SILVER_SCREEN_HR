@@ -7,6 +7,15 @@
   .css-3bmhjh-MuiPaper-root-MuiPopover-paper {
     top: 52px !important;
     max-height: calc(100% - 179px);
+    ///////////////////////////////////////////////////////////
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    overflow: auto;
+    overflow-x: hidden !important;
+    @include rtl {
+      direction: ltr;
+    }
+    ///////////////////////////////////////////////////////////
   }
 }
 .title {
@@ -20,6 +29,12 @@
 
 .header-menu-popover-conteaner {
   display: inline;
+  ///////////////////////////////////////////////////////////
+  direction: ltr;
+  @include rtl {
+    direction: rtl;
+  }
+  ///////////////////////////////////////////////////////////
   .css-10d1a0h-MuiButtonBase-root {
     justify-content: normal !important;
     &.is-active {

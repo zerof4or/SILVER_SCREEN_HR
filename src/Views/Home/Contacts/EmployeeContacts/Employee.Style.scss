@@ -1,6 +1,7 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
 
 .EmployeeView {
+  position: relative;
   .DataView-bbt {
     padding-right: 10px;
     @include rtl {
