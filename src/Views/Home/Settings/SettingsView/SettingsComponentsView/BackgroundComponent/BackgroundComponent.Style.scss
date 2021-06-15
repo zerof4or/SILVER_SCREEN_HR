@@ -1,15 +1,39 @@
 @import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.Background-conteaner {
+  display: inline-block;
+  width: 100%;
+  justify-content: center;
 .view-wrapper-Background {
+  display: flex;
+    width: 100%;
+    justify-content: center;
   .edit-wrpaer {
     display: flex;
     justify-content: center;
     padding-top: 3rem;
   }
+  .backgroundImage-labtop
+  {
+    display: flex;
+    height: 36rem;
+    margin-top: 5rem;
+    width: 59rem;
+    display: flex;
+    justify-content: center;
+    margin-right: 1rem;
+    align-items: center;
+    border-radius: 5px;
+    // margin-bottom: 12rem;
+  }
   .backgroundImage-edit-wrpaer {
-    width: 50rem;
+    width: 43rem;
+    height: 25rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+    margin-bottom: 11rem;
+    margin-right: 1rem;
   }
+}
 }

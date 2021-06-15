@@ -11,3 +11,4 @@ export * from './Buttons';
 export * from './Autocomplete/Autocomplete.Component';
 export * from './UnderConstructionandDevelopmentComponent/UnderConstructionandDevelopmentComponent';
 export * from './FilterByTree/FilterByTree.Component';
+export * from './UploaderComponent/UploaderComponent';
