@@ -6,7 +6,8 @@ import CollapseComponent from '../../Collapse/Collapse.Component';
 import { useOnClickOutside } from '../../../Hubs';
 import { useTranslation } from 'react-i18next';
 import { AutocompleteComponent } from '../../Autocomplete/Autocomplete.Component';
-import { COUNTRY_NAMES } from '../../../Enums/CountryNames';
+import WorldCountryDatabase from '../../../StaticJOSN/WorldCountryDatabase.json';
+import WorldCitiesDatabase from '../../../StaticJOSN/WorldCitiesDatabase.json';
 
 export const LocationButtonComponent = ({
   defaultTitle,
@@ -20,6 +21,7 @@ export const LocationButtonComponent = ({
 }) => {
   const { t } = useTranslation(parentTranslationPath);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [City, setCity] = useState([]);
   const LocationButtonRef = useRef(null);
   useOnClickOutside(LocationButtonRef, () => {
     if (isOpenMenu) setIsOpenMenu(false);
@@ -27,6 +29,15 @@ export const LocationButtonComponent = ({
   const ViewCollaps = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+
+  const FilterHandler = (value) => {
+    const result = WorldCitiesDatabase.filter(
+      (item) => item.parentLookupItemId === value
+      // .toLowerCase().includes(value.target.value.toLowerCase())
+    );
+    setCity(result);
+  };
+
   return (
     <div
       className='LocationButtonComponent-wrapper'
@@ -41,53 +52,55 @@ export const LocationButtonComponent = ({
           component={
             CollapseComponentView || (
               <>
-                <div className='LocationButtonComponent-auto-wraper'>
-                  <div className='Location-inputs-wraper'>
-                    <div className='county-title'> Country/Region </div>
-                    <div className='county-entry'>
-                      <AutocompleteComponent
-                        idRef='paymentTypeIdRef'
-                        multiple={false}
-                        data={COUNTRY_NAMES || []}
-                        displayLabel={(option) => option.label || ''}
-                        withoutSearchButton
-                        isWithError
-                        parentTranslationPath={parentTranslationPath}
-                        translationPath={translationPath}
-                        onChange={(event, newValue) => {
-                          console.log(newValue);
-                        }}
-                      />
+                {isOpenMenu && (
+                  <div className='LocationButtonComponent-auto-wraper'>
+                    <div className='Location-inputs-wraper'>
+                      <div className='county-title'> Country/Region </div>
+                      <div className='county-entry'>
+                        <AutocompleteComponent
+                          idRef='paymentTypeIdRef'
+                          multiple={false}
+                          data={WorldCountryDatabase || []}
+                          displayLabel={(option) => option.lookupItemName || ''}
+                          withoutSearchButton
+                          isWithError
+                          parentTranslationPath={parentTranslationPath}
+                          translationPath={translationPath}
+                          onChange={(event, newValue) => {
+                            FilterHandler((newValue && +newValue.lookupItemId) || '');
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className='Location-inputs-wraper'>
+                      <div className='county-title'> City </div>
+                      <div className='county-entry'>
+                        <AutocompleteComponent
+                          idRef='paymentTypeIdRef'
+                          multiple={false}
+                          data={City || []}
+                          displayLabel={(option) => option.lookupItemName || ''}
+                          withoutSearchButton
+                          isWithError
+                          parentTranslationPath={parentTranslationPath}
+                          translationPath={translationPath}
+                          onChange={(event, newValue) => {
+                            console.log(newValue);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className='line w-100' />
+                    <div className='bbt-wrpaer-filter'>
+                      <div className='bbt-primary small-secondary px-2 '>
+                        <ButtonBase onClick={ViewCollaps}>Cancel</ButtonBase>
+                      </div>
+                      <div className='bbt-primary small '>
+                        <ButtonBase>Apply Filters</ButtonBase>
+                      </div>
                     </div>
                   </div>
-                  <div className='Location-inputs-wraper'>
-                    <div className='county-title'> City </div>
-                    <div className='county-entry'>
-                      <AutocompleteComponent
-                        idRef='paymentTypeIdRef'
-                        multiple={false}
-                        data={COUNTRY_NAMES || []}
-                        displayLabel={(option) => option.label || ''}
-                        withoutSearchButton
-                        isWithError
-                        parentTranslationPath={parentTranslationPath}
-                        translationPath={translationPath}
-                        onChange={(event, newValue) => {
-                          console.log(newValue);
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div  className='line w-100' />
-                  <div className='bbt-wrpaer-filter'>
-                    <div className='bbt-primary small-secondary px-2 '>
-                    <ButtonBase onClick={ViewCollaps}>Cancel</ButtonBase>
-                    </div>
-                    <div className='bbt-primary small '>
-                      <ButtonBase>Apply Filters</ButtonBase>
-                    </div>
-                  </div>
-                </div>
+                )}
               </>
             ) ||
             undefined

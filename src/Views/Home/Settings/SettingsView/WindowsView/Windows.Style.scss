@@ -1,0 +1,41 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.View-WindowsView {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3rem;
+  justify-content: center;
+  .card-wraper {
+    padding: 5px;
+  }
+  .View-card {
+    width: 359px;
+    height: 110px;
+    //  border: 1px solid #796d6d38;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .card-img {
+    width: 78px;
+    height: 73px;
+    //   border: 1px solid #796d6d38;
+  }
+  .card-title-wraper {
+    padding: 1rem;
+    .card-main-title {
+      font-weight: 900;
+      height: max-content;
+      width: 100%;
+      font-size: 14px;
+      text-align: initial;
+      color: #4e4e4e;
+    }
+
+    .card-sub-title {
+      font-size: 11px;
+      text-transform: capitalize;
+      text-align: initial;
+      color: #a99ca9;
+    }
+  }
+}

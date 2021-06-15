@@ -2,6 +2,7 @@ import loadable from '@loadable/component';
 import { UnderConstructionandDevelopmentComponent } from '../../../Components';
 const ContactsModule = loadable(() => import('../../../Views/Home/Contacts/Contacts.Module'));
 const CorporateModule = loadable(() => import('../../../Views/Home/Corporate/Corporate.Module'));
+const SettingsModule = loadable(() => import('../../../Views/Home/Settings/Settings.Module'));
 export const HomeRoutes = [
   {
     id: 1,
@@ -44,6 +45,17 @@ export const HomeRoutes = [
     path: '/dashboard',
     name: 'Shared:projects',
     component: UnderConstructionandDevelopmentComponent,
+    layout: '/home',
+    default: false,
+    isRoute: true,
+    authorize: true,
+    isDisabled: false,
+    isExact: false,
+  },{
+    id: 5,
+    path: '/settings',
+    name: 'Shared:Settings',
+    component: SettingsModule,
     layout: '/home',
     default: false,
     isRoute: true,

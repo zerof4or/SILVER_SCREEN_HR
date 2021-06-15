@@ -1,0 +1,16 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.Settings-View-wraperr {
+  .card-wraper {
+    padding: 5px;
+  }
+  .card-last-footar {
+    width: 100%;
+    height: 54px;
+    background-color: #e2e2e2;
+    border-bottom-left-radius: 23px;
+    border-bottom-right-radius: 23px;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 16px 28px;
+  }
+}

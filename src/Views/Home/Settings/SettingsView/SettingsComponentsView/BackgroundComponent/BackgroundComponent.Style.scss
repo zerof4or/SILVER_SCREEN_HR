@@ -1,0 +1,15 @@
+@import 'src/Assets/Styles/Helpers/Helpers.Style.scss';
+.view-wrapper-Background {
+  .edit-wrpaer {
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+  .backgroundImage-edit-wrpaer {
+    width: 50rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+  }
+}

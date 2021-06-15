@@ -12,7 +12,7 @@ export const Spinner = ({ isActive, isAbsolute, isWhite }) => {
       {isActive && (
         <div className={`spinner-wrapper${isAbsolute ? '  is-absolute' : ''}`}>
           <div className='app-spinner'>
-            {((isWhite || StateMode.isDarkMode) && (
+            {((isWhite || (StateMode&&StateMode.isDarkMode)) && (
               <img src={imageWhite} alt='...' className='img-spinner' />
             )) || <img src={image} alt='...' className='img-spinner' />}
           </div>

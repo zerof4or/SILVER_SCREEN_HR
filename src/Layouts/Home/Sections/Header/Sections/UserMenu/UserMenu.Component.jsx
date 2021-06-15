@@ -2,7 +2,7 @@ import React, { memo, useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { useTranslation } from 'react-i18next';
-import { languageChange } from '../../../../../../Helpers';
+import { GlobalHistory, languageChange } from '../../../../../../Helpers';
 import { CollapseComponent } from '../../../../../../Components';
 import i18next from 'i18next';
 import './UserMenu.Style.scss';
@@ -80,13 +80,7 @@ export const UserMenuComponent = memo(({ logout }) => {
               <span className='mdi mdi-menu-down' />
             </ButtonBase>
             <div className='separator-h' />
-            <ButtonBase className='btns theme-menu'>
-              <div className='d-inline-flex fa-center'>
-                <span className='mdi mdi-cog' />
-                <span className='mx-3'>{t(`${transaltionPath}account-settings`)}</span>
-              </div>
-              <span className='mdi mdi-menu-down' />
-            </ButtonBase>
+
             <div className='separator-h' />
             <div className='menu-mood'>
               <ButtonBase
@@ -131,6 +125,14 @@ export const UserMenuComponent = memo(({ logout }) => {
                 </>
               }
             />
+            <ButtonBase
+              className='btns theme-menu'
+              onClick={() => GlobalHistory.push('/home/settings/public-settings/')}>
+              <div className='d-inline-flex fa-center'>
+                <span className='mdi mdi-cog' />
+                <span className='mx-3'>{t(`${transaltionPath}account-settings`)}</span>
+              </div>
+            </ButtonBase>
             <div className='separator-h' />
             <ButtonBase className='btns theme-menu' onClick={logout}>
               <div className='d-inline-flex fa-center'>
