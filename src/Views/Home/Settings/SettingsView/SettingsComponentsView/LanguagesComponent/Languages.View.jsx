@@ -9,6 +9,10 @@ export const LanguagesView = () => {
   // const [isLoading, setIsLoading] = useState(false);
   return (
     <div className='view-wrapper-LanguagesView w-100'>
+      <div className='d-inline-flex-center w-100  mt-5'>
+        {' '}
+        <span className='main-title'>Available Languages        <span className='mdi mdi-translate' /></span>
+      </div>
       <div className='about'>
         <a
           className='bg_links social portfolio'
@@ -46,7 +50,7 @@ export const LanguagesView = () => {
             </i>
           </div>
           <p className='title'>Arabic</p>
-          <p className='text'>Click to see or edit your profile page.</p>
+          <p className='text'>Click to see or View WebSite in Arabic Language</p>
         </div>
 
         <div className='card'>
@@ -61,7 +65,7 @@ export const LanguagesView = () => {
             </i>
           </div>
           <p className='title'>English</p>
-          <p className='text'>Check all your favourites in one place.</p>
+          <p className='text'>Click to see or View WebSite in English Language </p>
         </div>
       </div>
     </div>

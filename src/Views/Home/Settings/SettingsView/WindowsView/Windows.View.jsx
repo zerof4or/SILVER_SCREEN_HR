@@ -1,7 +1,9 @@
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GlobalHistory } from '../../../../../Helpers';
+import { FilterByTreeComponent } from '../../../../../Components';
+import { GlobalHistory, SideExtendedBodyComponentUpdate } from '../../../../../Helpers';
+import { FilterByTreeSettings } from '../../../../../Layouts/Home/Sections/SideExtended/FilterByTreeSettings';
 import './Windows.Style.scss';
 
 const parentTranslationPath = 'WindowsView';
@@ -9,6 +11,23 @@ const parentTranslationPath = 'WindowsView';
 export const WindowsView = () => {
   const { t } = useTranslation(parentTranslationPath);
   console.log('t: ', t);
+
+  useEffect(() => {
+    SideExtendedBodyComponentUpdate(
+      <FilterByTreeComponent
+        treeList={FilterByTreeSettings}
+        parentTranslationPath={parentTranslationPath}
+        translationPath={''}
+      />
+    );
+  }, []);
+  useEffect(
+    () => () => {
+      SideExtendedBodyComponentUpdate(null);
+    },
+    []
+  );
+
   return (
     <div className='View-WindowsView mt-5'>
       <Button className='View-card' onClick={() => GlobalHistory.push('/home/settings/Languages')}>

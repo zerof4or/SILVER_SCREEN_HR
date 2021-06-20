@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './BackgroundComponent.Style.scss';
 import back from '../../../../../../Assets/Images/Defaults/99-removebg-preview.png';
 import bglogin from '../../../../../../Assets/Images/Pages/Login/bg-login.png';
 import labtopscrean from '../../../../../../Assets/Images/Defaults/labtopscrean.png';
 const parentTranslationPath = 'BackgroundComponentView';
+
 export const BackgroundComponentView = () => {
   const { t } = useTranslation(parentTranslationPath);
   console.log(' t: ', t);
@@ -18,7 +19,7 @@ export const BackgroundComponentView = () => {
 
   const onChangePicture = (e) => {
     console.log('picture: ', e.target.files[0]);
-    setPicture(URL.createObjectURL(e.target.files[0]) );
+    setPicture(URL.createObjectURL(e.target.files[0]));
   };
 
   return (
@@ -33,7 +34,7 @@ export const BackgroundComponentView = () => {
             backgroundRepeat: 'no-repeat',
           }}>
           <div className='edit-wrpaer'>
-            {picture && picture&& (
+            {picture && picture && (
               <div
                 className='backgroundImage-edit-wrpaer'
                 style={{
